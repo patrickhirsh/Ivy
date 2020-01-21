@@ -15,25 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ivy\Include\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ivy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\EntryPoint.h">
+    <ClInclude Include="src\Ivy\Include\Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ivy\Core\Application.cpp">
+    <ClCompile Include="src\Ivy\Window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Core\Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />
   </ItemGroup>
 </Project>

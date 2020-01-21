@@ -1,19 +1,7 @@
 #include "Ivy.h"
 
-class Sandbox : public Ivy::Application
+int main()
 {
-public:
-	Sandbox()
-	{
-
-	}
-	~Sandbox()
-	{
-
-	}
-};
-
-Ivy::Application* Ivy::CreateApplication()
-{
-	return new Sandbox();
+	Ivy::Window();
+	return 0;
 }

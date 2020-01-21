@@ -2,5 +2,4 @@
 
 /* Include in Ivy Application */
 
-#include "EntryPoint.h"
-#include "Application.h"
+#include "Window.h"
