@@ -20,10 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ivy.h" />
+    <ClInclude Include="src\Ivy\Include\IvyPCH.h" />
     <ClInclude Include="src\Ivy\Include\Core.h" />
     <ClInclude Include="src\Ivy\Include\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Ivy\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +129,8 @@
       <PreprocessorDefinitions>IVY_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

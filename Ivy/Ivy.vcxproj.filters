@@ -24,9 +24,15 @@
     <ClInclude Include="src\Ivy\Include\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ivy\Include\IvyPCH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

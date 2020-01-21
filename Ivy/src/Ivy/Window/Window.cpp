@@ -1,41 +1,64 @@
+#include "IvyPCH.h"
 #include "Window.h"
 
 namespace Ivy
 {
-    bool _exitFlag = false;
+    std::vector<Ivy::Ref<Window>>* Window::_activeWindows = new std::vector<Ivy::Ref<Window>>();
 
-    void keyEventHandle(GLFWwindow* window, int key, int scancode, int action, int mods)
+    Ivy::Ref<Window> Window::CreateWindow(
+        const char*                         name,
+        int									width,
+        int									height)
     {
-        if (key == GLFW_KEY_ESCAPE)
-            _exitFlag = true;
-    }
-
-	Window::Window()
-	{
-        GLFWwindow* window;
-
-        // init
-        if (!glfwInit()) { return; }
-
-        // create window
-        window = glfwCreateWindow(640, 480, "Hello World!", NULL, NULL);
-        if (!window) { glfwTerminate(); return; }
-        glfwMakeContextCurrent(window);
-
-        // set event callbacks
-        glfwSetKeyCallback(window, keyEventHandle);
-
-        while (!glfwWindowShouldClose(window) && !_exitFlag)
+        // if we don't currently have any windows, init GLFW
+        if (_activeWindows->size() < 1)
         {
-            glClearColor(1.0, 0.0, 0.0, 1.0);
-            glClear(GL_COLOR_BUFFER_BIT);
-            glfwSwapBuffers(window);
-            glfwPollEvents();
+            if (!glfwInit()) 
+            { 
+                /* Error.. */ 
+                return nullptr; 
+            }
         }
-	}
+
+        // create new window
+        Ivy::Ref<Window> window = Ivy::Ref<Window>(new Window()); 
+        window->_width = width;
+        window->_height = height;
+
+        // create GLFW window
+        window->_window = glfwCreateWindow(width, height, name, NULL, NULL);
+        if (!window->_window) 
+        { 
+            /* Error.. */
+            glfwTerminate();  
+            return nullptr; 
+        }
+        
+        _activeWindows->push_back(window);
+        return window;
+    }
 
 	Window::~Window()
 	{
+        // remove window from active windows
+        auto pos = std::find(_activeWindows->begin(), _activeWindows->end(), Ivy::Ref<Window>(this));
+        if (pos != _activeWindows->end())
+        {
+            _activeWindows->erase(pos);
+        }
 
+        // terminate GLFW if there are no more active windows
+        if (_activeWindows->size() < 1)
+        {
+            glfwTerminate();
+        }
 	}
+
+    void Window::Update()
+    {
+        glfwMakeContextCurrent(_window);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glfwSwapBuffers(_window);
+        glfwPollEvents();
+    }
 }

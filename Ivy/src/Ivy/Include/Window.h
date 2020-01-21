@@ -1,16 +1,26 @@
 #pragma once
-#include "GLFW/glfw3.h"
-#include "Core.h"
+#include "IvyPCH.h"
 
 namespace Ivy
 {
-	extern bool _exitFlag;
-	extern void keyEventHandle(GLFWwindow* window, int key, int scancode, int action, int mods);
-
 	class IVY_API Window
 	{
 	public:
-		Window();
-		~Window();
+		static Ivy::Ref<Window> CreateWindow(
+			const char*							name,
+			int									width,
+			int									height);
+	private:
+		static std::vector<Ivy::Ref<Window>>*	_activeWindows;
+
+	public:
+		~Window									();
+		void Update								();
+	private:
+		Window									() {};
+
+		GLFWwindow*								_window;
+		int										_width;
+		int										_height;
 	};
 }

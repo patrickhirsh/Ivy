@@ -2,6 +2,7 @@
 
 int main()
 {
-	Ivy::Window();
+	auto window = Ivy::Window::CreateWindow("Hello World!", 1280, 720);
+	while (true) { window->Update(); }
 	return 0;
 }

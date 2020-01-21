@@ -2,4 +2,7 @@
 
 /* Include in Ivy Application */
 
+#include <memory>
+
+#include "Core.h"
 #include "Window.h"
