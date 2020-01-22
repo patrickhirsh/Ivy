@@ -5,7 +5,7 @@ namespace Ivy
 {
     std::vector<Ivy::Ref<Window>>* Window::_activeWindows = new std::vector<Ivy::Ref<Window>>();
 
-    Ivy::Ref<Window> Window::CreateWindow(
+    Ivy::Ref<Window> Window::Create(
         const char*                         name,
         int									width,
         int									height)
@@ -33,6 +33,9 @@ namespace Ivy
             glfwTerminate();  
             return nullptr; 
         }
+
+        // init core systems
+        window->_render = new _Ivy::Render();
         
         _activeWindows->push_back(window);
         return window;
@@ -56,9 +59,20 @@ namespace Ivy
 
     void Window::Update()
     {
-        glfwMakeContextCurrent(_window);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(_window);
-        glfwPollEvents();
+        _render->ProcessRequests(_window);
+
+        if (_window)
+        {
+            
+            glfwMakeContextCurrent(_window);
+            glClear(GL_COLOR_BUFFER_BIT);
+            glfwSwapBuffers(_window);
+            glfwPollEvents();
+        }  
+    }
+
+    void Window::Draw(Ivy::Ref<Object> object)
+    {
+        _render->DrawRequest(object);
     }
 }
