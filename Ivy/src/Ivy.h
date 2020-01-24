@@ -6,3 +6,4 @@
 
 #include "Core.h"
 #include "Window.h"
+#include "Object.h"

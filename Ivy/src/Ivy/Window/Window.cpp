@@ -36,6 +36,13 @@ namespace Ivy
 
         // init core systems
         window->_render = new _Ivy::Render();
+
+        // init OpenGL window
+        glfwMakeContextCurrent(window->_window);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LEQUAL);
+        glDisable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
         
         _activeWindows->push_back(window);
         return window;
@@ -59,16 +66,27 @@ namespace Ivy
 
     void Window::Update()
     {
+        // rescale to window size
+        GLint width, height;
+        glfwGetWindowSize(_window, &width, &height);
+        glViewport(0, 0, width, height);
+
+        // clear previous frame
+        glClearColor(0.2, 0.2, 0.2, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // set perspective
+        //glMatrixMode(GL_PROJECTION_MATRIX);
+        //glLoadIdentity();
+        //gluPerspective(60, (double)width / (double)height, 0.1, 100);
+
+        glMatrixMode(GL_MODELVIEW_MATRIX);
+        glTranslatef(0, 0, -5);
+
         _render->ProcessRequests(_window);
 
-        if (_window)
-        {
-            
-            glfwMakeContextCurrent(_window);
-            glClear(GL_COLOR_BUFFER_BIT);
-            glfwSwapBuffers(_window);
-            glfwPollEvents();
-        }  
+        glfwSwapBuffers(_window);
+        glfwPollEvents();
     }
 
     void Window::Draw(Ivy::Ref<Object> object)

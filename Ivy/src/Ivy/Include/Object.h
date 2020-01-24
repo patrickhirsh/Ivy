@@ -1,6 +1,11 @@
 #pragma once
 #include "IvyPCH.h"
 
+namespace _Ivy
+{
+	class Render;
+}
+
 namespace Ivy
 {
 	class Object
@@ -10,9 +15,11 @@ namespace Ivy
 			std::string						objPath);
 
 	public:
-		~Object								();
+		~Object								() {};
 	private:
-		Object								();
+		Object								() {};
 		std::string							_objPath;
+
+		friend class _Ivy::Render;
 	};
 }

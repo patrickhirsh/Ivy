@@ -1,6 +1,7 @@
 #pragma once
 #include "IvyPCH.h"
 #include "Object.h"
+#include "Resource.h"
 
 namespace _Ivy
 {

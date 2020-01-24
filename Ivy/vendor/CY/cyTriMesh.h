@@ -1,3 +1,4 @@
+#pragma once
 // cyCodeBase by Cem Yuksel
 // [www.cemyuksel.com]
 //-------------------------------------------------------------------------------
@@ -105,12 +106,12 @@ namespace cy {
 	protected:
 		Vec3f* v;		//!< vertices
 		TriFace* f;		//!< faces
-		Vec3f* vn;	//!< vertex normal
+		Vec3f* vn;		//!< vertex normal
 		TriFace* fn;	//!< normal faces
-		Vec3f* vt;	//!< texture vertices
+		Vec3f* vt;		//!< texture vertices
 		TriFace* ft;	//!< texture faces
-		Mtl* m;		//!< materials
-		int* mcfc;	//!< material cumulative face count
+		Mtl* m;			//!< materials
+		int* mcfc;		//!< material cumulative face count
 
 		unsigned int nv;	//!< number of vertices
 		unsigned int nf;	//!< number of faces
