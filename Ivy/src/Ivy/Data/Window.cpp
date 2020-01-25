@@ -60,7 +60,8 @@ namespace Ivy
         gluPerspective(60, (double)width / (double)height, 0.1, 100);
 
         glMatrixMode(GL_MODELVIEW_MATRIX);
-        glTranslatef(0, 0, -30);
+        glTranslatef(0, -10, -30);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
         
         _activeWindows->push_back(window);
         return window;

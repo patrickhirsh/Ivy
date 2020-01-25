@@ -53,7 +53,8 @@ namespace _Ivy
 // OpenGL Error Handling
 #ifdef _DEBUG
 #define ASSERT(x) do { if (!(x)) __debugbreak(); } while(0)
-#define GL(x) do { _Ivy::GLClearError(); x; ASSERT(_Ivy::GLCheckError(__FILE__, #x, __LINE__)); } while(0)
+#define GL(x) do { _Ivy::GLClearError();\
+ x; ASSERT(_Ivy::GLCheckError(__FILE__, #x, std::to_string(__LINE__).c_str())); } while(0)
 #else
 #define ASSERT(x) x
 #define GL(x) x

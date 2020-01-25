@@ -58,11 +58,16 @@ namespace _Ivy
             Ivy::Ref<cy::TriMesh> mesh = Resource::GetOBJResource(request->_objPath);
             
             std::vector<float> vertices;
-            for (int i = 0; i < mesh->NV(); i++)
+            for (int i = 0; i < mesh->NF(); i++)
             {
-                vertices.push_back(mesh->V(i).elem[0]);
-                vertices.push_back(mesh->V(i).elem[1]);
-                vertices.push_back(mesh->V(i).elem[2]);
+                auto face = mesh->F(i);
+                for (int j = 0; j < 3; j++)
+                {
+                    auto vertex = face.v[j];
+                    vertices.push_back(mesh->V(vertex).elem[0]);
+                    vertices.push_back(mesh->V(vertex).elem[1]);
+                    vertices.push_back(mesh->V(vertex).elem[2]);
+                }
             }
 
             // generate and bind vertex buffer
@@ -76,7 +81,7 @@ namespace _Ivy
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
             // execute draw call
-            glDrawArrays(GL_TRIANGLES, 0, mesh->NV());
+            glDrawArrays(GL_TRIANGLES, 0, vertices.size());
         }
 
         /* We have a color array and a vertex array */

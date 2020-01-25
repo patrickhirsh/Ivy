@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ivy.h" />
+    <ClInclude Include="src\Ivy\Include\IndexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\IvyPCH.h" />
     <ClInclude Include="src\Ivy\Include\Core.h" />
     <ClInclude Include="src\Ivy\Include\Log.h" />
     <ClInclude Include="src\Ivy\Include\Object.h" />
     <ClInclude Include="src\Ivy\Include\Render.h" />
     <ClInclude Include="src\Ivy\Include\Resource.h" />
+    <ClInclude Include="src\Ivy\Include\VertexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\Window.h" />
     <ClInclude Include="vendor\CY\cyCore.h" />
     <ClInclude Include="vendor\CY\cyTriMesh.h" />
@@ -38,9 +40,11 @@
     </ClCompile>
     <ClCompile Include="src\Ivy\Core\Log.cpp" />
     <ClCompile Include="src\Ivy\Render\Render.cpp" />
+    <ClCompile Include="src\Ivy\Resource\IndexBuffer.cpp" />
     <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
     <ClCompile Include="src\Ivy\Data\Object.cpp" />
     <ClCompile Include="src\Ivy\Data\Window.cpp" />
+    <ClCompile Include="src\Ivy\Resource\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />
