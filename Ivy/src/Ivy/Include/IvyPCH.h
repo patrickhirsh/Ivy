@@ -1,8 +1,10 @@
 #pragma once
 
+#include <fstream>
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,4 +25,5 @@
 #include "GLFW/glfw3.h"
 
 // Local
+#include "Log.h"
 #include "Core.h"

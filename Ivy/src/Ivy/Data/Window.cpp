@@ -15,7 +15,7 @@ namespace Ivy
         {
             if (!glfwInit()) 
             { 
-                /* Error.. */ 
+                LOG_ERROR("GLFW failed to initialize!");
                 return nullptr; 
             }
         }
@@ -29,20 +29,38 @@ namespace Ivy
         window->_window = glfwCreateWindow(width, height, name, NULL, NULL);
         if (!window->_window) 
         { 
-            /* Error.. */
-            glfwTerminate();  
+            LOG_ERROR("GLFW falied to create a new window!");
+            glfwTerminate();
             return nullptr; 
+        }
+        glfwMakeContextCurrent(window->_window);
+
+        // if this is the first window we've created, init GLEW
+        if (_activeWindows->size() < 1)
+        {
+            if (glewInit() != GLEW_OK)
+            {
+                LOG_ERROR("GLEW failed to initialize!");
+                glfwTerminate();
+                return nullptr;
+            }
         }
 
         // init core systems
         window->_render = new _Ivy::Render();
 
         // init OpenGL window
-        glfwMakeContextCurrent(window->_window);
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
         glDisable(GL_CULL_FACE);
         glCullFace(GL_BACK);
+        
+        glMatrixMode(GL_PROJECTION_MATRIX);
+        glLoadIdentity();
+        gluPerspective(60, (double)width / (double)height, 0.1, 100);
+
+        glMatrixMode(GL_MODELVIEW_MATRIX);
+        glTranslatef(0, 0, -30);
         
         _activeWindows->push_back(window);
         return window;
@@ -66,6 +84,8 @@ namespace Ivy
 
     void Window::Update()
     {
+        glfwMakeContextCurrent(_window);
+
         // rescale to window size
         GLint width, height;
         glfwGetWindowSize(_window, &width, &height);
@@ -80,8 +100,8 @@ namespace Ivy
         //glLoadIdentity();
         //gluPerspective(60, (double)width / (double)height, 0.1, 100);
 
-        glMatrixMode(GL_MODELVIEW_MATRIX);
-        glTranslatef(0, 0, -5);
+        //glMatrixMode(GL_MODELVIEW_MATRIX);
+        //glTranslatef(0, 0, -5);
 
         _render->ProcessRequests(_window);
 

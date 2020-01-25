@@ -1,14 +1,15 @@
 #pragma once
 #include <memory>
+#include <sstream>
+#include <string.h>
+#include <vector>
 
-#ifdef IVY_BUILD_DLL
-	#define IVY_API __declspec(dllexport)
-#else
-	#define IVY_API __declspec(dllimport)
-#endif
+#define IVY_PATH __FILE__
 
+/* IVY PUBLIC */
 namespace Ivy
 {
+	/* Typedefs */
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
 	template<typename T, typename ... Args>
@@ -26,3 +27,34 @@ namespace Ivy
 	}
 }
 
+
+/* IVY INTERNAL */
+namespace _Ivy
+{
+	/* Filesystem */
+	std::string GetRootDirectory();
+	std::string GetResourceDirectory();
+
+	/* OpenGL Error Handling */
+	void GLClearError();
+	bool GLCheckError(const char* file, const char* function, const char* line);
+}
+
+
+/* MACROS */
+
+// DLL Export
+#ifdef IVY_BUILD_DLL
+#define IVY_API __declspec(dllexport)
+#else
+#define IVY_API __declspec(dllimport)
+#endif
+
+// OpenGL Error Handling
+#ifdef _DEBUG
+#define ASSERT(x) do { if (!(x)) __debugbreak(); } while(0)
+#define GL(x) do { _Ivy::GLClearError(); x; ASSERT(_Ivy::GLCheckError(__FILE__, #x, __LINE__)); } while(0)
+#else
+#define ASSERT(x) x
+#define GL(x) x
+#endif

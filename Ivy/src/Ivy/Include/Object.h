@@ -8,7 +8,7 @@ namespace _Ivy
 
 namespace Ivy
 {
-	class Object
+	class IVY_API Object
 	{
 	public:
 		static Ivy::Ref<Object> Create(
