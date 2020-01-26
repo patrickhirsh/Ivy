@@ -5,6 +5,14 @@ namespace _Ivy
 {
 	std::unordered_map<std::string, Ivy::Ref<cy::TriMesh>> Resource::_objResources;
 
+	// Hardcoded Teapot Data
+	std::vector<float>			Resource::_vertices;
+	std::vector<unsigned int>	Resource::_indeces;
+	Ivy::Ref<VertexArray>		Resource::_va = nullptr;
+	Ivy::Ref<IndexBuffer>		Resource::_ib = nullptr;
+	Ivy::Ref<VertexBuffer>		Resource::_vb = nullptr;
+	VertexBufferLayout			Resource::_vbLayout;
+
 
 	std::string Resource::LoadShader(std::string shaderPath)
 	{

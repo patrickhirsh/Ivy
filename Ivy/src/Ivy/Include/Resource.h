@@ -1,5 +1,9 @@
 #pragma once
 #include "IvyPCH.h"
+#include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 
 namespace _Ivy
 {
@@ -14,5 +18,16 @@ namespace _Ivy
 
 	private:
 		static std::unordered_map<std::string, Ivy::Ref<cy::TriMesh>>	_objResources;
+
+		// TODO: Proper resource system...
+		
+	public:
+		// Hardcoded Teapot Data
+		static std::vector<float>			_vertices;
+		static std::vector<unsigned int>	_indeces;
+		static Ivy::Ref<VertexArray>		_va;
+		static Ivy::Ref<IndexBuffer>		_ib;
+		static Ivy::Ref<VertexBuffer>		_vb;
+		static VertexBufferLayout			_vbLayout;
 	};
 }

@@ -3,48 +3,6 @@
 
 namespace _Ivy
 {
-    int Render::CompileShader(unsigned int type, const std::string& source)
-    {
-        unsigned int id = glCreateShader(type);
-        const char* src = source.c_str();
-        glShaderSource(id, 1, &src, nullptr);
-        glCompileShader(id);
-
-        int result;
-        glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-        if (result == GL_FALSE)
-        {
-            /* ERROR.. */
-            int length;
-            glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-            char* message = (char*)alloca(length * sizeof(char));
-            glGetShaderInfoLog(id, length, &length, message);
-            printf("Failed to compile shader! %s", message);
-
-            glDeleteShader(id);
-            return 0;
-        }
-
-        return id;
-    }
-
-    unsigned int Render::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
-    {
-        unsigned int program = glCreateProgram();
-        unsigned int vertex = CompileShader(GL_VERTEX_SHADER, vertexShader);
-        unsigned int fragment = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-
-        glAttachShader(program, vertex);
-        glAttachShader(program, fragment);
-        glLinkProgram(program);
-        glValidateProgram(program);
-
-        glDeleteShader(vertex);
-        glDeleteShader(fragment);
-
-        return program;
-    }
-
 	void Render::DrawRequest(Ivy::Ref<Ivy::Object> object)
 	{
         Resource::AddOBJResource(object->_objPath);
@@ -55,29 +13,34 @@ namespace _Ivy
 	{
         for (auto request : _drawRequests)
         {
-            Ivy::Ref<cy::TriMesh> mesh = Resource::GetOBJResource(request->_objPath);
-            
-            std::vector<float> vertices;
-            for (int i = 0; i < mesh->NF(); i++)
+            // Hardcoded Teapot Resources...
+            if (Resource::_vertices.size() == 0)
             {
-                auto face = mesh->F(i);
-                for (int j = 0; j < 3; j++)
+                Ivy::Ref<cy::TriMesh> mesh = Resource::GetOBJResource(request->_objPath);
+                for (int i = 0; i < mesh->NV(); i++)
                 {
-                    auto vertex = face.v[j];
-                    vertices.push_back(mesh->V(vertex).elem[0]);
-                    vertices.push_back(mesh->V(vertex).elem[1]);
-                    vertices.push_back(mesh->V(vertex).elem[2]);
+                    Resource::_vertices.push_back(mesh->V(i).elem[0]);
+                    Resource::_vertices.push_back(mesh->V(i).elem[1]);
+                    Resource::_vertices.push_back(mesh->V(i).elem[2]);
                 }
+                for (int i = 0; i < mesh->NF(); i++)
+                {
+                    Resource::_indeces.push_back(mesh->F(i).v[0]);
+                    Resource::_indeces.push_back(mesh->F(i).v[1]);
+                    Resource::_indeces.push_back(mesh->F(i).v[2]);
+                }
+                
+                Resource::_va = VertexArray::Create();
+                Resource::_vb = VertexBuffer::Create(Resource::_vertices.data(), Resource::_vertices.size() * sizeof(float));
+                Resource::_vbLayout.Push<float>(3);
+                Resource::_va->SetVertexBuffer(Resource::_vb, Resource::_vbLayout);
+                
+                Resource::_ib = IndexBuffer::Create(Resource::_indeces.data(), Resource::_indeces.size());
+                Resource::_ib->Bind();
             }
 
-            auto vb = VertexBuffer::Create(vertices.data(), vertices.size() * sizeof(float));
-            auto va = VertexArray::Create();
-            auto layout = VertexBufferLayout();
-            layout.Push<float>(3);
-            va->SetVertexBuffer(vb, layout);
-
             // execute draw call
-            glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+            glDrawElements(GL_TRIANGLES, Resource::_indeces.size(), GL_UNSIGNED_INT, 0);
         }
 	}
 }
