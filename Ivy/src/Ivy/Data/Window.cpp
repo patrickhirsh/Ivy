@@ -32,6 +32,7 @@ namespace Ivy
             return nullptr; 
         }
         glfwMakeContextCurrent(window->_window);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         // if this is the first window we've created, init GLEW
         if (_activeWindows->size() < 1)
@@ -54,20 +55,6 @@ namespace Ivy
 
         // init core systems
         window->_render = new _Ivy::Render();
-
-        // init OpenGL window
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LEQUAL);
-        glDisable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
-        
-        glMatrixMode(GL_PROJECTION_MATRIX);
-        glLoadIdentity();
-        gluPerspective(60, (double)width / (double)height, 0.1, 100);
-
-        glMatrixMode(GL_MODELVIEW_MATRIX);
-        glTranslatef(0, -10, -30);
-        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 
         _activeWindows->push_back(window);
         return window;

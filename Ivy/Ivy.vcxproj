@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ivy.h" />
+    <ClInclude Include="src\Ivy\Include\Event.h" />
     <ClInclude Include="src\Ivy\Include\IndexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\IvyPCH.h" />
     <ClInclude Include="src\Ivy\Include\Core.h" />

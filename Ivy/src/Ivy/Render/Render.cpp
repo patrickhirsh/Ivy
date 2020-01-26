@@ -37,6 +37,13 @@ namespace _Ivy
                 
                 Resource::_ib = IndexBuffer::Create(Resource::_indeces.data(), Resource::_indeces.size());
                 Resource::_ib->Bind();
+
+                Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\simple_vertex.shader");
+                Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\simple_fragment.shader");
+                std::vector<Ivy::Ref<Shader>> shaders;
+                shaders.push_back(Resource::_vertexShader);
+                shaders.push_back(Resource::_fragmentShader);
+                Shader::Bind(shaders);
             }
 
             // execute draw call

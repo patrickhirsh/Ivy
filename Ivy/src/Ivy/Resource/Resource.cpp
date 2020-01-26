@@ -12,6 +12,8 @@ namespace _Ivy
 	Ivy::Ref<IndexBuffer>		Resource::_ib = nullptr;
 	Ivy::Ref<VertexBuffer>		Resource::_vb = nullptr;
 	VertexBufferLayout			Resource::_vbLayout;
+	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
+	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
 
 
 	std::string Resource::LoadShader(std::string shaderPath)

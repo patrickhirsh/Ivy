@@ -63,6 +63,9 @@
     <ClInclude Include="src\Ivy\Include\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">

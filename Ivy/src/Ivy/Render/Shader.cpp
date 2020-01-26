@@ -28,6 +28,7 @@ namespace _Ivy
 		}
 		GL(glLinkProgram(_activeProgram));
 		GL(glValidateProgram(_activeProgram));
+		GL(glUseProgram(_activeProgram));
 	}
 
 	void Shader::Unbind()

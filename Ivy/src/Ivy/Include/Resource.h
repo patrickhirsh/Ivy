@@ -1,5 +1,6 @@
 #pragma once
 #include "IvyPCH.h"
+#include "Shader.h"
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 #include "VertexArray.h"
@@ -29,5 +30,7 @@ namespace _Ivy
 		static Ivy::Ref<IndexBuffer>		_ib;
 		static Ivy::Ref<VertexBuffer>		_vb;
 		static VertexBufferLayout			_vbLayout;
+		static Ivy::Ref<Shader>				_vertexShader;
+		static Ivy::Ref<Shader>				_fragmentShader;
 	};
 }

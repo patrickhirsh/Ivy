@@ -59,3 +59,6 @@ namespace _Ivy
 #define ASSERT(x)
 #define GL(x) x
 #endif
+
+// Low-Level Data Manipulation
+#define BIT(x) (1 << x)
