@@ -70,31 +70,14 @@ namespace _Ivy
                 }
             }
 
-            // generate and bind vertex buffer
-            unsigned int bufferID;
-            glGenBuffers(1, &bufferID);
-            glBindBuffer(GL_ARRAY_BUFFER, bufferID);
-            glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_DYNAMIC_DRAW);
-            
-            // define vertex attributes
-            glEnableVertexAttribArray(0);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+            auto vb = VertexBuffer(vertices.data(), vertices.size() * sizeof(float));
+            auto va = VertexArray();
+            auto layout = VertexBufferLayout();
+            layout.Push<float>(3);
+            va.SetVertexBuffer(vb, layout);
 
             // execute draw call
             glDrawArrays(GL_TRIANGLES, 0, vertices.size());
         }
-
-        /* We have a color array and a vertex array */
-        //glEnableClientState(GL_VERTEX_ARRAY);
-        //glEnableClientState(GL_COLOR_ARRAY);
-        //glVertexPointer(3, GL_FLOAT, 0, vertices);
-        //glColorPointer(3, GL_FLOAT, 0, colors);
-
-        /* Send data : 24 vertices */
-        //glDrawArrays(GL_QUADS, 0, 24);
-
-        /* Cleanup states */
-        //glDisableClientState(GL_COLOR_ARRAY);
-        //glDisableClientState(GL_VERTEX_ARRAY);
 	}
 }

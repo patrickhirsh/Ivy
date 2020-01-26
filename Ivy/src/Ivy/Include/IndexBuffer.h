@@ -9,10 +9,10 @@ namespace _Ivy
 		IndexBuffer				(const GLuint* data, GLuint count);
 		~IndexBuffer			();
 		void Bind				() const;
-		void UnBind				() const;
+		void Unbind				() const;
 		inline GLuint GetCount	() const { return _count; }
 	private:
-		GLuint					_bufferID;
+		GLuint					_id;
 		GLuint					_count;
 	};
 }

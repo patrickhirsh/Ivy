@@ -8,6 +8,7 @@ extern std::ofstream LOGSTREAM;
 #define _LOG_META "[" << __FILE__ << "][line " << __LINE__ << "]"
 #define _LOG_META_E(fi, fu, l) "[" << fi << "][" << fu << "][line " << l << "]"
 #define _LOG(s) do { LOGSTREAM << s; std::cout << s; } while(0)
+#define LOG_SYS(m) _LOG(" [SYSTEM] " << m << std::endl)
 #define LOG_INFO(m) _LOG("          " << _LOG_META << " : " << m << std::endl)	// Ivy log info
 #define LOG_WARN(m) _LOG("[WARNING] " << _LOG_META << " : " << m << std::endl)	// Ivy log warning
 #define LOG_ERROR(m) _LOG(" [ERROR]  " << _LOG_META << " : " << m << std::endl) // Ivy log error

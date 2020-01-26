@@ -54,6 +54,12 @@
     <ClInclude Include="src\Ivy\Include\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ivy\Include\VertexArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\VertexBufferLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
@@ -77,10 +83,13 @@
     <ClCompile Include="src\Ivy\Resource\Resource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\VertexBuffer.cpp">
+    <ClCompile Include="src\Ivy\Render\IndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\IndexBuffer.cpp">
+    <ClCompile Include="src\Ivy\Render\VertexArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Render\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

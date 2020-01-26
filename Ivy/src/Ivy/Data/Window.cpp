@@ -10,7 +10,7 @@ namespace Ivy
         int									width,
         int									height)
     {
-        // if we don't currently have any windows, init GLFW
+        // if this is the first window we've created, init GLFW
         if (_activeWindows->size() < 1)
         {
             if (!glfwInit()) 
@@ -24,8 +24,6 @@ namespace Ivy
         Ivy::Ref<Window> window = Ivy::Ref<Window>(new Window()); 
         window->_width = width;
         window->_height = height;
-
-        // create GLFW window
         window->_window = glfwCreateWindow(width, height, name, NULL, NULL);
         if (!window->_window) 
         { 
@@ -46,6 +44,14 @@ namespace Ivy
             }
         }
 
+        // startup info
+        LOG_SYS("=== Initializing New Ivy Engine Window Context ===");
+        LOG_SYS("Window ID: " << std::to_string((int)(window->_window)).c_str());
+        LOG_SYS("  <OpenGL>");
+        LOG_SYS("    Hardware Vendor:    " << (glGetString(GL_VENDOR)   == GL_NONE ? "N/A" : (const char*)glGetString(GL_VENDOR)));
+        LOG_SYS("    Hardware Renderer:  " << (glGetString(GL_RENDERER) == GL_NONE ? "N/A" : (const char*)glGetString(GL_RENDERER)));
+        LOG_SYS("    OpenGL Version:     " << (glGetString(GL_VERSION)  == GL_NONE ? "N/A" : (const char*)glGetString(GL_VERSION)));
+
         // init core systems
         window->_render = new _Ivy::Render();
 
@@ -62,7 +68,7 @@ namespace Ivy
         glMatrixMode(GL_MODELVIEW_MATRIX);
         glTranslatef(0, -10, -30);
         glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
-        
+
         _activeWindows->push_back(window);
         return window;
     }
@@ -96,16 +102,7 @@ namespace Ivy
         glClearColor(0.2, 0.2, 0.2, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // set perspective
-        //glMatrixMode(GL_PROJECTION_MATRIX);
-        //glLoadIdentity();
-        //gluPerspective(60, (double)width / (double)height, 0.1, 100);
-
-        //glMatrixMode(GL_MODELVIEW_MATRIX);
-        //glTranslatef(0, 0, -5);
-
         _render->ProcessRequests(_window);
-
         glfwSwapBuffers(_window);
         glfwPollEvents();
     }

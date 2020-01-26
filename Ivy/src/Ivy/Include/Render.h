@@ -2,6 +2,10 @@
 #include "IvyPCH.h"
 #include "Object.h"
 #include "Resource.h"
+#include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
+#include "VertexArray.h"
+#include "IndexBuffer.h"
 
 namespace _Ivy
 {

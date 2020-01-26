@@ -9,8 +9,8 @@ namespace _Ivy
 		VertexBuffer			(const void* data, GLuint size);
 		~VertexBuffer			();
 		void Bind				() const;
-		void UnBind				() const;
+		void Unbind				() const;
 	private:
-		GLuint					_bufferID;
+		GLuint					_id;
 	};
 }
