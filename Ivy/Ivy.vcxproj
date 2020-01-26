@@ -27,6 +27,7 @@
     <ClInclude Include="src\Ivy\Include\Object.h" />
     <ClInclude Include="src\Ivy\Include\Render.h" />
     <ClInclude Include="src\Ivy\Include\Resource.h" />
+    <ClInclude Include="src\Ivy\Include\Shader.h" />
     <ClInclude Include="src\Ivy\Include\VertexArray.h" />
     <ClInclude Include="src\Ivy\Include\VertexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\VertexBufferLayout.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="src\Ivy\Core\Log.cpp" />
     <ClCompile Include="src\Ivy\Render\Render.cpp" />
     <ClCompile Include="src\Ivy\Render\IndexBuffer.cpp" />
+    <ClCompile Include="src\Ivy\Render\Shader.cpp" />
     <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
     <ClCompile Include="src\Ivy\Data\Object.cpp" />
     <ClCompile Include="src\Ivy\Data\Window.cpp" />
