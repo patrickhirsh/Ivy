@@ -3,12 +3,14 @@
 
 namespace _Ivy
 {
-	IndexBuffer::IndexBuffer(const GLuint* data, GLuint count)
-		: _count(count)
+	Ivy::Ref<IndexBuffer> IndexBuffer::Create(const GLuint* data, GLuint count)
 	{
-		GL(glGenBuffers(1, &_id));
-		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _id));
+		Ivy::Ref<IndexBuffer> ib = Ivy::Ref<IndexBuffer>(new IndexBuffer());
+		ib->_count = count;
+		GL(glGenBuffers(1, &ib->_id));
+		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib->_id));
 		GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), data, GL_DYNAMIC_DRAW));
+		return ib;
 	}
 
 	IndexBuffer::~IndexBuffer()

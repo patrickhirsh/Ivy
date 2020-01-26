@@ -9,7 +9,6 @@ namespace _Ivy
 		static Ivy::Ref<Shader> Create			(GLuint shaderType, std::string shaderPath);
 		static void Bind						(const std::vector<Ivy::Ref<Shader>>& shaders);
 		static void Unbind						();
-
 	private:
 		static GLuint							_activeProgram;
 		static std::vector<Ivy::Ref<Shader>>	_activeShaders;
@@ -19,7 +18,6 @@ namespace _Ivy
 		void Compile							();
 	private:
 		Shader									() {};
-
 		GLuint									_id;
 		GLuint									_type;
 		std::string								_path;

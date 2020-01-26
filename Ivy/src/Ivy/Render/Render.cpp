@@ -70,11 +70,11 @@ namespace _Ivy
                 }
             }
 
-            auto vb = VertexBuffer(vertices.data(), vertices.size() * sizeof(float));
-            auto va = VertexArray();
+            auto vb = VertexBuffer::Create(vertices.data(), vertices.size() * sizeof(float));
+            auto va = VertexArray::Create();
             auto layout = VertexBufferLayout();
             layout.Push<float>(3);
-            va.SetVertexBuffer(vb, layout);
+            va->SetVertexBuffer(vb, layout);
 
             // execute draw call
             glDrawArrays(GL_TRIANGLES, 0, vertices.size());

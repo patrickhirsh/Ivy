@@ -3,19 +3,22 @@
 
 namespace _Ivy
 {
-	VertexArray::VertexArray()
+	Ivy::Ref<VertexArray> VertexArray::Create()
 	{
-		GL(glGenVertexArrays(1, &_id));
+		Ivy::Ref<VertexArray> va = Ivy::Ref<VertexArray>(new VertexArray());
+		GL(glGenVertexArrays(1, &va->_id));
+		return va;
 	}
+
 	VertexArray::~VertexArray()
 	{
 		GL(glDeleteVertexArrays(1, &_id));
 	}
 
-	void VertexArray::SetVertexBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
+	void VertexArray::SetVertexBuffer(Ivy::Ref<VertexBuffer> vb, const VertexBufferLayout& layout)
 	{
 		Bind();
-		vb.Bind();
+		vb->Bind();
 		const auto& elements = layout.GetElements();
 		unsigned int offset = 0;
 		for (unsigned int i = 0; i < elements.size(); i++)

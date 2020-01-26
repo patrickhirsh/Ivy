@@ -3,11 +3,13 @@
 
 namespace _Ivy
 {
-	VertexBuffer::VertexBuffer(const void* data, GLuint size)
+	Ivy::Ref<VertexBuffer> VertexBuffer::Create(const void* data, GLuint size)
 	{
-		GL(glGenBuffers(1, &_id));
-		GL(glBindBuffer(GL_ARRAY_BUFFER, _id));
+		Ivy::Ref<VertexBuffer> vb = Ivy::Ref<VertexBuffer>(new VertexBuffer());
+		GL(glGenBuffers(1, &vb->_id));
+		GL(glBindBuffer(GL_ARRAY_BUFFER, vb->_id));
 		GL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+		return vb;
 	}
 
 	VertexBuffer::~VertexBuffer()

@@ -8,13 +8,15 @@ namespace _Ivy
 	class VertexArray
 	{
 	public:
-		VertexArray();
-		~VertexArray();
-		void SetVertexBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
-		void Bind() const;
-		void Unbind() const;
-	private:
+		static Ivy::Ref<VertexArray> Create();
 
-		GLuint _id;
+	public:
+		~VertexArray			();
+		void SetVertexBuffer	(Ivy::Ref<VertexBuffer> vb, const VertexBufferLayout& layout);
+		void Bind				() const;
+		void Unbind				() const;
+	private:
+		VertexArray				() {};
+		GLuint					_id;
 	};
 }

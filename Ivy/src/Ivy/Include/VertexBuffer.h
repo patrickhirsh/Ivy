@@ -6,11 +6,14 @@ namespace _Ivy
 	class VertexBuffer
 	{
 	public:
-		VertexBuffer			(const void* data, GLuint size);
-		~VertexBuffer			();
-		void Bind				() const;
-		void Unbind				() const;
+		static Ivy::Ref<VertexBuffer> Create(const void* data, GLuint size);
+
+	public:
+		~VertexBuffer		();
+		void Bind			() const;
+		void Unbind			() const;
 	private:
-		GLuint					_id;
+		VertexBuffer		() {};
+		GLuint				_id;
 	};
 }
