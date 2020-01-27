@@ -5,10 +5,7 @@ namespace Ivy
 {
     std::vector<Window*> Window::_activeWindows = std::vector<Window*>();
 
-    Window::Window(
-        const char* name,
-        int									width,
-        int									height)
+    Window::Window(const char* name, int width, int height)
     {
         initWindow(name, width, height);
         initStartup();
@@ -55,6 +52,16 @@ namespace Ivy
         IVY_ACTIVE_WINDOW_ONLY
 
         _render->DrawRequest(object);
+    }
+
+    void Window::RegisterEventCallback(Ivy::EventCategory category, Ivy::EventCallback callback)
+    {
+        _event->Register(category, callback);
+    }
+
+    void Window::UnregisterEventCallback(Ivy::EventCategory category, Ivy::EventCallback callback)
+    {
+        _event->Unregister(category, callback);
     }
 
     void Window::initWindow(

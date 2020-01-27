@@ -1,5 +1,5 @@
  [SYSTEM] === Initializing New Ivy Engine Window Context ===
- [SYSTEM] Window ID: 1180587568
+ [SYSTEM] Window ID: -1546830048
  [SYSTEM]   <OpenGL>
  [SYSTEM]     Hardware Vendor:    NVIDIA Corporation
  [SYSTEM]     Hardware Renderer:  GeForce GTX 970/PCIe/SSE2

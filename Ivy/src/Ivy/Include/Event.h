@@ -1,6 +1,10 @@
 #pragma once
 #include "IvyPCH.h"
 
+
+#define BIND_EVENT_FUNCTION(x) std::bind(&x, std::placeholders::_1)
+#define BIND_EVENT_MEMBER_FUNCTION(x) std::bind(&x, this, std::placeholders::_1)
+
 namespace Ivy
 {
 	enum class EventType
