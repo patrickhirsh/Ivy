@@ -10,28 +10,51 @@ namespace Ivy
         int									width,
         int									height)
     {
+        // init window
+        Ivy::Ref<Window> window = Ivy::Ref<Window>(new Window());
+        if (!window->initWindow(name, width, height))
+            return nullptr;
+        
+        // init core systems
+        window->initStartup();
+        window->initRenderer();
+        window->initEventDispatcher();
+        
+        // register window
+        _activeWindows->push_back(window);
+        return window;
+    }
+
+    bool Window::initWindow(
+        const char*                         name, 
+        int                                 width, 
+        int                                 height)
+    {
         // if this is the first window we've created, init GLFW
         if (_activeWindows->size() < 1)
         {
-            if (!glfwInit()) 
-            { 
+            if (!glfwInit())
+            {
                 LOG_ERROR("GLFW failed to initialize!");
-                return nullptr; 
+                return false;
             }
         }
 
-        // create new window
-        Ivy::Ref<Window> window = Ivy::Ref<Window>(new Window()); 
-        window->_width = width;
-        window->_height = height;
-        window->_window = glfwCreateWindow(width, height, name, NULL, NULL);
-        if (!window->_window) 
-        { 
+        // init window
+        _width = width;
+        _height = height;
+        _window = glfwCreateWindow(width, height, name, NULL, NULL);
+
+        // validate GLFW window
+        if (!_window)
+        {
             LOG_ERROR("GLFW falied to create a new window!");
             glfwTerminate();
-            return nullptr; 
+            return false;
         }
-        glfwMakeContextCurrent(window->_window);
+
+        // init GLFW
+        glfwMakeContextCurrent(_window);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         // if this is the first window we've created, init GLEW
@@ -41,24 +64,36 @@ namespace Ivy
             {
                 LOG_ERROR("GLEW failed to initialize!");
                 glfwTerminate();
-                return nullptr;
+                return false;
             }
         }
+        return true;
+    }
 
+    void Window::initStartup()
+    {
         // startup info
         LOG_SYS("=== Initializing New Ivy Engine Window Context ===");
-        LOG_SYS("Window ID: " << std::to_string((int)(window->_window)).c_str());
+        LOG_SYS("Window ID: " << std::to_string((int)(_window)).c_str());
         LOG_SYS("  <OpenGL>");
-        LOG_SYS("    Hardware Vendor:    " << (glGetString(GL_VENDOR)   == GL_NONE ? "N/A" : (const char*)glGetString(GL_VENDOR)));
+        LOG_SYS("    Hardware Vendor:    " << (glGetString(GL_VENDOR) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VENDOR)));
         LOG_SYS("    Hardware Renderer:  " << (glGetString(GL_RENDERER) == GL_NONE ? "N/A" : (const char*)glGetString(GL_RENDERER)));
-        LOG_SYS("    OpenGL Version:     " << (glGetString(GL_VERSION)  == GL_NONE ? "N/A" : (const char*)glGetString(GL_VERSION)));
-
-        // init core systems
-        window->_render = new _Ivy::Render();
-
-        _activeWindows->push_back(window);
-        return window;
+        LOG_SYS("    OpenGL Version:     " << (glGetString(GL_VERSION) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VERSION)));
+        LOG_SYS("  <Core>");
     }
+
+    void Window::initRenderer()
+    {
+        LOG_SYS("    Initializing Render System...");
+        _render = new _Ivy::Render();
+    }
+
+    void Window::initEventDispatcher()
+    {
+        LOG_SYS("    Initializing Event System...");
+        _event = new _Ivy::EventDispatcher();
+    }
+
 
 	Window::~Window()
 	{
@@ -68,6 +103,10 @@ namespace Ivy
         {
             _activeWindows->erase(pos);
         }
+
+        // terminate core systems
+        delete _render;
+        delete _event;
 
         // terminate GLFW if there are no more active windows
         if (_activeWindows->size() < 1)

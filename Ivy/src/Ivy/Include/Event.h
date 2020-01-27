@@ -1,5 +1,5 @@
 #pragma once
-
+#include "IvyPCH.h"
 
 namespace Ivy
 {
@@ -34,12 +34,17 @@ namespace Ivy
 	{
 		//friend class _Ivy::EventDispatcher;
 	public:
-		virtual EventType GetEventType() const = 0;
-		virtual int GetEventCategory() const = 0;
-		inline bool IsInCategory(EventCategory category) { return GetEventCategory() & category; }
+		virtual EventType GetEventType	() const = 0;
+		virtual int GetEventCategory	() const = 0;
+		inline bool IsInCategory		(EventCategory category) { return GetEventCategory() & category; }
+		inline bool IsHandled			() const { return _handled; }
+		inline void SetHandled			(bool handled) { _handled = handled; }
 	protected:
-		bool _handled = false;
+		bool							_handled = false;
 	};
+
+	/* Event callback template */
+	using EventCallback = std::function<void(Event&)>;
 }
 
 namespace _Ivy
@@ -47,7 +52,22 @@ namespace _Ivy
 	/* Event Dispatcher */
 	class EventDispatcher
 	{
+		struct EventHandler
+		{
+		public:
+			EventHandler(Ivy::EventCategory category, Ivy::EventCallback callback)
+				: Category(category), Callback(callback) {}
+			Ivy::EventCategory Category;
+			Ivy::EventCallback Callback;
+		};
 
+	public:
+		EventDispatcher		() {};
+		void Register		(Ivy::EventCategory category, Ivy::EventCallback callback);
+		void Unregister		(Ivy::EventCategory category, Ivy::EventCallback callback);
+		void Fire			(Ivy::Event& event);
+	private:
+		std::vector<EventHandler> _handlers;
 	};
 }
 
@@ -154,53 +174,71 @@ namespace Ivy
 
 	/* APPLICATION EVENTS */
 
+	class Window;
+
 	class IVY_API EventWindowClosed : public Event
 	{
 	public:
-		EventWindowClosed() {}
+		EventWindowClosed(Ivy::Ref<Window> window)
+			: _window(window) {}
+		inline Ivy::Ref<Window> GetWindow() const { return _window; }
 		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_CLOSED)
 		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+	private:
+		Ivy::Ref<Window> _window;
 	};
 
 	class IVY_API EventWindowFocused : public Event
 	{
 	public:
-		EventWindowFocused() {}
+		EventWindowFocused(Ivy::Ref<Window> window)
+			: _window(window) {}
+		inline Ivy::Ref<Window> GetWindow() const { return _window; }
 		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_FOCUSED)
 		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+	private:
+		Ivy::Ref<Window> _window;
 	};
 
 	class IVY_API EventWindowLostFocus : public Event
 	{
 	public:
-		EventWindowLostFocus() {}
+		EventWindowLostFocus(Ivy::Ref<Window> window)
+			: _window(window) {}
+		inline Ivy::Ref<Window> GetWindow() const { return _window; }
 		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_LOST_FOCUS)
 		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+	private:
+		Ivy::Ref<Window> _window;
 	};
 
 	class IVY_API EventWindowResized : public Event
 	{
 	public:
-		EventWindowResized(int width, int height)
-			: _width(width), _height(height) {}
+		EventWindowResized(Ivy::Ref<Window> window, int width, int height)
+			: _window(window), _width(width), _height(height) {}
+		inline Ivy::Ref<Window> GetWindow() const { return _window; }
 		inline int GetWidth() const { return _width; }
 		inline int GetHeight() const { return _height; }
 		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_RESIZED)
 		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
 	private:
+		Ivy::Ref<Window> _window;
 		int _width, _height;
 	};
 
 	class IVY_API EventWindowMoved : public Event
 	{
 	public:
-		EventWindowMoved(float x, float y)
-			: _xPos(x), _yPos(y) {}
+		EventWindowMoved(Ivy::Ref<Window> window, float x, float y)
+			: _window(window), _xPos(x), _yPos(y) {}
+		inline Ivy::Ref<Window> GetWindow() const { return _window; }
 		inline float GetPosX() const { return _xPos; }
 		inline float GetPosY() const { return _yPos; }
 		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_RESIZED)
 		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
 	private:
+		Ivy::Ref<Window> _window;
 		float _xPos, _yPos;
 	};
 }

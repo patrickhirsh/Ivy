@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Core\Core.cpp" />
+    <ClCompile Include="src\Ivy\Core\Event.cpp" />
     <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

@@ -2,6 +2,7 @@
 #include "IvyPCH.h"
 #include "Object.h"
 #include "Render.h"
+#include "Event.h"
 
 namespace Ivy
 {
@@ -20,10 +21,20 @@ namespace Ivy
 		void Update								();
 		void Draw								(Ivy::Ref<Object> object);
 	private:
-		Window									() {};
+		bool initWindow(
+			const char*							name, 
+			int									width, 
+			int									height);
 
+		/* Core systems */
+		void initStartup						();
+		void initRenderer						();
+		void initEventDispatcher				();
 		_Ivy::Render*							_render;
+		_Ivy::EventDispatcher*					_event;
 
+		/* Window */
+		Window									() {};
 		GLFWwindow*								_window;
 		int										_width;
 		int										_height;

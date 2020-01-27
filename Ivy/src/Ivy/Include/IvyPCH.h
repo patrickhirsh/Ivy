@@ -27,4 +27,3 @@
 // Local
 #include "Log.h"
 #include "Core.h"
-#include "Event.h"

@@ -1,6 +1,9 @@
  [SYSTEM] === Initializing New Ivy Engine Window Context ===
- [SYSTEM] Window ID: -1546038288
+ [SYSTEM] Window ID: 766561360
  [SYSTEM]   <OpenGL>
  [SYSTEM]     Hardware Vendor:    NVIDIA Corporation
  [SYSTEM]     Hardware Renderer:  GeForce GTX 970/PCIe/SSE2
  [SYSTEM]     OpenGL Version:     4.6.0 NVIDIA 432.00
+ [SYSTEM]   <Core>
+ [SYSTEM]     Initializing Render System...
+ [SYSTEM]     Initializing Event System...

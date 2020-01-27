@@ -101,6 +101,9 @@
     <ClCompile Include="src\Ivy\Render\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ivy\Core\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />
