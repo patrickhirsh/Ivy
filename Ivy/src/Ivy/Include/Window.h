@@ -4,39 +4,45 @@
 #include "Render.h"
 #include "Event.h"
 
+#define IVY_ACTIVE_WINDOW_ONLY \
+	if (_active == false) { return; }
+
 namespace Ivy
 {
 	class IVY_API Window
 	{
+	private:
+		static std::vector<Window*>	_activeWindows;
+
 	public:
-		static Ivy::Ref<Window> Create(
+		Window(
 			const char*							name,
 			int									width,
 			int									height);
-	private:
-		static std::vector<Ivy::Ref<Window>>*	_activeWindows;
 
-	public:
 		~Window									();
 		void Update								();
+		bool IsActive							() const { return _active; }
 		void Draw								(Ivy::Ref<Object> object);
+	
 	private:
-		bool initWindow(
+		void initWindow(
 			const char*							name, 
 			int									width, 
 			int									height);
 
-		/* Core systems */
+		/* Core Systems */
 		void initStartup						();
 		void initRenderer						();
 		void initEventDispatcher				();
 		_Ivy::Render*							_render;
 		_Ivy::EventDispatcher*					_event;
 
-		/* Window */
-		Window									() {};
+		void makeCurrentContext					();
+		void setInactive						();						
 		GLFWwindow*								_window;
-		int										_width;
-		int										_height;
+		bool									_active = true;
+		int										_xPos, _yPos;
+		int										_width, _height;
 	};
 }
