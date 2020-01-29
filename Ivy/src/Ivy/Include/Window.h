@@ -22,6 +22,9 @@ namespace Ivy
 		bool IsActive							() const { return _active; }
 		void RegisterEventCallback				(Ivy::EventCategory category, Ivy::EventCallback callback);
 		void UnregisterEventCallback			(Ivy::EventCategory category, Ivy::EventCallback callback);
+
+		void SetSceneTranslation				(float transX, float transY, float transZ);
+		void SetSceneRotation					(float angleX, float angleY, float angleZ);
 	
 	private:
 		void initWindow							(const char* name, int width, int height);

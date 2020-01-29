@@ -66,6 +66,9 @@
     <ClInclude Include="src\Ivy\Include\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\CY\cyMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">

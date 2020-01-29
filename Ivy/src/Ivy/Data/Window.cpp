@@ -64,6 +64,16 @@ namespace Ivy
         _event->Unregister(category, callback);
     }
 
+    void Window::SetSceneTranslation(float transX, float transY, float transZ)
+    {
+        _render->SetSceneTranslation(cy::Vec3f(transX, transY, transZ));
+    }
+
+    void Window::SetSceneRotation(float angleX, float angleY, float angleZ)
+    {
+        _render->SetSceneRotation(angleX, angleY, angleZ);
+    }
+
     void Window::initWindow(
         const char*                         name,
         int                                 width,
@@ -187,10 +197,10 @@ namespace Ivy
         glfwSetMouseButtonCallback(_window, [](GLFWwindow* window, int button, int action, int mods) {
             Window* ivyWindow = (Window*)glfwGetWindowUserPointer(window);
             if (action == GLFW_RELEASE) {
-                auto e = EventMouseButtonPressed(button, mods);
+                auto e = EventMouseButtonReleased(button, mods);
                 ivyWindow->_event->Fire(e); }
             else {
-                auto e = EventMouseButtonReleased(button, mods);
+                auto e = EventMouseButtonPressed(button, mods);
                 ivyWindow->_event->Fire(e); } });
 
         glfwSetCursorPosCallback(_window, [](GLFWwindow* window, double xPos, double yPos) {

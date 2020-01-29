@@ -9,6 +9,16 @@ namespace _Ivy
 		_drawRequests.push_back(object);
 	}
 
+    void Render::SetSceneTranslation(const cy::Vec3f& translation)
+    {
+        _sceneTranslation = cy::Matrix4f::Translation(translation);
+    }
+
+    void Render::SetSceneRotation(float angleX, float angleY, float angleZ)
+    {
+        _sceneRotation = cy::Matrix4f::RotationXYZ(angleX, angleY, angleZ);
+    }
+
 	void Render::ProcessRequests(GLFWwindow* window)
 	{
         for (auto request : _drawRequests)
@@ -45,6 +55,16 @@ namespace _Ivy
                 shaders.push_back(Resource::_fragmentShader);
                 Shader::Bind(shaders);
             }
+
+            GLint width, height;
+            glfwGetWindowSize(window, &width, &height);
+
+            // scene transformations
+            _projection = cy::Matrix4f::Perspective(1.0f, width / height, 0, 10000);
+            _model = cy::Matrix4f::Scale(1);
+            cy::Matrix4f MVP = _projection * (_sceneTranslation * _sceneRotation) * _model;
+            GLuint mvpLoc = glGetUniformLocation(Shader::GetActiveProgram(), "MVP");
+            glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, MVP.cell);
 
             // execute draw call
             glDrawElements(GL_TRIANGLES, Resource::_indeces.size(), GL_UNSIGNED_INT, 0);

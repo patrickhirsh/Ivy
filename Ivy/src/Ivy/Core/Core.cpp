@@ -34,14 +34,14 @@ namespace _Ivy
 		while (glGetError() != GL_NO_ERROR);
 	}
 
-	bool GLCheckError(const char* file, const char* function, const char* line)
+	bool GLStatus(const char* file, const char* function, const char* line)
 	{
-		bool error = false;
+		bool status = true;
 		while (GLenum e = glGetError())
 		{
 			LOG_ERROR_E("[OpenGL " << e << "]", file, function, line);
-			error = true;
+			status = false;
 		}
-		return error;
+		return status;
 	}
 }

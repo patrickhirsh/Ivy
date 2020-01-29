@@ -10,12 +10,14 @@
 #include <string.h>
 #include <time.h>
 #include <tuple>
+#include <type_traits>
 #include <unordered_map>
 #include <vector>
 
 // CY: http://www.cemyuksel.com/cyCodeBase/code.html
 #include "cyCore.h"
 #include "cyVector.h"
+#include "cyMatrix.h"
 #include "cyTriMesh.h"
 
 // GLEW: http://glew.sourceforge.net/index.html

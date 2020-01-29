@@ -34,6 +34,7 @@
     <ClInclude Include="src\Ivy\Include\VertexBufferLayout.h" />
     <ClInclude Include="src\Ivy\Include\Window.h" />
     <ClInclude Include="vendor\CY\cyCore.h" />
+    <ClInclude Include="vendor\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\cyTriMesh.h" />
     <ClInclude Include="vendor\CY\cyVector.h" />
   </ItemGroup>

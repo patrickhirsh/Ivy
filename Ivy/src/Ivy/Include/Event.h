@@ -25,24 +25,38 @@ namespace Ivy
 
 	enum EventCategory
 	{
-		NONE			= 0,
-		APPLICATION		= BIT(0),
-		INPUT			= BIT(1),
-		KEYBOARD		= BIT(2),
-		MOUSE_MOVEMENT	= BIT(3),
-		MOUSE_BUTTON	= BIT(4)
+		NONE = 0,
+		APPLICATION = BIT(0),
+		INPUT = BIT(1),
+		KEYBOARD = BIT(2),
+		MOUSE_MOVEMENT = BIT(3),
+		MOUSE_BUTTON = BIT(4)
 	};
+}
 
+namespace _Ivy
+{
+	class EventDispatcher;
+}
+
+namespace Ivy
+{
 	/* Event base class */
 	class IVY_API Event
 	{
-		//friend class _Ivy::EventDispatcher;
+		friend class _Ivy::EventDispatcher;
 	public:
 		virtual EventType GetEventType	() const { return EventType::NONE; }
 		virtual int GetEventCategory	() const { return EventCategory::NONE; }
 		inline bool IsInCategory		(EventCategory category) { return GetEventCategory() & category; }
 		inline bool IsHandled			() const { return _handled; }
 		inline void SetHandled			(bool handled) { _handled = handled; }
+
+		/* Allows down-casting with (some level of) type security. If this Assert fails, You've 
+		failed to ensure the Event you tried to down-cast is ACTUALLY of that type (use GetEventType()!) */
+		template<typename T>
+		inline T As						() { ASSERT(this->GetEventType() == T::GetStaticType()); return *(T*)this; }
+
 	protected:
 		bool							_handled = false;
 	};
