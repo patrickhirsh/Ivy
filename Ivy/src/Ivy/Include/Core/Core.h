@@ -4,8 +4,6 @@
 #include <string.h>
 #include <vector>
 
-#define IVY_PATH __FILE__
-
 /* IVY PUBLIC */
 namespace Ivy
 {
@@ -45,6 +43,9 @@ namespace _Ivy
 
 
 /* MACROS */
+
+// Filesystem Constants
+#define MAX_PATH_LENGTH 1024
 
 // DLL Export
 #ifdef IVY_BUILD_DLL

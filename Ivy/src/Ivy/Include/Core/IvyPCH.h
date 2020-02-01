@@ -13,6 +13,7 @@
 #include <type_traits>
 #include <unordered_map>
 #include <vector>
+#include <Windows.h>
 
 // CY: http://www.cemyuksel.com/cyCodeBase/code.html
 #include "cyCore.h"
@@ -27,5 +28,5 @@
 #include "GLFW/glfw3.h"
 
 // Local
-#include "Log.h"
-#include "Core.h"
+#include "Core/Log.h"
+#include "Core/Core.h"

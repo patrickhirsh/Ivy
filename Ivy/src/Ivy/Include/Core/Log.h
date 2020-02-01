@@ -16,6 +16,7 @@ extern std::ofstream LOGSTREAM;
 #define LOG_WARN_E(m, fi, fu, l) _LOG("[WARNING] " << _LOG_META_E(fi, fu, l) << " : " << m << std::endl)	// Ivy log warning (extend info)
 #define LOG_ERROR_E(m, fi, fu, l) _LOG(" [ERROR]  " << _LOG_META_E(fi, fu, l) << " : " << m << std::endl)	// Ivy log error (extend info)
 #else
+#define LOG_SYS(m) do { } while(0)
 #define LOG_INFO(m) do { } while(0)
 #define LOG_WARN(m) do { } while(0)
 #define LOG_ERROR(m) do { } while(0)

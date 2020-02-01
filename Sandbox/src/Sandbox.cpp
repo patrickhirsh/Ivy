@@ -15,14 +15,14 @@ double modelDistance = -50;
 
 void InputCallback(Ivy::Event& Event)
 {
-	if (Event.GetEventType() == Ivy::EventType::KEY_PRESSED)
+	if (Event.GetEventType() == Ivy::EventType::E_KEY_PRESSED)
 	{
 		Ivy::EventKeyPressed e = Event.As<Ivy::EventKeyPressed>();
 		if (e.GetKey() == GLFW_KEY_ESCAPE)
 			shouldClose = true;
 	}
 
-	if (Event.GetEventType() == Ivy::EventType::MOUSEBUTTON_PRESSED)
+	if (Event.GetEventType() == Ivy::EventType::E_MOUSEBUTTON_PRESSED)
 	{
 		Ivy::EventMouseButtonPressed e = Event.As<Ivy::EventMouseButtonPressed>();
 		switch (e.GetMouseButton())
@@ -38,7 +38,7 @@ void InputCallback(Ivy::Event& Event)
 		}
 	}
 
-	if (Event.GetEventType() == Ivy::EventType::MOUSEBUTTON_RELEASED)
+	if (Event.GetEventType() == Ivy::EventType::E_MOUSEBUTTON_RELEASED)
 	{
 		Ivy::EventMouseButtonReleased e = Event.As<Ivy::EventMouseButtonReleased>();
 		switch (e.GetMouseButton())
@@ -57,7 +57,7 @@ void InputCallback(Ivy::Event& Event)
 		}
 	}
 
-	if (Event.GetEventType() == Ivy::EventType::MOUSE_MOVED)
+	if (Event.GetEventType() == Ivy::EventType::E_MOUSE_MOVED)
 	{
 		Ivy::EventMouseMoved e = Event.As<Ivy::EventMouseMoved>();
 		if (mb1Active)
@@ -75,12 +75,16 @@ void InputCallback(Ivy::Event& Event)
 	}
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+	std::string obj;
+	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to ..\\Ivy\\Ivy\\resource\n"); return 0; }
+	else { obj = argv[1]; }
+
 	auto window = Ivy::Window("Ivy Engine Prototype", 1280, 720);
-	auto teapot = Ivy::Object::Create(std::string("teapot.obj"));
+	auto teapot = Ivy::Object::Create(obj);
 	
-	window.RegisterEventCallback(Ivy::EventCategory::INPUT, BIND_EVENT_FUNCTION(InputCallback));
+	window.RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
 	while (window.IsActive() && !shouldClose)
 	{ 
@@ -89,6 +93,5 @@ int main()
 		window.Draw(teapot);
 		window.Update();
 	}
-
 	return 0;
 }

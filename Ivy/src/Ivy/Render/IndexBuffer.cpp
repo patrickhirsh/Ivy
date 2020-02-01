@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "IndexBuffer.h"
+#include "Core/IvyPCH.h"
+#include "Render/IndexBuffer.h"
 
 namespace _Ivy
 {

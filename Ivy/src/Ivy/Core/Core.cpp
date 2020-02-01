@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "Core.h"
+#include "Core/IvyPCH.h"
+#include "Core/Core.h"
 
 namespace _Ivy
 {
@@ -7,23 +7,29 @@ namespace _Ivy
 
 	std::string GetRootDirectory()
 	{
-		std::string root;
-		std::stringstream path(IVY_PATH);
+		// get path to current executable
+		WCHAR raw[MAX_PATH_LENGTH];
+		GetModuleFileName(NULL, raw, MAX_PATH_LENGTH);
+		std::wstring wstr(raw);
+		std::stringstream path(std::string(wstr.begin(), wstr.end()));
+
+		// tokenize path
 		std::string token;
 		std::vector<std::string> tokens;
-
 		while (std::getline(path, token, '\\'))
 			tokens.push_back(token);
 
-		for (int i = 0; i < ((int)tokens.size() - 4); i++)
+		// remove filename from path
+		std::string root;
+		for (int i = 0; i < ((int)tokens.size() - 1); i++)
 			root += tokens[i] + "\\";
-
+		
 		return root;
 	}
 
 	std::string GetResourceDirectory()
 	{
-		return GetRootDirectory() + "resource\\";
+		return GetRootDirectory() + "Resource\\";
 	}
 
 

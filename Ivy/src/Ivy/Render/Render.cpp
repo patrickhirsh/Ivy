@@ -1,5 +1,10 @@
-#include "IvyPCH.h"
-#include "Render.h"
+#include "Core/IvyPCH.h"
+#include "Render/Render.h"
+#include "Render/VertexBuffer.h"
+#include "Render/VertexBufferLayout.h"
+#include "Render/VertexArray.h"
+#include "Render/IndexBuffer.h"
+#include "Resource/Resource.h"
 
 namespace _Ivy
 {

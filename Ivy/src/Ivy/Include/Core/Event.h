@@ -1,5 +1,5 @@
 #pragma once
-#include "IvyPCH.h"
+#include "Core/IvyPCH.h"
 
 
 #define BIND_EVENT_FUNCTION(x) std::bind(&x, std::placeholders::_1)
@@ -9,28 +9,28 @@ namespace Ivy
 {
 	enum class EventType
 	{
-		NONE = 0,
-		WINDOW_CLOSED,
-		WINDOW_FOCUSED,
-		WINDOW_LOST_FOCUS,
-		WINDOW_RESIZED,
-		WINDOW_MOVED,
-		KEY_PRESSED,
-		KEY_RELEASED,
-		MOUSEBUTTON_PRESSED,
-		MOUSEBUTTON_RELEASED,
-		MOUSE_MOVED,
-		MOUSE_SCROLLED
+		E_NONE = 0,
+		E_WINDOW_CLOSED,
+		E_WINDOW_FOCUSED,
+		E_WINDOW_LOST_FOCUS,
+		E_WINDOW_RESIZED,
+		E_WINDOW_MOVED,
+		E_KEY_PRESSED,
+		E_KEY_RELEASED,
+		E_MOUSEBUTTON_PRESSED,
+		E_MOUSEBUTTON_RELEASED,
+		E_MOUSE_MOVED,
+		E_MOUSE_SCROLLED
 	};
 
 	enum EventCategory
 	{
-		NONE = 0,
-		APPLICATION = BIT(0),
-		INPUT = BIT(1),
-		KEYBOARD = BIT(2),
-		MOUSE_MOVEMENT = BIT(3),
-		MOUSE_BUTTON = BIT(4)
+		C_NONE = 0,
+		C_APPLICATION = BIT(0),
+		C_INPUT = BIT(1),
+		C_KEYBOARD = BIT(2),
+		C_MOUSE_MOVEMENT = BIT(3),
+		C_MOUSE_BUTTON = BIT(4)
 	};
 }
 
@@ -46,8 +46,8 @@ namespace Ivy
 	{
 		friend class _Ivy::EventDispatcher;
 	public:
-		virtual EventType GetEventType	() const { return EventType::NONE; }
-		virtual int GetEventCategory	() const { return EventCategory::NONE; }
+		virtual EventType GetEventType	() const { return EventType::E_NONE; }
+		virtual int GetEventCategory	() const { return EventCategory::C_NONE; }
 		inline bool IsInCategory		(EventCategory category) { return GetEventCategory() & category; }
 		inline bool IsHandled			() const { return _handled; }
 		inline void SetHandled			(bool handled) { _handled = handled; }
@@ -113,7 +113,7 @@ namespace Ivy
 	public:
 		inline int GetKey() const { return _keyCode; }
 		inline int GetMods() const { return _mods; }
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::INPUT | EventCategory::KEYBOARD)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_INPUT | EventCategory::C_KEYBOARD)
 	protected:
 		EventKey(int keycode, int mods)
 			: _keyCode(keycode), _mods(mods) {}
@@ -126,7 +126,7 @@ namespace Ivy
 	public:
 		EventKeyPressed(int keycode, int mods, bool repeat)
 			: EventKey(keycode, mods), _repeat(repeat) {}
-		IMPL_EVENT_CLASS_TYPE(EventType::KEY_PRESSED)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_KEY_PRESSED)
 	protected:
 		bool _repeat;
 	};
@@ -136,7 +136,7 @@ namespace Ivy
 	public:
 		EventKeyReleased(int keycode, int mods)
 			: EventKey(keycode, mods) {}
-		IMPL_EVENT_CLASS_TYPE(EventType::KEY_RELEASED)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_KEY_RELEASED)
 	};
 
 
@@ -147,7 +147,7 @@ namespace Ivy
 	public:
 		inline int GetMouseButton() const { return _button; }
 		inline int GetMods() const { return _mods; }
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::INPUT | EventCategory::MOUSE_BUTTON)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_INPUT | EventCategory::C_MOUSE_BUTTON)
 	protected:
 		EventMouseButton(int button, int mods)
 			: _button(button), _mods(mods) {}
@@ -160,7 +160,7 @@ namespace Ivy
 	public:
 		EventMouseButtonPressed(int button, int mods)
 			: EventMouseButton(button, mods) {}
-		IMPL_EVENT_CLASS_TYPE(EventType::MOUSEBUTTON_PRESSED)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSEBUTTON_PRESSED)
 	};
 
 	class IVY_API EventMouseButtonReleased : public EventMouseButton
@@ -168,7 +168,7 @@ namespace Ivy
 	public:
 		EventMouseButtonReleased(int button, int mods)
 			: EventMouseButton(button, mods) {}
-		IMPL_EVENT_CLASS_TYPE(EventType::MOUSEBUTTON_RELEASED)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSEBUTTON_RELEASED)
 	};
 
 	class IVY_API EventMouseMoved : public Event
@@ -178,8 +178,8 @@ namespace Ivy
 			: _xPos(x), _yPos(y) {}
 		inline double GetPosX() const { return _xPos; }
 		inline double GetPosY() const { return _yPos; }
-		IMPL_EVENT_CLASS_TYPE(EventType::MOUSE_MOVED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::INPUT | EventCategory::MOUSE_MOVEMENT)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSE_MOVED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_INPUT | EventCategory::C_MOUSE_MOVEMENT)
 	private:
 		double _xPos, _yPos;
 	};
@@ -191,8 +191,8 @@ namespace Ivy
 			: _xOffset(xOffset), _yOffset(yOffset) {}
 		inline double GetOffsetX() const { return _xOffset; }
 		inline double GetOffsetY() const { return _yOffset; }
-		IMPL_EVENT_CLASS_TYPE(EventType::MOUSE_SCROLLED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::INPUT | EventCategory::MOUSE_BUTTON)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSE_SCROLLED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_INPUT | EventCategory::C_MOUSE_BUTTON)
 	private:
 		double _xOffset, _yOffset;
 	};
@@ -208,8 +208,8 @@ namespace Ivy
 		EventWindowClosed(Window* window)
 			: _window(window) {}
 		inline Window* GetWindow() const { return _window; }
-		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_CLOSED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_WINDOW_CLOSED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_APPLICATION)
 	private:
 		Window* _window;
 	};
@@ -220,8 +220,8 @@ namespace Ivy
 		EventWindowFocused(Window* window)
 			: _window(window) {}
 		inline Window* GetWindow() const { return _window; }
-		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_FOCUSED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_WINDOW_FOCUSED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_APPLICATION)
 	private:
 		Window* _window;
 	};
@@ -232,8 +232,8 @@ namespace Ivy
 		EventWindowLostFocus(Window* window)
 			: _window(window) {}
 		inline Window* GetWindow() const { return _window; }
-		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_LOST_FOCUS)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_WINDOW_LOST_FOCUS)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_APPLICATION)
 	private:
 		Window* _window;
 	};
@@ -246,8 +246,8 @@ namespace Ivy
 		inline Window* GetWindow() const { return _window; }
 		inline int GetWidth() const { return _width; }
 		inline int GetHeight() const { return _height; }
-		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_RESIZED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_WINDOW_RESIZED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_APPLICATION)
 	private:
 		Window* _window;
 		int _width, _height;
@@ -261,8 +261,8 @@ namespace Ivy
 		inline Window* GetWindow() const { return _window; }
 		inline float GetPosX() const { return _xPos; }
 		inline float GetPosY() const { return _yPos; }
-		IMPL_EVENT_CLASS_TYPE(EventType::WINDOW_RESIZED)
-		IMPL_EVENT_CLASS_CATEGORY(EventCategory::APPLICATION)
+		IMPL_EVENT_CLASS_TYPE(EventType::E_WINDOW_RESIZED)
+		IMPL_EVENT_CLASS_CATEGORY(EventCategory::C_APPLICATION)
 	private:
 		Window* _window;
 		float _xPos, _yPos;

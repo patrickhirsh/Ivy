@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "Window.h"
+#include "Core/IvyPCH.h"
+#include "Data/Window.h"
 
 namespace Ivy
 {

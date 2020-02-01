@@ -4,7 +4,7 @@
 
 #include <memory>
 
-#include "Core.h"
-#include "Window.h"
-#include "Object.h"
-#include "Event.h"
+#include "Core/Core.h"
+#include "Core/Event.h"
+#include "Data/Window.h"
+#include "Data/Object.h"

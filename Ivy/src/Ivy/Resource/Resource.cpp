@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "Resource.h"
+#include "Core/IvyPCH.h"
+#include "Resource/Resource.h"
 
 namespace _Ivy
 {

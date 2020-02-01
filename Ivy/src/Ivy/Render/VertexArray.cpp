@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "VertexArray.h"
+#include "Core/IvyPCH.h"
+#include "Render/VertexArray.h"
 
 namespace _Ivy
 {

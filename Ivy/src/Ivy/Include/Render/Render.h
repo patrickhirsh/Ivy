@@ -1,11 +1,7 @@
 #pragma once
-#include "IvyPCH.h"
-#include "Object.h"
-#include "Resource.h"
-#include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
+#include "Core/IvyPCH.h"
+#include "Data/Object.h"
+
 
 namespace _Ivy
 {

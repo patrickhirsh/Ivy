@@ -20,19 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ivy.h" />
-    <ClInclude Include="src\Ivy\Include\Event.h" />
-    <ClInclude Include="src\Ivy\Include\IndexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\IvyPCH.h" />
-    <ClInclude Include="src\Ivy\Include\Core.h" />
-    <ClInclude Include="src\Ivy\Include\Log.h" />
-    <ClInclude Include="src\Ivy\Include\Object.h" />
-    <ClInclude Include="src\Ivy\Include\Render.h" />
-    <ClInclude Include="src\Ivy\Include\Resource.h" />
-    <ClInclude Include="src\Ivy\Include\Shader.h" />
-    <ClInclude Include="src\Ivy\Include\VertexArray.h" />
-    <ClInclude Include="src\Ivy\Include\VertexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\VertexBufferLayout.h" />
-    <ClInclude Include="src\Ivy\Include\Window.h" />
+    <ClInclude Include="src\Ivy\Include\Core\Event.h" />
+    <ClInclude Include="src\Ivy\Include\Render\IndexBuffer.h" />
+    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h" />
+    <ClInclude Include="src\Ivy\Include\Core\Core.h" />
+    <ClInclude Include="src\Ivy\Include\Core\Log.h" />
+    <ClInclude Include="src\Ivy\Include\Data\Object.h" />
+    <ClInclude Include="src\Ivy\Include\Render\Render.h" />
+    <ClInclude Include="src\Ivy\Include\Resource\Resource.h" />
+    <ClInclude Include="src\Ivy\Include\Render\Shader.h" />
+    <ClInclude Include="src\Ivy\Include\Data\Transform.h" />
+    <ClInclude Include="src\Ivy\Include\Render\VertexArray.h" />
+    <ClInclude Include="src\Ivy\Include\Render\VertexBuffer.h" />
+    <ClInclude Include="src\Ivy\Include\Render\VertexBufferLayout.h" />
+    <ClInclude Include="src\Ivy\Include\Data\Window.h" />
     <ClInclude Include="vendor\CY\cyCore.h" />
     <ClInclude Include="vendor\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\cyTriMesh.h" />
@@ -132,12 +133,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,11 +150,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>IvyPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -172,7 +172,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -194,7 +194,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>

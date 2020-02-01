@@ -1,5 +1,5 @@
-#include "IvyPCH.h"
-#include "Shader.h"
+#include "Core/IvyPCH.h"
+#include "Render/Shader.h"
 
 namespace _Ivy
 {

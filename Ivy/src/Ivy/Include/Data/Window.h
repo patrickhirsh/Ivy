@@ -1,8 +1,8 @@
 #pragma once
-#include "IvyPCH.h"
-#include "Object.h"
-#include "Render.h"
-#include "Event.h"
+#include "Core/IvyPCH.h"
+#include "Core/Event.h"
+#include "Data/Object.h"
+#include "Render/Render.h"
 
 #define IVY_ACTIVE_WINDOW_ONLY \
 	if (_active == false) { return; }

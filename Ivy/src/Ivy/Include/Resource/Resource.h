@@ -1,10 +1,10 @@
 #pragma once
-#include "IvyPCH.h"
-#include "Shader.h"
-#include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
+#include "Core/IvyPCH.h"
+#include "Render/Shader.h"
+#include "Render/VertexBuffer.h"
+#include "Render/VertexBufferLayout.h"
+#include "Render/VertexArray.h"
+#include "Render/IndexBuffer.h"
 
 namespace _Ivy
 {
