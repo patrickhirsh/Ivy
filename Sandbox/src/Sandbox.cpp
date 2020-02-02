@@ -1,6 +1,5 @@
 #include "Ivy.h"
 
-
 bool shouldClose = false;
 bool mb1Active = false;
 bool mb2Active = false;
@@ -82,7 +81,7 @@ int main(int argc, char* argv[])
 	else { obj = argv[1]; }
 
 	auto window = Ivy::Window("Ivy Engine Prototype", 1280, 720);
-	auto teapot = Ivy::Object::Create(obj);
+	auto teapot = Ivy::StaticMesh::Create(obj);
 	
 	window.RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
@@ -90,7 +89,7 @@ int main(int argc, char* argv[])
 	{ 
 		window.SetSceneTranslation(0, 0, modelDistance);
 		window.SetSceneRotation(xModelRotation, yModelRotation, 0);
-		window.Draw(teapot);
+		window.Tick(teapot);
 		window.Update();
 	}
 	return 0;

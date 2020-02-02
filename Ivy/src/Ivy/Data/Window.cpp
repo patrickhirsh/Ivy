@@ -47,10 +47,9 @@ namespace Ivy
         glfwPollEvents();
     }
 
-    void Window::Draw(Ivy::Ref<Object> object)
+    void Window::Tick(Ivy::Ref<StaticMesh> object)
     {
         IVY_ACTIVE_WINDOW_ONLY
-
         _render->DrawRequest(object);
     }
 

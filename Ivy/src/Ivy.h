@@ -7,4 +7,5 @@
 #include "Core/Core.h"
 #include "Core/Event.h"
 #include "Data/Window.h"
-#include "Data/Object.h"
+#include "Data/Object/Object.h"
+#include "Data/Object/Renderable/StaticMesh.h"

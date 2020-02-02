@@ -3,18 +3,32 @@
 
 namespace _Ivy
 {
-	std::unordered_map<std::string, Ivy::Ref<cy::TriMesh>> Resource::_objResources;
+	std::unordered_map<std::string, Resource::MetaResource<Ivy::StaticMesh, StaticMeshResource>*> Resource::_resourcePoolStaticMesh;
 
-	// Hardcoded Teapot Data
-	std::vector<float>			Resource::_vertices;
-	std::vector<unsigned int>	Resource::_indeces;
-	Ivy::Ref<VertexArray>		Resource::_va = nullptr;
-	Ivy::Ref<IndexBuffer>		Resource::_ib = nullptr;
-	Ivy::Ref<VertexBuffer>		Resource::_vb = nullptr;
-	VertexBufferLayout			Resource::_vbLayout;
 	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
 	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
 
+
+	
+
+	template<typename ObjectType, typename ResourceType>
+	Resource::MetaResource<ObjectType, ResourceType>::MetaResource(Ivy::Ref<ResourceType> resource)
+		: _resource(resource) {}
+
+	template<typename ObjectType, typename ResourceType>
+	bool Resource::MetaResource<ObjectType, ResourceType>::HasReferences()
+	{
+		// TODO: Clear invalid references and return the resulting ref count
+		return true;
+	}
+
+	template<typename ObjectType, typename ResourceType>
+	const Ivy::Ref<ResourceType> Resource::MetaResource<ObjectType, ResourceType>::GetResource(Ivy::WeakRef<ObjectType> requester)
+	{
+		ObjectType* requestingObject = requester.lock().get();
+		_references.emplace(requestingObject, requester);
+		return _resource;
+	}
 
 	std::string Resource::LoadShader(std::string shaderPath)
 	{
@@ -29,24 +43,20 @@ namespace _Ivy
 		return stream.str();
 	}
 
-	void Resource::AddOBJResource(std::string objPath)
+	Ivy::Ref<StaticMeshResource> Resource::BindStaticMesh(Ivy::WeakRef<Ivy::StaticMesh> staticMesh)
 	{
-		std::string fullPath = _Ivy::GetResourceDirectory() + objPath;
-		auto resource = Ivy::CreateRef<cy::TriMesh>();
-		if (!resource->LoadFromFileObj(fullPath.c_str())) { LOG_ERROR("failed to load OBJ file from path: " << fullPath); }
-		_objResources.emplace(objPath, resource);
-	}
-
-	Ivy::Ref<cy::TriMesh> Resource::GetOBJResource(std::string objPath)
-	{
-		Ivy::Ref<cy::TriMesh> resource = nullptr;
-		try { resource = _objResources.at(objPath); }
-		catch (char const* e)
+		MetaResource<Ivy::StaticMesh, StaticMeshResource>* resourceMeta;
+		auto it = _resourcePoolStaticMesh.find(staticMesh.lock()->GetMeshPath());
+		if (it != _resourcePoolStaticMesh.end()) { resourceMeta = it->second; }
+		else
 		{
-			LOG_WARN("performing forced load of OBJ: " << objPath);
-			AddOBJResource(objPath);
-			resource = _objResources.at(objPath);
+			// load new static mesh - resource isn't in the pool
+			auto resource = Ivy::Ref<StaticMeshResource>(new StaticMeshResource(staticMesh.lock()->GetMeshPath()));
+			resourceMeta = new MetaResource<Ivy::StaticMesh, StaticMeshResource>(resource);
+			_resourcePoolStaticMesh.emplace(staticMesh.lock()->GetMeshPath(), resourceMeta);
 		}
-		return resource;
+
+		auto resource = resourceMeta->GetResource(staticMesh);
+		return resource->Bind() ? resource : nullptr;
 	}
 }

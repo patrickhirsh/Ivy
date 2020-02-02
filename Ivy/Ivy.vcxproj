@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClInclude Include="src\Ivy.h" />
     <ClInclude Include="src\Ivy\Include\Core\Event.h" />
+    <ClInclude Include="src\Ivy\Include\Data\IvyObjects.h" />
+    <ClInclude Include="src\Ivy\Include\Data\Object\Renderable\StaticMesh.h" />
     <ClInclude Include="src\Ivy\Include\Render\IndexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h" />
     <ClInclude Include="src\Ivy\Include\Core\Core.h" />
     <ClInclude Include="src\Ivy\Include\Core\Log.h" />
-    <ClInclude Include="src\Ivy\Include\Data\Object.h" />
+    <ClInclude Include="src\Ivy\Include\Data\Object\Object.h" />
     <ClInclude Include="src\Ivy\Include\Render\Render.h" />
     <ClInclude Include="src\Ivy\Include\Resource\Resource.h" />
     <ClInclude Include="src\Ivy\Include\Render\Shader.h" />
@@ -34,6 +36,7 @@
     <ClInclude Include="src\Ivy\Include\Render\VertexBuffer.h" />
     <ClInclude Include="src\Ivy\Include\Render\VertexBufferLayout.h" />
     <ClInclude Include="src\Ivy\Include\Data\Window.h" />
+    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h" />
     <ClInclude Include="vendor\CY\cyCore.h" />
     <ClInclude Include="vendor\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\cyTriMesh.h" />
@@ -46,14 +49,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Ivy\Core\Log.cpp" />
+    <ClCompile Include="src\Ivy\Data\Object\Renderable\StaticMesh.cpp" />
     <ClCompile Include="src\Ivy\Render\Render.cpp" />
     <ClCompile Include="src\Ivy\Render\IndexBuffer.cpp" />
     <ClCompile Include="src\Ivy\Render\Shader.cpp" />
     <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
-    <ClCompile Include="src\Ivy\Data\Object.cpp" />
     <ClCompile Include="src\Ivy\Data\Window.cpp" />
     <ClCompile Include="src\Ivy\Render\VertexArray.cpp" />
     <ClCompile Include="src\Ivy\Render\VertexBuffer.cpp" />
+    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />

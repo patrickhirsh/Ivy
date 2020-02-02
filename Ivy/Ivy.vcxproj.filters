@@ -60,9 +60,6 @@
     <ClInclude Include="src\Ivy\Include\Core\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ivy\Include\Data\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,12 +69,21 @@
     <ClInclude Include="src\Ivy\Include\Resource\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Data\Object\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Data\Object\Renderable\StaticMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Data\IvyObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Data\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Ivy\Core\Core.cpp">
@@ -108,6 +114,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Ivy\Core\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Data\Object\Renderable\StaticMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
