@@ -27,5 +27,6 @@ namespace _Ivy
 		cy::Matrix4f							_sceneRotation = cy::Matrix4f::Identity();
 		cy::Matrix4f							_projection;
 		cy::Matrix4f							_model;
+		cy::Matrix4f							_view;
 	};
 }

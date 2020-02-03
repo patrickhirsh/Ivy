@@ -43,7 +43,7 @@ namespace _Ivy
 		return stream.str();
 	}
 
-	Ivy::Ref<StaticMeshResource> Resource::BindStaticMesh(Ivy::WeakRef<Ivy::StaticMesh> staticMesh)
+	Ivy::Ref<StaticMeshResource::MetaData> Resource::BindStaticMesh(Ivy::WeakRef<Ivy::StaticMesh> staticMesh)
 	{
 		MetaResource<Ivy::StaticMesh, StaticMeshResource>* resourceMeta;
 		auto it = _resourcePoolStaticMesh.find(staticMesh.lock()->GetMeshPath());
@@ -56,7 +56,16 @@ namespace _Ivy
 			_resourcePoolStaticMesh.emplace(staticMesh.lock()->GetMeshPath(), resourceMeta);
 		}
 
-		auto resource = resourceMeta->GetResource(staticMesh);
-		return resource->Bind() ? resource : nullptr;
+		Ivy::Ref<StaticMeshResource> resource = resourceMeta->GetResource(staticMesh);
+		return resource->Bind() ? resource->GetMetaData() : nullptr;
+	}
+
+	void Resource::UnbindStaticMesh(Ivy::WeakRef<Ivy::StaticMesh> staticMesh)
+	{
+		auto it = _resourcePoolStaticMesh.find(staticMesh.lock()->GetMeshPath());
+		if (it != _resourcePoolStaticMesh.end())
+		{
+			it->second->GetResource(staticMesh)->Unbind();
+		}
 	}
 }

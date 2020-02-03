@@ -1,9 +1,5 @@
 #include "Core/IvyPCH.h"
 #include "Render/Render.h"
-#include "Render/VertexBuffer.h"
-#include "Render/VertexBufferLayout.h"
-#include "Render/VertexArray.h"
-#include "Render/IndexBuffer.h"
 #include "Resource/Resource.h"
 
 namespace _Ivy
@@ -28,35 +24,48 @@ namespace _Ivy
         // Hardcoded Shader Binding... TODO: abstract this.
         if (Resource::_vertexShader == nullptr || Resource::_fragmentShader == nullptr)
         {
-            Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultVertex.shader");
-            Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultFragment.shader");
+            Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultLitVertex.shader");
+            Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultLitFragment.shader");
             std::vector<Ivy::Ref<Shader>> shaders;
             shaders.push_back(Resource::_vertexShader);
             shaders.push_back(Resource::_fragmentShader);
             Shader::Bind(shaders);
         }
 
+        glEnable(GL_DEPTH_TEST);
+
         GLint width, height;
         glfwGetWindowSize(window, &width, &height);
+
+        //GL(glEnable(GL_CULL_FACE));
 
         for (auto request : _staticMeshDrawRequests)
         {
             for (auto requestInstance : request.second)
             {
-                // TODO: Maybe this shouldn't expose the underlying resource type...
-                Ivy::Ref<StaticMeshResource> resource = Resource::BindStaticMesh(requestInstance);
-                if (resource)
+                Ivy::Ref<StaticMeshResource::MetaData> resourceMeta = Resource::BindStaticMesh(requestInstance);
+                if (resourceMeta)
                 {
+                    // TODO: Fix scene transformation to properly account for aspect ratio
                     // scene transformations
-                    _projection = cy::Matrix4f::Perspective(1.0f, width / height, 0, 10000);
                     _model = cy::Matrix4f::Scale(1);
-                    cy::Matrix4f MVP = _projection * (_sceneTranslation * _sceneRotation) * _model;
-                    GLuint mvpLoc = glGetUniformLocation(Shader::GetActiveProgram(), "MVP");
-                    glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, MVP.cell);
+                    _view = _sceneTranslation * _sceneRotation;
+                    _projection = cy::Matrix4f::Perspective(1.0f, (width / height), 1, 100);
+                    cy::Matrix4f NTRANS = (_sceneTranslation * _sceneRotation) * _model;
+                    NTRANS.Invert();
+                    NTRANS.Transpose();
+                    GLuint mLoc = glGetUniformLocation(Shader::GetActiveProgram(), "model");
+                    GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "view");
+                    GLuint pLoc = glGetUniformLocation(Shader::GetActiveProgram(), "projection");
+                    GLuint ntransLoc = glGetUniformLocation(Shader::GetActiveProgram(), "NTRANS");
+                    GL(glUniformMatrix4fv(mLoc, 1, GL_FALSE, _model.cell));
+                    GL(glUniformMatrix4fv(vLoc, 1, GL_FALSE, _view.cell));
+                    GL(glUniformMatrix4fv(pLoc, 1, GL_FALSE, _projection.cell));
+                    GL(glUniformMatrix4fv(ntransLoc, 1, GL_FALSE, NTRANS.cell));
 
                     // execute draw call
-                    glDrawElements(GL_TRIANGLES, resource->GetIndeceCount(), GL_UNSIGNED_INT, 0);
-                    resource->Unbind();
+                    GL(glDrawArrays(GL_TRIANGLES, 0, resourceMeta->BufferCount));
+                    Resource::UnbindStaticMesh(requestInstance);
                 }
             }
         }

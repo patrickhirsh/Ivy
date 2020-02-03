@@ -35,10 +35,12 @@ namespace _Ivy
 	void VertexArray::Bind() const
 	{
 		GL(glBindVertexArray(_id));
+		GL(glEnableClientState(GL_VERTEX_ARRAY));
 	}
 
 	void VertexArray::Unbind() const
 	{
 		GL(glBindVertexArray(0));
+		GL(glDisableClientState(GL_VERTEX_ARRAY));
 	}
 }

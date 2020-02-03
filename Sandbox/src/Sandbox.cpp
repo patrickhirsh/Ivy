@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to ..\\Ivy\\Ivy\\resource\n"); return 0; }
 	else { obj = argv[1]; }
 
-	auto window = Ivy::Window("Ivy Engine Prototype", 1280, 720);
+	auto window = Ivy::Window("Ivy Engine Prototype", 700, 700);
 	auto teapot = Ivy::StaticMesh::Create(obj);
 	
 	window.RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));

@@ -6,6 +6,15 @@ namespace _Ivy
 	StaticMeshResource::StaticMeshResource(std::string sourcePath)
 		: _source(sourcePath), _loaded(false) {}
 
+	Ivy::Ref<StaticMeshResource::MetaData> StaticMeshResource::GetMetaData() const
+	{
+		return Ivy::Ref<MetaData>( new MetaData(
+			_hasVertexPositions,
+			_hasVertexNormals,
+			_buffer.size() * sizeof(float),
+			(_buffer.size() * sizeof(float)) / _vbLayout.GetStride()));
+	}
+
 	void StaticMeshResource::Load()
 	{
 		std::string path = _Ivy::GetResourceDirectory() + _source;
@@ -16,21 +25,54 @@ namespace _Ivy
 			return;
 		}
 
-		for (int i = 0; i < mesh.NV(); i++)
-			for (int j = 0; j < 3; j++)
-				_vertices.push_back(mesh.V(i).elem[j]);
-		for (int i = 0; i < mesh.NF(); i++)
-			for (int j = 0; j < 3; j++)
-				_indeces.push_back(mesh.F(i).v[j]);
+		// build vb layout based on mesh data
+		_hasVertexPositions = mesh.NV() > 0;
+		_hasVertexNormals = mesh.NVN() > 0;
+		if (_hasVertexPositions) { _vbLayout.Push<float>(3); }
+		if (_hasVertexNormals) { _vbLayout.Push<float>(3); }
 
+		// for each face...
+		for (int face = 0; face < mesh.NF(); face++)
+		{
+			// for each vertex...
+			for (int vertexIndex = 0; vertexIndex < 3; vertexIndex++)
+			{
+				// add vertex position coords
+				if (_hasVertexPositions)
+				{
+					if (mesh.F(face).v[vertexIndex] >= mesh.NV())
+					{
+						LOG_ERROR("Couldn't load mesh: " << _source << " (invalid vertex position data)");
+						ASSERT(false);
+						Unload();
+						return;
+					}
+					_buffer.push_back(mesh.V(mesh.F(face).v[vertexIndex])[0]);
+					_buffer.push_back(mesh.V(mesh.F(face).v[vertexIndex])[1]);
+					_buffer.push_back(mesh.V(mesh.F(face).v[vertexIndex])[2]);
+				}
+
+				// add vertex normal coords
+				if (_hasVertexNormals)
+				{
+					if (mesh.FN(face).v[vertexIndex] >= mesh.NVN())
+					{
+						LOG_ERROR("Couldn't load mesh: " << _source << " (invalid vertex normal data)");
+						ASSERT(false);
+						Unload();
+						return;
+					}
+					_buffer.push_back(mesh.VN(mesh.FN(face).v[vertexIndex])[0]);
+					_buffer.push_back(mesh.VN(mesh.FN(face).v[vertexIndex])[1]);
+					_buffer.push_back(mesh.VN(mesh.FN(face).v[vertexIndex])[2]);
+				}
+			}
+		}
+
+		// generate vertex array & vertex buffer with vertices
 		_va = VertexArray::Create();
-		_vb = VertexBuffer::Create(_vertices.data(), _vertices.size() * sizeof(float));
-		_vbLayout.Push<float>(3);
+		_vb = VertexBuffer::Create(_buffer.data(), _buffer.size() * sizeof(float));
 		_va->SetVertexBuffer(_vb, _vbLayout);
-
-		_ib = IndexBuffer::Create(_indeces.data(), _indeces.size());
-		_ib->Bind();
-		
 		_loaded = true;
 	}
 
@@ -38,9 +80,9 @@ namespace _Ivy
 	{
 		_vb = nullptr;
 		_va = nullptr;
-		_ib = nullptr;
-		_vertices.clear();
-		_indeces.clear();
+		_buffer.clear();
+		_hasVertexPositions = false;
+		_hasVertexNormals = false;
 		_loaded = false;
 	}
 
@@ -51,7 +93,6 @@ namespace _Ivy
 		{
 			_vb->Bind();
 			_va->Bind();
-			_ib->Bind();
 			return true;
 		}
 		return false;
@@ -63,7 +104,6 @@ namespace _Ivy
 		{
 			_vb->Unbind();
 			_va->Unbind();
-			_ib->Unbind();
 		}
 	}
 }

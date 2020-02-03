@@ -11,23 +11,44 @@ namespace _Ivy
 	class StaticMeshResource
 	{
 	public:
-		StaticMeshResource			(std::string sourcePath);
-		~StaticMeshResource			() {};
-		GLuint GetIndeceCount		() const { return _indeces.size(); }
-		bool IsLoaded				() const { return _loaded; }
-		void Load					();
-		void Unload					();
-		bool Bind					();
-		void Unbind					();
+		struct MetaData
+		{
+			MetaData(
+				bool VertexPositions,
+				bool VertexNormals,
+				GLuint BufferSize,
+				GLuint BufferCount)
+				:
+				VertexPositions(VertexPositions),
+				VertexNormals(VertexNormals),
+				BufferSize(BufferSize),
+				BufferCount(BufferCount) {}
+
+			bool VertexPositions;
+			bool VertexNormals;
+			GLuint BufferSize;
+			GLuint BufferCount;
+		};
+
+		StaticMeshResource				(std::string sourcePath);
+		~StaticMeshResource				() {};
+		Ivy::Ref<MetaData> GetMetaData	() const;
+		bool IsLoaded					() const { return _loaded; }
+		void Load						();
+		void Unload						();
+		bool Bind						();
+		void Unbind						();
+
+		// TODO: Generate a draw call struct containing draw call info
 
 	private:
 		bool						_loaded;
 		std::string					_source;
-		std::vector<float>			_vertices;
-		std::vector<unsigned int>	_indeces;
+		bool						_hasVertexPositions = false;
+		bool						_hasVertexNormals = false;
+		std::vector<float>			_buffer;
 		Ivy::Ref<VertexBuffer>		_vb = nullptr;
 		Ivy::Ref<VertexArray>		_va = nullptr;
-		Ivy::Ref<IndexBuffer>		_ib = nullptr;
 		VertexBufferLayout			_vbLayout;
 	};
 }
