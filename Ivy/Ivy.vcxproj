@@ -71,13 +71,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\ImGui\include;$(SolutionDir)\vendor\CY\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\ImGui\include;$(SolutionDir)\vendor\CY\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -164,62 +164,64 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ivy\Core\IvyCore.cpp" />
-    <ClCompile Include="src\Ivy\Window\Event.cpp" />
-    <ClCompile Include="src\Ivy\Core\IvyEntry.cpp" />
-    <ClCompile Include="src\Ivy\Core\IvyEngine.cpp" />
-    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp" />
-    <ClCompile Include="src\Ivy\Object\Renderable\StaticMesh.cpp" />
-    <ClCompile Include="src\Ivy\Window\Window.cpp" />
-    <ClCompile Include="src\Ivy\Window\Render\IndexBuffer.cpp" />
-    <ClCompile Include="src\Ivy\Window\Render\Render.cpp" />
-    <ClCompile Include="src\Ivy\Window\Render\Shader.cpp" />
-    <ClCompile Include="src\Ivy\Window\Render\VertexArray.cpp" />
-    <ClCompile Include="src\Ivy\Window\Render\VertexBuffer.cpp" />
-    <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
-    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="source\Core\IvyCore.cpp" />
+    <ClCompile Include="source\Entity\EntityManager.cpp" />
+    <ClCompile Include="source\Event\Event.cpp" />
+    <ClCompile Include="source\Core\IvyEntry.cpp" />
+    <ClCompile Include="source\Core\IvyEngine.cpp" />
+    <ClCompile Include="source\Core\IvyPCH.cpp" />
+    <ClCompile Include="source\Entity\StaticMesh.cpp" />
+    <ClCompile Include="source\Window\Window.cpp" />
+    <ClCompile Include="source\Render\IndexBuffer.cpp" />
+    <ClCompile Include="source\Render\Render.cpp" />
+    <ClCompile Include="source\Render\Shader.cpp" />
+    <ClCompile Include="source\Render\VertexArray.cpp" />
+    <ClCompile Include="source\Render\VertexBuffer.cpp" />
+    <ClCompile Include="source\Resource\Resource.cpp" />
+    <ClCompile Include="source\Resource\StaticMeshResource.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ivy\Include\Core\IvyCore.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Event.h" />
-    <ClInclude Include="src\Ivy\Include\Core\IvyEngine.h" />
-    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h" />
-    <ClInclude Include="src\Ivy\Include\Object\Object.h" />
-    <ClInclude Include="src\Ivy\Include\Object\Renderable\StaticMesh.h" />
-    <ClInclude Include="src\Ivy\Include\Object\Transform.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Window.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\IndexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\Render.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\Shader.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexArray.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBufferLayout.h" />
-    <ClInclude Include="src\Ivy\Include\Resource\Resource.h" />
-    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h" />
-    <ClInclude Include="vendor\CY\cyCore.h" />
-    <ClInclude Include="vendor\CY\cyMatrix.h" />
-    <ClInclude Include="vendor\CY\cyTriMesh.h" />
-    <ClInclude Include="vendor\CY\cyVector.h" />
+    <ClInclude Include="include\Core\IvyCore.h" />
+    <ClInclude Include="include\Entity\EntityManager.h" />
+    <ClInclude Include="include\Event\Event.h" />
+    <ClInclude Include="include\Core\IvyEngine.h" />
+    <ClInclude Include="include\Core\IvyPCH.h" />
+    <ClInclude Include="include\Entity\Entity.h" />
+    <ClInclude Include="include\Entity\StaticMesh.h" />
+    <ClInclude Include="include\Entity\Transform.h" />
+    <ClInclude Include="include\Window\Window.h" />
+    <ClInclude Include="include\Render\IndexBuffer.h" />
+    <ClInclude Include="include\Render\Render.h" />
+    <ClInclude Include="include\Render\Shader.h" />
+    <ClInclude Include="include\Render\VertexArray.h" />
+    <ClInclude Include="include\Render\VertexBuffer.h" />
+    <ClInclude Include="include\Render\VertexBufferLayout.h" />
+    <ClInclude Include="include\Resource\Resource.h" />
+    <ClInclude Include="include\Resource\StaticMeshResource.h" />
+    <ClInclude Include="vendor\CY\include\CY\cyCore.h" />
+    <ClInclude Include="vendor\CY\include\CY\cyMatrix.h" />
+    <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h" />
+    <ClInclude Include="vendor\CY\include\CY\cyVector.h" />
     <ClInclude Include="vendor\GLEW\include\GL\eglew.h" />
     <ClInclude Include="vendor\GLEW\include\GL\glew.h" />
     <ClInclude Include="vendor\GLEW\include\GL\glxew.h" />
     <ClInclude Include="vendor\GLEW\include\GL\wglew.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
-    <ClInclude Include="vendor\ImGui\imconfig.h" />
-    <ClInclude Include="vendor\ImGui\imgui.h" />
-    <ClInclude Include="vendor\ImGui\imgui_impl_glfw.h" />
-    <ClInclude Include="vendor\ImGui\imgui_impl_opengl3.h" />
-    <ClInclude Include="vendor\ImGui\imgui_internal.h" />
-    <ClInclude Include="vendor\ImGui\imstb_rectpack.h" />
-    <ClInclude Include="vendor\ImGui\imstb_textedit.h" />
-    <ClInclude Include="vendor\ImGui\imstb_truetype.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imconfig.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_internal.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_textedit.h" />
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\GLEW\doc\advanced.html" />

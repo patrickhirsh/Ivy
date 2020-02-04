@@ -15,87 +15,120 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
+    <ClCompile Include="source\Core\IvyCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\Resource.cpp">
+    <ClCompile Include="source\Core\IvyEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp">
+    <ClCompile Include="source\Core\IvyEntry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Core\IvyEngine.cpp">
+    <ClCompile Include="source\Core\IvyPCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Core\IvyEntry.cpp">
+    <ClCompile Include="source\Entity\EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Object\Renderable\StaticMesh.cpp">
+    <ClCompile Include="source\Entity\StaticMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Render\IndexBuffer.cpp">
+    <ClCompile Include="source\Event\Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Render\Render.cpp">
+    <ClCompile Include="source\Render\IndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Render\Shader.cpp">
+    <ClCompile Include="source\Render\Render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Render\VertexArray.cpp">
+    <ClCompile Include="source\Render\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Render\VertexBuffer.cpp">
+    <ClCompile Include="source\Render\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Window.cpp">
+    <ClCompile Include="source\Render\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Window\Event.cpp">
+    <ClCompile Include="source\Resource\Resource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ivy\Core\IvyCore.cpp">
+    <ClCompile Include="source\Resource\StaticMeshResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui.cpp">
+    <ClCompile Include="source\Window\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui_demo.cpp">
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui_draw.cpp">
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui_impl_glfw.cpp">
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui_impl_opengl3.cpp">
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_impl_glfw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\ImGui\imgui_widgets.cpp">
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGui\include\ImGui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h">
+    <ClInclude Include="include\Core\IvyCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Resource\Resource.h">
+    <ClInclude Include="include\Core\IvyEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h">
+    <ClInclude Include="include\Core\IvyPCH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyCore.h">
+    <ClInclude Include="include\Entity\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyMatrix.h">
+    <ClInclude Include="include\Entity\EntityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyTriMesh.h">
+    <ClInclude Include="include\Entity\StaticMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyVector.h">
+    <ClInclude Include="include\Entity\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Event\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\IndexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\Render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\VertexArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\VertexBufferLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resource\Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resource\StaticMeshResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendor\GLEW\include\GL\eglew.h">
@@ -116,67 +149,40 @@
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\IvyEngine.h">
+    <ClInclude Include="vendor\CY\include\CY\cyCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Object\Renderable\StaticMesh.h">
+    <ClInclude Include="vendor\CY\include\CY\cyMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Object\Object.h">
+    <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Object\Transform.h">
+    <ClInclude Include="vendor\CY\include\CY\cyVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\IndexBuffer.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imconfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\Render.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\Shader.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_impl_glfw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexArray.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_impl_opengl3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBuffer.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imgui_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBufferLayout.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_rectpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Event.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_textedit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Window\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\IvyCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imconfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imgui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imgui_impl_glfw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imgui_impl_opengl3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imgui_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imstb_rectpack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imstb_textedit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\ImGui\imstb_truetype.h">
+    <ClInclude Include="vendor\ImGui\include\ImGui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,109 @@
+﻿  IvyCore.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xstring(2388,23): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xstring(2399): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xstring(2399): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xstring(2379): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xstring(2379): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Core\IvyCore.cpp(16): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,void>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Core\IvyCore.cpp(16): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,void>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xutility(4354): message : see reference to function template instantiation 'bool std::_Within_limits<_InIt,_Ty>(_InIt,const _Ty &)' being compiled
+          with
+          [
+              _InIt=const char *,
+              _Ty=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xutility(4383): message : see reference to function template instantiation '_InIt std::_Find_unchecked1<_InIt,_Ty>(_InIt,const _InIt,const _Ty &,std::true_type)' being compiled
+          with
+          [
+              _InIt=const char *,
+              _Ty=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xlocnum(86): message : see reference to function template instantiation '_InIt std::_Find_unchecked<const _Elem*,_Elem>(const _InIt,const _InIt,const _Ty &)' being compiled
+          with
+          [
+              _InIt=const char *,
+              _Elem=char,
+              _Ty=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xlocmon(713): message : see reference to function template instantiation 'size_t std::_Find_elem<_Elem,12>(const _Elem (&)[12],const _Elem)' being compiled
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xlocmon(698): message : while compiling class template member function '_OutIt std::money_put<char,_OutIt>::do_put(_OutIt,bool,std::ios_base &,_Elem,const std::basic_string<_Elem,std::char_traits<char>,std::allocator<char>> &) const'
+          with
+          [
+              _OutIt=std::ostreambuf_iterator<char,std::char_traits<char>>,
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\xlocmon(901): message : see reference to class template instantiation 'std::money_put<char,std::ostreambuf_iterator<char,std::char_traits<char>>>' being compiled
+  EntityManager.cpp
+  Event.cpp
+  IvyEntry.cpp
+  IvyEngine.cpp
+  IvyPCH.cpp
+  StaticMesh.cpp
+  Window.cpp
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Window\Window.cpp(9,9): warning C4311: 'type cast': pointer truncation from 'GLFWwindow *' to 'int'
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Window\Window.cpp(9,9): warning C4302: 'type cast': truncation from 'GLFWwindow *' to 'int'
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Window\Window.cpp(32,40): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Window\Window.cpp(132,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Window\Window.cpp(132,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  IndexBuffer.cpp
+  Render.cpp
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Render\Render.cpp(53,74): warning C4244: 'argument': conversion from 'GLint' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Shader.cpp
+  VertexArray.cpp
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Render\VertexArray.cpp(29,1): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Resource.cpp
+  StaticMeshResource.cpp
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Resource\StaticMeshResource.cpp(15,61): warning C4267: 'argument': conversion from 'size_t' to 'GLuint', possible loss of data
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Resource\StaticMeshResource.cpp(35,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\source\Resource\StaticMeshResource.cpp(74,76): warning C4267: 'argument': conversion from 'size_t' to 'GLuint', possible loss of data
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_widgets.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\build\bin\Debug-x64\Ivy\vc120.pdb'; linking object as if no debug info
+  Ivy.vcxproj -> C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\build\bin\Debug-x64\Ivy\Ivy.exe
