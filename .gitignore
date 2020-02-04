@@ -1,2 +1,4 @@
 /Ivy/.vs/**
 /Ivy/build/**
+*.log
+imgui.ini
