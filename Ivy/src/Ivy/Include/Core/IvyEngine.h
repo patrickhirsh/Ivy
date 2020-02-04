@@ -8,13 +8,16 @@ namespace Ivy
 	{
 	public:
 		static bool Run(int argc, char* argv[]);
-
+		static void Shutdown();
 	private:
 		static Window*			_IvyWindow;
 		static GLFWwindow*		_GLFWWindow;
 
+		static const char* version;
+
 		static bool initEngine();
 		static bool initOpenGL();
+		static bool initImGui();
 		static bool initWindow();
 		static bool initInput();
 	};

@@ -95,7 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -178,6 +178,12 @@
     <ClCompile Include="src\Ivy\Window\Render\VertexBuffer.cpp" />
     <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
     <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\ImGui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ivy\Include\Core\IvyCore.h" />
@@ -206,6 +212,14 @@
     <ClInclude Include="vendor\GLEW\include\GL\wglew.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
+    <ClInclude Include="vendor\ImGui\imconfig.h" />
+    <ClInclude Include="vendor\ImGui\imgui.h" />
+    <ClInclude Include="vendor\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\ImGui\imgui_internal.h" />
+    <ClInclude Include="vendor\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\ImGui\imstb_textedit.h" />
+    <ClInclude Include="vendor\ImGui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="vendor\GLEW\doc\advanced.html" />

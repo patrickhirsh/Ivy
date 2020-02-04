@@ -16,16 +16,21 @@
 #include <Windows.h>
 
 // CY: http://www.cemyuksel.com/cyCodeBase/code.html
-#include "cyCore.h"
-#include "cyVector.h"
-#include "cyMatrix.h"
-#include "cyTriMesh.h"
+#include "CY/cyCore.h"
+#include "CY/cyVector.h"
+#include "CY/cyMatrix.h"
+#include "CY/cyTriMesh.h"
 
 // GLEW: http://glew.sourceforge.net/index.html
-#include "GL/glew.h"
+#include "GLEW/include/GL/glew.h"
 
 // GLFW: https://www.glfw.org/
-#include "GLFW/glfw3.h"
+#include "GLFW/include/GLFW/glfw3.h"
+
+// IMGUI: https://github.com/ocornut/imgui
+#include "ImGui/imgui_impl_opengl3.h"
+#include "ImGui/imgui_impl_glfw.h"
+#include "ImGui/imgui.h"
 
 // Local
 #include "Core/IvyCore.h"
