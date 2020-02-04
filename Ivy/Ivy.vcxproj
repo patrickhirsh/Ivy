@@ -71,13 +71,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)build\int\$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -105,6 +105,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(SolutionDir)build\bin\$(Configuration)-$(Platform)\Resource"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -122,6 +125,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(SolutionDir)build\bin\$(Configuration)-$(Platform)\Resource"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -164,21 +170,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\Core\IvyCore.cpp" />
-    <ClCompile Include="source\Entity\EntityManager.cpp" />
-    <ClCompile Include="source\Event\Event.cpp" />
-    <ClCompile Include="source\Core\IvyEntry.cpp" />
-    <ClCompile Include="source\Core\IvyEngine.cpp" />
-    <ClCompile Include="source\Core\IvyPCH.cpp" />
-    <ClCompile Include="source\Entity\StaticMesh.cpp" />
-    <ClCompile Include="source\Window\Window.cpp" />
-    <ClCompile Include="source\Render\IndexBuffer.cpp" />
-    <ClCompile Include="source\Render\Render.cpp" />
-    <ClCompile Include="source\Render\Shader.cpp" />
-    <ClCompile Include="source\Render\VertexArray.cpp" />
-    <ClCompile Include="source\Render\VertexBuffer.cpp" />
-    <ClCompile Include="source\Resource\Resource.cpp" />
-    <ClCompile Include="source\Resource\StaticMeshResource.cpp" />
+    <ClCompile Include="src\Core\IvyCore.cpp" />
+    <ClCompile Include="src\Entity\EntityManager.cpp" />
+    <ClCompile Include="src\Event\Event.cpp" />
+    <ClCompile Include="src\Core\IvyEntry.cpp" />
+    <ClCompile Include="src\Core\IvyEngine.cpp" />
+    <ClCompile Include="src\Core\IvyPCH.cpp" />
+    <ClCompile Include="src\Entity\StaticMesh.cpp" />
+    <ClCompile Include="src\Window\Window.cpp" />
+    <ClCompile Include="src\Render\IndexBuffer.cpp" />
+    <ClCompile Include="src\Render\Render.cpp" />
+    <ClCompile Include="src\Render\Shader.cpp" />
+    <ClCompile Include="src\Render\VertexArray.cpp" />
+    <ClCompile Include="src\Render\VertexBuffer.cpp" />
+    <ClCompile Include="src\Resource\Resource.cpp" />
+    <ClCompile Include="src\Resource\StaticMeshResource.cpp" />
     <ClCompile Include="vendor\ImGui\include\ImGui\imgui.cpp" />
     <ClCompile Include="vendor\ImGui\include\ImGui\imgui_demo.cpp" />
     <ClCompile Include="vendor\ImGui\include\ImGui\imgui_draw.cpp" />
