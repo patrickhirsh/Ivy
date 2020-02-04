@@ -1,10 +1,10 @@
 #pragma once
 #include "Core/IvyPCH.h"
-#include "Render/Shader.h"
-#include "Data/Object/Renderable/StaticMesh.h"
+#include "Window/Render/Shader.h"
+#include "Object/Renderable/StaticMesh.h"
 #include "Resource/StaticMeshResource.h"
 
-namespace _Ivy
+namespace Ivy
 {
 	class Resource
 	{

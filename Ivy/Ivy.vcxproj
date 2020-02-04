@@ -18,59 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Ivy.h" />
-    <ClInclude Include="src\Ivy\Include\Core\Event.h" />
-    <ClInclude Include="src\Ivy\Include\Data\IvyObjects.h" />
-    <ClInclude Include="src\Ivy\Include\Data\Object\Renderable\StaticMesh.h" />
-    <ClInclude Include="src\Ivy\Include\Render\IndexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h" />
-    <ClInclude Include="src\Ivy\Include\Core\Core.h" />
-    <ClInclude Include="src\Ivy\Include\Core\Log.h" />
-    <ClInclude Include="src\Ivy\Include\Data\Object\Object.h" />
-    <ClInclude Include="src\Ivy\Include\Render\Render.h" />
-    <ClInclude Include="src\Ivy\Include\Resource\Resource.h" />
-    <ClInclude Include="src\Ivy\Include\Render\Shader.h" />
-    <ClInclude Include="src\Ivy\Include\Data\Transform.h" />
-    <ClInclude Include="src\Ivy\Include\Render\VertexArray.h" />
-    <ClInclude Include="src\Ivy\Include\Render\VertexBuffer.h" />
-    <ClInclude Include="src\Ivy\Include\Render\VertexBufferLayout.h" />
-    <ClInclude Include="src\Ivy\Include\Data\Window.h" />
-    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h" />
-    <ClInclude Include="vendor\CY\cyCore.h" />
-    <ClInclude Include="vendor\CY\cyMatrix.h" />
-    <ClInclude Include="vendor\CY\cyTriMesh.h" />
-    <ClInclude Include="vendor\CY\cyVector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Ivy\Core\Core.cpp" />
-    <ClCompile Include="src\Ivy\Core\Event.cpp" />
-    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Core\Log.cpp" />
-    <ClCompile Include="src\Ivy\Data\Object\Renderable\StaticMesh.cpp" />
-    <ClCompile Include="src\Ivy\Render\Render.cpp" />
-    <ClCompile Include="src\Ivy\Render\IndexBuffer.cpp" />
-    <ClCompile Include="src\Ivy\Render\Shader.cpp" />
-    <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
-    <ClCompile Include="src\Ivy\Data\Window.cpp" />
-    <ClCompile Include="src\Ivy\Render\VertexArray.cpp" />
-    <ClCompile Include="src\Ivy\Render\VertexBuffer.cpp" />
-    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{4FF391DD-7566-4471-ADE9-16F5F5C7F7BE}</ProjectGuid>
+    <ProjectGuid>{4438ED82-610A-44D6-BD3C-6A82815C8D41}</ProjectGuid>
     <RootNamespace>Ivy</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -83,13 +39,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -137,10 +93,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -154,10 +110,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -166,9 +122,6 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)\bin\$(Configuration)-$(Platform)\Ivy\Ivy.dll" "$(SolutionDir)\bin\$(Configuration)-$(Platform)\Sandbox\"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -176,12 +129,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -198,12 +149,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src\Ivy\Include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\CY;$(SolutionDir)\vendor\GLEW\include;</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -214,6 +163,62 @@
       <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Ivy\Core\IvyCore.cpp" />
+    <ClCompile Include="src\Ivy\Window\Event.cpp" />
+    <ClCompile Include="src\Ivy\Core\IvyEntry.cpp" />
+    <ClCompile Include="src\Ivy\Core\IvyEngine.cpp" />
+    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp" />
+    <ClCompile Include="src\Ivy\Object\Renderable\StaticMesh.cpp" />
+    <ClCompile Include="src\Ivy\Window\Window.cpp" />
+    <ClCompile Include="src\Ivy\Window\Render\IndexBuffer.cpp" />
+    <ClCompile Include="src\Ivy\Window\Render\Render.cpp" />
+    <ClCompile Include="src\Ivy\Window\Render\Shader.cpp" />
+    <ClCompile Include="src\Ivy\Window\Render\VertexArray.cpp" />
+    <ClCompile Include="src\Ivy\Window\Render\VertexBuffer.cpp" />
+    <ClCompile Include="src\Ivy\Resource\Resource.cpp" />
+    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Ivy\Include\Core\IvyCore.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Event.h" />
+    <ClInclude Include="src\Ivy\Include\Core\IvyEngine.h" />
+    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h" />
+    <ClInclude Include="src\Ivy\Include\Object\Object.h" />
+    <ClInclude Include="src\Ivy\Include\Object\Renderable\StaticMesh.h" />
+    <ClInclude Include="src\Ivy\Include\Object\Transform.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Window.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\IndexBuffer.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\Render.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\Shader.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexArray.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBuffer.h" />
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBufferLayout.h" />
+    <ClInclude Include="src\Ivy\Include\Resource\Resource.h" />
+    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h" />
+    <ClInclude Include="vendor\CY\cyCore.h" />
+    <ClInclude Include="vendor\CY\cyMatrix.h" />
+    <ClInclude Include="vendor\CY\cyTriMesh.h" />
+    <ClInclude Include="vendor\CY\cyVector.h" />
+    <ClInclude Include="vendor\GLEW\include\GL\eglew.h" />
+    <ClInclude Include="vendor\GLEW\include\GL\glew.h" />
+    <ClInclude Include="vendor\GLEW\include\GL\glxew.h" />
+    <ClInclude Include="vendor\GLEW\include\GL\wglew.h" />
+    <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vendor\GLEW\doc\advanced.html" />
+    <None Include="vendor\GLEW\doc\basic.html" />
+    <None Include="vendor\GLEW\doc\build.html" />
+    <None Include="vendor\GLEW\doc\credits.html" />
+    <None Include="vendor\GLEW\doc\glew.html" />
+    <None Include="vendor\GLEW\doc\glxew.html" />
+    <None Include="vendor\GLEW\doc\index.html" />
+    <None Include="vendor\GLEW\doc\install.html" />
+    <None Include="vendor\GLEW\doc\log.html" />
+    <None Include="vendor\GLEW\doc\wglew.html" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -28,5 +28,4 @@
 #include "GLFW/glfw3.h"
 
 // Local
-#include "Core/Log.h"
-#include "Core/Core.h"
+#include "Core/IvyCore.h"

@@ -15,13 +15,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ivy.h">
+    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Resource\Resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Core\IvyEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Core\IvyEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Object\Renderable\StaticMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Render\IndexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Render\Render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Render\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Render\VertexArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Render\VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Window\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ivy\Core\IvyCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyTriMesh.h">
+    <ClInclude Include="src\Ivy\Include\Resource\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\CY\cyVector.h">
+    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vendor\CY\cyCore.h">
@@ -30,100 +74,80 @@
     <ClInclude Include="vendor\CY\cyMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\Render.h">
+    <ClInclude Include="vendor\CY\cyTriMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\VertexArray.h">
+    <ClInclude Include="vendor\CY\cyVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\VertexBuffer.h">
+    <ClInclude Include="vendor\GLEW\include\GL\eglew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\VertexBufferLayout.h">
+    <ClInclude Include="vendor\GLEW\include\GL\glew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\Shader.h">
+    <ClInclude Include="vendor\GLEW\include\GL\glxew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Render\IndexBuffer.h">
+    <ClInclude Include="vendor\GLEW\include\GL\wglew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\Core.h">
+    <ClInclude Include="vendor\GLFW\include\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\Event.h">
+    <ClInclude Include="vendor\GLFW\include\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\IvyPCH.h">
+    <ClInclude Include="src\Ivy\Include\Core\IvyEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Core\Log.h">
+    <ClInclude Include="src\Ivy\Include\Object\Renderable\StaticMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\Window.h">
+    <ClInclude Include="src\Ivy\Include\Object\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\Transform.h">
+    <ClInclude Include="src\Ivy\Include\Object\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Resource\Resource.h">
+    <ClInclude Include="src\Ivy\Include\Window\Render\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\Object\Object.h">
+    <ClInclude Include="src\Ivy\Include\Window\Render\Render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\Object\Renderable\StaticMesh.h">
+    <ClInclude Include="src\Ivy\Include\Window\Render\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Data\IvyObjects.h">
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ivy\Include\Resource\StaticMeshResource.h">
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Window\Render\VertexBufferLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Window\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Window\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ivy\Include\Core\IvyCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ivy\Core\IvyPCH.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Core\Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Core\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Data\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Render\Render.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\Resource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Render\IndexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Render\VertexArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Render\VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Render\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Core\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Data\Object\Renderable\StaticMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ivy\Resource\StaticMeshResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />
+    <None Include="vendor\GLEW\doc\advanced.html" />
+    <None Include="vendor\GLEW\doc\basic.html" />
+    <None Include="vendor\GLEW\doc\build.html" />
+    <None Include="vendor\GLEW\doc\credits.html" />
+    <None Include="vendor\GLEW\doc\glew.html" />
+    <None Include="vendor\GLEW\doc\glxew.html" />
+    <None Include="vendor\GLEW\doc\index.html" />
+    <None Include="vendor\GLEW\doc\install.html" />
+    <None Include="vendor\GLEW\doc\log.html" />
+    <None Include="vendor\GLEW\doc\wglew.html" />
   </ItemGroup>
 </Project>

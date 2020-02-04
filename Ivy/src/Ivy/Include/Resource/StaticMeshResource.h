@@ -1,12 +1,12 @@
 #pragma once
 #include "Core/IvyPCH.h"
-#include "Render/Shader.h"
-#include "Render/VertexBuffer.h"
-#include "Render/VertexBufferLayout.h"
-#include "Render/VertexArray.h"
-#include "Render/IndexBuffer.h"
+#include "Window/Render/Shader.h"
+#include "Window/Render/VertexBuffer.h"
+#include "Window/Render/VertexBufferLayout.h"
+#include "Window/Render/VertexArray.h"
+#include "Window/Render/IndexBuffer.h"
 
-namespace _Ivy
+namespace Ivy
 {
 	class StaticMeshResource
 	{

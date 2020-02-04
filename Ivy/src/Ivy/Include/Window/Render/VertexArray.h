@@ -1,0 +1,22 @@
+#pragma once
+#include "Core/IvyPCH.h"
+#include "Window/Render/VertexBuffer.h"
+#include "Window/Render/VertexBufferLayout.h"
+
+namespace Ivy
+{
+	class VertexArray
+	{
+	public:
+		static Ivy::Ref<VertexArray> Create();
+
+	public:
+		~VertexArray			();
+		void SetVertexBuffer	(Ivy::Ref<VertexBuffer> vb, const VertexBufferLayout& layout);
+		void Bind				() const;
+		void Unbind				() const;
+	private:
+		VertexArray				() {};
+		GLuint					_id;
+	};
+}
