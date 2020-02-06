@@ -1,12 +1,14 @@
 #include "Core/IvyPCH.h"
 #include "Resource/Resource.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	std::unordered_map<std::string, Resource::MetaResource<Ivy::StaticMesh, StaticMeshResource>*> Resource::_resourcePoolStaticMesh;
 
 	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
 	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
+
+
 	
 
 	template<typename ObjectType, typename ResourceType>
@@ -30,7 +32,7 @@ namespace Ivy
 
 	std::string Resource::LoadShader(std::string shaderPath)
 	{
-		std::string fullPath = Ivy::GetResourceDirectory() + shaderPath;
+		std::string fullPath = _Ivy::GetResourceDirectory() + shaderPath;
 		std::ifstream file(shaderPath);
 		if (!file) { /* ERROR.. */ return ""; }
 

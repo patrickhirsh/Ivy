@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Render/IndexBuffer.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	Ivy::Ref<IndexBuffer> IndexBuffer::Create(const GLuint* data, GLuint count)
 	{

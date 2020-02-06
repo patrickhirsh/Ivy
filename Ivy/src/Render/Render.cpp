@@ -2,7 +2,7 @@
 #include "Render/Render.h"
 #include "Resource/Resource.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	void Render::DrawRequest(Ivy::Ref<Ivy::StaticMesh> object)
 	{
@@ -46,6 +46,8 @@ namespace Ivy
                 Ivy::Ref<StaticMeshResource::MetaData> resourceMeta = Resource::BindStaticMesh(requestInstance);
                 if (resourceMeta)
                 {
+                    //cy::Matrix4f MVP = _projection * (_sceneTranslation * _sceneRotation) * _model;
+
                     // TODO: Fix scene transformation to properly account for aspect ratio
                     // scene transformations
                     _model = cy::Matrix4f::Scale(1);

@@ -1,7 +1,6 @@
 #pragma once
 #include <cstring>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <memory>
 #include <sstream>
@@ -10,52 +9,59 @@
 
 namespace Ivy
 {
-	// Unique Pointer Typedef
+	// Unique Pointer Implemetation
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
 	template<typename T, typename ... Args>
-	constexpr Scope<T> CreateScope(Args&& ... args) {
-		return std::make_unique<T>(std::forward<Args>(args)...); }
+	constexpr Scope<T> CreateScope(Args&& ... args)
+	{
+		return std::make_unique<T>(std::forward<Args>(args)...);
+	}
 
-	// Shared Pointer Typedef
+	// Shared Pointer Implemetation
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
 	template<typename T, typename ... Args>
-	constexpr Ref<T> CreateRef(Args&& ... args) {
-		return std::make_shared<T>(std::forward<Args>(args)...); }
+	constexpr Ref<T> CreateRef(Args&& ... args)
+	{
+		return std::make_shared<T>(std::forward<Args>(args)...);
+	}
 
-	// Weak Pointer Typedef
+	// Weak Pointer Implemetation
 	template<typename T>
 	using WeakRef = std::weak_ptr<T>;
+}
 
-	// Filesystem
+
+namespace _Ivy
+{
+	/* Filesystem */
 	std::string GetRootDirectory();
 	std::string GetResourceDirectory();
 
-	// OpenGL Error Handling
+	/* OpenGL Error Handling */
 	void GLClearError();
 	bool GLStatus(const char* file, const char* function, const char* line);
-
-	// String Handling
-	template< typename T >
-	std::string HexString(T i)
-	{
-		std::stringstream stream;
-		stream << "0x"
-			<< std::setfill('0') << std::setw(sizeof(T) * 2)
-			<< std::hex << i;
-		return stream.str();
-	}
 }
+
+
+/* MACROS */
 
 // Filesystem Constants
 #define MAX_PATH_LENGTH 1024
 
+// DLL Export
+#ifdef IVY_BUILD_DLL
+#define IVY_API __declspec(dllexport)
+#else
+#define IVY_API __declspec(dllimport)
+#endif
+
 // OpenGL Error Handling
 #ifdef _DEBUG
 #define ASSERT(x) do { if (!(x)) __debugbreak(); } while(0)
-#define GL(x) do { Ivy::GLClearError();\
- x; ASSERT(Ivy::GLStatus(__FILE__, #x, std::to_string(__LINE__).c_str())); } while(0)
+#define GL(x) do { _Ivy::GLClearError();\
+ x; ASSERT(_Ivy::GLStatus(__FILE__, #x, std::to_string(__LINE__).c_str())); } while(0)
 #else
 #define ASSERT(x)
 #define GL(x) x

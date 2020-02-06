@@ -3,25 +3,35 @@
 
 namespace Ivy
 {
-    Window::Window(GLFWwindow* window)
-        : _window(window)
+    std::vector<Window*> Window::_activeWindows = std::vector<Window*>();
+
+    Window::Window(const char* name, int width, int height)
     {
-        LOG_SYS("    New Window Context: " << HexString((int)(_window)));
+        initWindow(name, width, height);
+        initStartup();
         initRenderer();
         initEventDispatcher();
-        _active = true;
     }
 
 	Window::~Window()
 	{
+        // terminate core systems
         delete _render;
         delete _event;
+
+        // terminate GLFW if there are no more active windows
+        if (_activeWindows.size() < 1)
+        {
+            glfwTerminate();
+        }
 	}
 
     void Window::Update()
     {
+        IVY_ACTIVE_WINDOW_ONLY
+
         // set GLFW window context
-        MakeCurrentContext();
+        makeCurrentContext();
 
         // rescale to window size
         GLint width, height;
@@ -32,43 +42,14 @@ namespace Ivy
         glClearColor(0.2, 0.2, 0.2, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // render scene
         _render->ProcessRequests(_window);
-
-        // ImGui
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-        ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-        {
-            static float f = 0.0f;
-            static int counter = 0;
-
-            ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-            ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-            ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-            if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-                counter++;
-            ImGui::SameLine();
-            ImGui::Text("counter = %d", counter);
-
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-            ImGui::End();
-        }
-
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
         glfwSwapBuffers(_window);
         glfwPollEvents();
     }
 
     void Window::Tick(Ivy::Ref<StaticMesh> object)
     {
+        IVY_ACTIVE_WINDOW_ONLY
         _render->DrawRequest(object);
     }
 
@@ -92,24 +73,92 @@ namespace Ivy
         _render->SetSceneRotation(angleX, angleY, angleZ);
     }
 
+    void Window::initWindow(
+        const char*                         name,
+        int                                 width,
+        int                                 height)
+    {
+        // if this is the first window we've created, init GLFW
+        if (_activeWindows.size() < 1)
+        {
+            if (!glfwInit())
+            {
+                LOG_ERROR("GLFW failed to initialize!");
+                _active = false;
+                return;
+            }
+        }
+
+        // init window
+        _width = width;
+        _height = height;
+        _window = glfwCreateWindow(width, height, name, NULL, NULL);
+        glfwGetWindowPos(_window, &_xPos, &_yPos);
+
+        // validate GLFW window
+        if (!_window)
+        {
+            LOG_ERROR("GLFW falied to create a new window!");
+            glfwTerminate();
+            _active = false;
+            return;
+        }
+
+        // init GLFW
+        makeCurrentContext();
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        // if this is the first window we've created, init GLEW
+        if (_activeWindows.size() < 1)
+        {
+            if (glewInit() != GLEW_OK)
+            {
+                LOG_ERROR("GLEW failed to initialize!");
+                glfwTerminate();
+                _active = false;
+                return;
+            }
+        }
+        _activeWindows.push_back(this);
+    }
+
+    void Window::initStartup()
+    {
+        IVY_ACTIVE_WINDOW_ONLY
+
+        // startup info
+        LOG_SYS("=== Initializing New Ivy Engine Window Context ===");
+        LOG_SYS("Window ID: " << std::to_string((int)(_window)).c_str());
+        LOG_SYS("  <OpenGL>");
+        LOG_SYS("    Hardware Vendor:    " << (glGetString(GL_VENDOR) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VENDOR)));
+        LOG_SYS("    Hardware Renderer:  " << (glGetString(GL_RENDERER) == GL_NONE ? "N/A" : (const char*)glGetString(GL_RENDERER)));
+        LOG_SYS("    OpenGL Version:     " << (glGetString(GL_VERSION) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VERSION)));
+        LOG_SYS("  <Core>");
+    }
+
     void Window::initRenderer()
     {
-        MakeCurrentContext();
-        _render = new Ivy::Render();
-        LOG_SYS("    Initialized Render System");
+        IVY_ACTIVE_WINDOW_ONLY
+
+        LOG_SYS("    Initializing Render System...");
+        makeCurrentContext();
+        _render = new _Ivy::Render();
     }
 
     void Window::initEventDispatcher()
     {
-        MakeCurrentContext();
-        _event = new Ivy::EventDispatcher();
+        IVY_ACTIVE_WINDOW_ONLY
+
+        LOG_SYS("    Initializing Event System...");
+        makeCurrentContext();
+        _event = new _Ivy::EventDispatcher();
 
         // TODO: handle this in a way that doesn't delete out from under the user...
         glfwSetWindowCloseCallback(_window, [](GLFWwindow* window) {
             Window* ivyWindow = (Window*)glfwGetWindowUserPointer(window);
             auto e = EventWindowClosed(ivyWindow);
             ivyWindow->_event->Fire(e);
-            ivyWindow->_active = false; });
+            ivyWindow->setInactive(); });
 
         glfwSetWindowFocusCallback(_window, [](GLFWwindow* window, int focused) {
             Window* ivyWindow = (Window*)glfwGetWindowUserPointer(window);
@@ -162,11 +211,20 @@ namespace Ivy
             Window* ivyWindow = (Window*)glfwGetWindowUserPointer(window);
             auto e = EventMouseScrolled(xOffset, yOffset);
             ivyWindow->_event->Fire(e); });
-
-        LOG_SYS("    Initialized Event System");
     }
 
-    void Window::MakeCurrentContext()
+    void Window::setInactive()
+    {
+        // remove window from active windows
+        auto pos = std::find(_activeWindows.begin(), _activeWindows.end(), this);
+        if (pos != _activeWindows.end())
+        {
+            _activeWindows.erase(pos);
+        }
+        _active = false;
+    }
+
+    void Window::makeCurrentContext()
     {
         glfwMakeContextCurrent(_window);
         glfwSetWindowUserPointer(_window, this);

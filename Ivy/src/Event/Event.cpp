@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Event/Event.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	void EventDispatcher::Register(Ivy::EventCategory category, Ivy::EventCallback callback)
 	{

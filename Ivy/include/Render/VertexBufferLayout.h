@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/IvyPCH.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	/* Represents an element in a VertexBufferLayout */
 	struct VertexBufferLayoutElement

@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Render/Shader.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	GLuint Shader::_activeProgram;
 	std::vector<Ivy::Ref<Shader>> Shader::_activeShaders;

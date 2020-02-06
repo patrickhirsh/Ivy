@@ -5,7 +5,7 @@
 
 namespace Ivy
 {
-	class Entity
+	class IVY_API Entity
 	{
 	public:
 		Transform Transform;

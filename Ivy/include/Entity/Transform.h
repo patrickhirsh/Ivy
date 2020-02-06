@@ -3,11 +3,11 @@
 
 namespace Ivy
 {
-	class Transform
+	class IVY_API Transform
 	{
 	public:
 		/* X, Y, & Z position in world space */
-		class Position
+		class IVY_API Position
 		{
 		public:
 			Position()
@@ -17,7 +17,7 @@ namespace Ivy
 			float X, Y, Z;
 		};
 		/* Rotation about the X, Y, & Z axis in world space */
-		class Rotation
+		class IVY_API Rotation
 		{
 		public:
 			Rotation()

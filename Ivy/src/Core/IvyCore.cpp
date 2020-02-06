@@ -1,11 +1,10 @@
 #include "Core/IvyPCH.h"
-#include "Core/IvyCore.h"
 
 #ifdef _DEBUG
 std::ofstream LOGSTREAM = std::ofstream("Ivy.log", std::ofstream::out);
 #endif
 
-namespace Ivy
+namespace _Ivy
 {
 	std::string GetRootDirectory()
 	{
@@ -25,7 +24,7 @@ namespace Ivy
 		std::string root;
 		for (int i = 0; i < ((int)tokens.size() - 1); i++)
 			root += tokens[i] + "\\";
-
+		
 		return root;
 	}
 
@@ -33,6 +32,9 @@ namespace Ivy
 	{
 		return GetRootDirectory() + "Resource\\";
 	}
+
+
+	/* OpenGL Error Handling */
 
 	void GLClearError()
 	{

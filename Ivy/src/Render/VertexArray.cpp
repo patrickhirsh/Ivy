@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Render/VertexArray.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	Ivy::Ref<VertexArray> VertexArray::Create()
 	{

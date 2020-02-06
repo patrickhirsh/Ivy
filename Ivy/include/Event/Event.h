@@ -34,7 +34,7 @@ namespace Ivy
 	};
 }
 
-namespace Ivy
+namespace _Ivy
 {
 	class EventDispatcher;
 }
@@ -42,9 +42,9 @@ namespace Ivy
 namespace Ivy
 {
 	/* Event base class */
-	class Event
+	class IVY_API Event
 	{
-		friend class Ivy::EventDispatcher;
+		friend class _Ivy::EventDispatcher;
 	public:
 		virtual EventType GetEventType	() const { return EventType::E_NONE; }
 		virtual int GetEventCategory	() const { return EventCategory::C_NONE; }
@@ -67,7 +67,7 @@ namespace Ivy
 	class Window;
 }
 
-namespace Ivy
+namespace _Ivy
 {
 	/* Event Dispatcher */
 	class EventDispatcher
@@ -108,7 +108,7 @@ namespace Ivy
 
 	/* KEY EVENTS */
 
-	class EventKey : public Event
+	class IVY_API EventKey : public Event
 	{
 	public:
 		inline int GetKey() const { return _keyCode; }
@@ -121,7 +121,7 @@ namespace Ivy
 		int _mods;
 	};
 
-	class EventKeyPressed : public EventKey
+	class IVY_API EventKeyPressed : public EventKey
 	{
 	public:
 		EventKeyPressed(int keycode, int mods, bool repeat)
@@ -131,7 +131,7 @@ namespace Ivy
 		bool _repeat;
 	};
 
-	class EventKeyReleased : public EventKey
+	class IVY_API EventKeyReleased : public EventKey
 	{
 	public:
 		EventKeyReleased(int keycode, int mods)
@@ -142,7 +142,7 @@ namespace Ivy
 
 	/* MOUSE EVENTS */
 
-	class EventMouseButton : public Event
+	class IVY_API EventMouseButton : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return _button; }
@@ -155,7 +155,7 @@ namespace Ivy
 		int _mods;
 	};
 
-	class EventMouseButtonPressed : public EventMouseButton
+	class IVY_API EventMouseButtonPressed : public EventMouseButton
 	{
 	public:
 		EventMouseButtonPressed(int button, int mods)
@@ -163,7 +163,7 @@ namespace Ivy
 		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSEBUTTON_PRESSED)
 	};
 
-	class EventMouseButtonReleased : public EventMouseButton
+	class IVY_API EventMouseButtonReleased : public EventMouseButton
 	{
 	public:
 		EventMouseButtonReleased(int button, int mods)
@@ -171,7 +171,7 @@ namespace Ivy
 		IMPL_EVENT_CLASS_TYPE(EventType::E_MOUSEBUTTON_RELEASED)
 	};
 
-	class EventMouseMoved : public Event
+	class IVY_API EventMouseMoved : public Event
 	{
 	public:
 		EventMouseMoved(double x, double y)
@@ -184,7 +184,7 @@ namespace Ivy
 		double _xPos, _yPos;
 	};
 
-	class EventMouseScrolled : public Event
+	class IVY_API EventMouseScrolled : public Event
 	{
 	public:
 		EventMouseScrolled(double xOffset, double yOffset)
@@ -202,7 +202,7 @@ namespace Ivy
 
 	class Window;
 
-	class EventWindowClosed : public Event
+	class IVY_API EventWindowClosed : public Event
 	{
 	public:
 		EventWindowClosed(Window* window)
@@ -214,7 +214,7 @@ namespace Ivy
 		Window* _window;
 	};
 
-	class EventWindowFocused : public Event
+	class IVY_API EventWindowFocused : public Event
 	{
 	public:
 		EventWindowFocused(Window* window)
@@ -226,7 +226,7 @@ namespace Ivy
 		Window* _window;
 	};
 
-	class EventWindowLostFocus : public Event
+	class IVY_API EventWindowLostFocus : public Event
 	{
 	public:
 		EventWindowLostFocus(Window* window)
@@ -238,7 +238,7 @@ namespace Ivy
 		Window* _window;
 	};
 
-	class EventWindowResized : public Event
+	class IVY_API EventWindowResized : public Event
 	{
 	public:
 		EventWindowResized(Window* window, int width, int height)
@@ -253,7 +253,7 @@ namespace Ivy
 		int _width, _height;
 	};
 
-	class EventWindowMoved : public Event
+	class IVY_API EventWindowMoved : public Event
 	{
 	public:
 		EventWindowMoved(Window* window, float x, float y)

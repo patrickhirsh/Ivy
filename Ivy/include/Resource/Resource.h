@@ -4,7 +4,7 @@
 #include "Entity/StaticMesh.h"
 #include "Resource/StaticMeshResource.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	class Resource
 	{

@@ -4,7 +4,7 @@
 
 namespace Ivy
 {
-	class StaticMesh : public Entity
+	class IVY_API StaticMesh : public Entity
 	{
 	public:
 		static Ivy::Ref<StaticMesh> Create(

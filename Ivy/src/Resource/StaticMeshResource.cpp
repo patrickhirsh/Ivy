@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Resource/StaticMeshResource.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	StaticMeshResource::StaticMeshResource(std::string sourcePath)
 		: _source(sourcePath), _loaded(false) {}
@@ -17,7 +17,7 @@ namespace Ivy
 
 	void StaticMeshResource::Load()
 	{
-		std::string path = Ivy::GetResourceDirectory() + _source;
+		std::string path = _Ivy::GetResourceDirectory() + _source;
 		cy::TriMesh mesh = cy::TriMesh();
 		if (!mesh.LoadFromFileObj(path.c_str()))
 		{

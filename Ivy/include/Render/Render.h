@@ -1,9 +1,10 @@
 #pragma once
 #include "Core/IvyPCH.h"
+#include "Entity/Entity.h"
 #include "Entity/StaticMesh.h"
 
 
-namespace Ivy
+namespace _Ivy
 {
 	class Render
 	{

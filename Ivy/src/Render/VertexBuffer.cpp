@@ -1,7 +1,7 @@
 #include "Core/IvyPCH.h"
 #include "Render/VertexBuffer.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	Ivy::Ref<VertexBuffer> VertexBuffer::Create(const void* data, GLuint size)
 	{

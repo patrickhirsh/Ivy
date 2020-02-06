@@ -3,7 +3,7 @@
 #include "Render/VertexBuffer.h"
 #include "Render/VertexBufferLayout.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	class VertexArray
 	{

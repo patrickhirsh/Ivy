@@ -6,7 +6,7 @@
 #include "Render/VertexArray.h"
 #include "Render/IndexBuffer.h"
 
-namespace Ivy
+namespace _Ivy
 {
 	class StaticMeshResource
 	{
