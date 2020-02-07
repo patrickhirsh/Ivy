@@ -1,5 +1,23 @@
-#include "Ivy.h"
+#include "Sandbox.h"
 
+
+Sandbox::Sandbox()
+{
+
+}
+
+Sandbox::~Sandbox()
+{
+
+}
+
+Ivy::Application* Ivy::CreateApplication()
+{
+	return new Sandbox();
+}
+
+
+/*
 bool shouldClose = false;
 bool mb1Active = false;
 bool mb2Active = false;
@@ -73,24 +91,4 @@ void InputCallback(Ivy::Event& Event)
 		mb2CursorX = e.GetPosX();
 	}
 }
-
-int main(int argc, char* argv[])
-{
-	std::string obj;
-	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to ..\\Ivy\\Ivy\\resource\n"); return 0; }
-	else { obj = argv[1]; }
-
-	auto window = Ivy::Window("Ivy Engine Prototype", 700, 700);
-	auto teapot = Ivy::StaticMesh::Create(obj);
-	
-	window.RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
-
-	while (window.IsActive() && !shouldClose)
-	{ 
-		window.SetSceneTranslation(0, 0, modelDistance);
-		window.SetSceneRotation(xModelRotation, yModelRotation, 0);
-		window.Tick(teapot);
-		window.Update();
-	}
-	return 0;
-}
+*/

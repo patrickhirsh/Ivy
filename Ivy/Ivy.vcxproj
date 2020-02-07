@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\IvyApplication.h" />
+    <ClInclude Include="include\Core\IvyEntryPoint.h" />
     <ClInclude Include="include\Ivy.h" />
     <ClInclude Include="include\Event\Event.h" />
     <ClInclude Include="include\Entity\StaticMesh.h" />
@@ -41,6 +43,7 @@
     <ClInclude Include="vendor\CY\include\CY\cyVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\IvyApplication.cpp" />
     <ClCompile Include="src\Core\IvyCore.cpp" />
     <ClCompile Include="src\Event\Event.cpp" />
     <ClCompile Include="src\Core\IvyPCH.cpp">
