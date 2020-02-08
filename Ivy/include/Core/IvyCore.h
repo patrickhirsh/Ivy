@@ -7,6 +7,8 @@
 #include <string.h>
 #include <vector>
 
+#define IVY_VERSION "1.0.1"
+
 namespace Ivy
 {
 	// Unique Pointer Implemetation
@@ -76,7 +78,6 @@ extern std::ofstream LOGSTREAM;
 #define _LOG_META "[" << __FILE__ << "][line " << __LINE__ << "]"
 #define _LOG_META_E(fi, fu, l) "[" << fi << "][" << fu << "][line " << l << "]"
 #define _LOG(s) do { LOGSTREAM << s; std::cout << s; } while(0)
-#define LOG_SYS(m) _LOG(" [SYSTEM] " << m << std::endl)
 #define LOG_INFO(m) _LOG("          " << _LOG_META << " : " << m << std::endl)	// Ivy log info
 #define LOG_WARN(m) _LOG("[WARNING] " << _LOG_META << " : " << m << std::endl)	// Ivy log warning
 #define LOG_ERROR(m) _LOG(" [ERROR]  " << _LOG_META << " : " << m << std::endl) // Ivy log error
@@ -84,11 +85,34 @@ extern std::ofstream LOGSTREAM;
 #define LOG_WARN_E(m, fi, fu, l) _LOG("[WARNING] " << _LOG_META_E(fi, fu, l) << " : " << m << std::endl)	// Ivy log warning (extend info)
 #define LOG_ERROR_E(m, fi, fu, l) _LOG(" [ERROR]  " << _LOG_META_E(fi, fu, l) << " : " << m << std::endl)	// Ivy log error (extend info)
 #else
-#define LOG_SYS(m) do { } while(0)
 #define LOG_INFO(m) do { } while(0)
 #define LOG_WARN(m) do { } while(0)
 #define LOG_ERROR(m) do { } while(0)
 #define LOG_INFO_E(m, fi, fu, l) do { } while(0)
 #define LOG_WARN_E(m, fi, fu, l) do { } while(0)
 #define LOG_ERROR_E(m, fi, fu, l) do { } while(0)
+#endif
+
+// Sys Logging
+#ifdef _DEBUG
+#define LOG_SYS(m) _LOG(" [SYSTEM] " << m << std::endl)
+#define LOG_INIT_SYS_HEADER(m) LOG_SYS("  <" << m << ">")
+#define LOG_INIT_SYS_SUB_HEADER(m) LOG_SYS("    <" << m << ">")
+#define LOG_INIT_SYS_ENTRY(m) LOG_SYS("    " << m)
+#define LOG_INIT_SYS_SUB_ENTRY(m) LOG_SYS("      " << m)
+#define LOG_INIT_SYS_BEGIN do { \
+LOG_SYS("=============== Ivy Engine Startup ===============");\
+LOG_SYS("Version: " << IVY_VERSION);\
+} while(0);
+#define LOG_INIT_SYS_END do { \
+LOG_SYS("==================================================");\
+} while(0);
+#else
+#define LOG_SYS(m) do { } while(0)
+#define LOG_INIT_SYS_HEADER(m) do { } while(0)
+#define LOG_INIT_SYS_SUB_HEADER(m) do { } while(0)
+#define LOG_INIT_SYS_ENTRY(m) do { } while(0)
+#define LOG_INIT_SYS_SUB_ENTRY(m) do { } while(0)
+#define LOG_INIT_SYS_BEGIN
+#define LOG_INIT_SYS_END
 #endif

@@ -3,12 +3,13 @@
 
 namespace Ivy
 {
-	extern Application* CreateApplication();
+	extern Application* CreateApplication(int argc, char* argv[]);
 }
 
 int main(int argc, char* argv[])
 {
-	auto IvyApp = Ivy::CreateApplication();
-	IvyApp->Run();
+	auto IvyApp = Ivy::CreateApplication(argc, argv);
+	auto Status = IvyApp->Run(argc, argv);
 	delete IvyApp;
+	return Status;
 }

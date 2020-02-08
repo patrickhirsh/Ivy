@@ -11,7 +11,7 @@ Sandbox::~Sandbox()
 
 }
 
-Ivy::Application* Ivy::CreateApplication()
+Ivy::Application* Ivy::CreateApplication(int argc, char* argv[])
 {
 	return new Sandbox();
 }
