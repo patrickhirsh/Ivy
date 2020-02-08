@@ -12,8 +12,8 @@ namespace _Ivy
 		using DrawRequestQueue = std::unordered_map<std::string, std::vector<Ivy::Ref<T>>>;
 
 	public:
-		Renderer									() {};
-		~Renderer									() {};
+		Renderer								() {};
+		~Renderer								() {};
 		void DrawRequest						(Ivy::Ref<Ivy::StaticMesh> object);
 		void ProcessRequests					(GLFWwindow* window);
 

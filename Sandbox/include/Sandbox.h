@@ -4,6 +4,10 @@
 class Sandbox : public Ivy::Application
 {
 public:
-	Sandbox();
+	Sandbox(int argc, char* argv[]);
 	~Sandbox();
+	void Tick();
+private:
+	std::string _obj;
+	Ivy::Ref<Ivy::StaticMesh> _mesh;
 };

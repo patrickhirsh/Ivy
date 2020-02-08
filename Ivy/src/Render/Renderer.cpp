@@ -67,7 +67,7 @@ namespace _Ivy
 
                     // execute draw call
                     GL(glDrawArrays(GL_TRIANGLES, 0, resourceMeta->BufferCount));
-                    Resource::UnbindStaticMesh(requestInstance);
+                    //Resource::UnbindStaticMesh(requestInstance);
                 }
             }
         }

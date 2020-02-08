@@ -26,6 +26,7 @@ namespace _Ivy
 		using ResourcePool = std::unordered_map<std::string, MetaResource<ObjectType, ResourceType>*>;
 
 	public:
+		// TODO: implement singleton + internal pattern to control initialization
 		// TODO: use generic-type binding and auto-unbind on a new bind call
 		static std::string LoadShader									(std::string shaderPath);
 		static Ivy::Ref<StaticMeshResource::MetaData> BindStaticMesh	(Ivy::WeakRef<Ivy::StaticMesh> staticMesh);

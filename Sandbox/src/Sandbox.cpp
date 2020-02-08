@@ -1,23 +1,5 @@
 #include "Sandbox.h"
 
-
-Sandbox::Sandbox()
-{
-
-}
-
-Sandbox::~Sandbox()
-{
-
-}
-
-Ivy::Application* Ivy::CreateApplication(int argc, char* argv[])
-{
-	return new Sandbox();
-}
-
-
-/*
 bool shouldClose = false;
 bool mb1Active = false;
 bool mb2Active = false;
@@ -44,7 +26,7 @@ void InputCallback(Ivy::Event& Event)
 		Ivy::EventMouseButtonPressed e = Event.As<Ivy::EventMouseButtonPressed>();
 		switch (e.GetMouseButton())
 		{
-		case 0: 
+		case 0:
 			mb1Active = true;
 			break;
 		case 1:
@@ -91,4 +73,29 @@ void InputCallback(Ivy::Event& Event)
 		mb2CursorX = e.GetPosX();
 	}
 }
-*/
+
+Sandbox::Sandbox(int argc, char* argv[])
+{
+	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to 'Resource'\n"); Shutdown(); }
+	else { _obj = argv[1]; }
+	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
+
+	_mesh = Ivy::StaticMesh::Create(_obj);
+	AddEntity(_mesh);
+}
+
+Sandbox::~Sandbox()
+{
+	
+}
+
+void Sandbox::Tick()
+{
+	SetSceneTranslation(0, 0, modelDistance);
+	SetSceneRotation(xModelRotation, yModelRotation, 0);
+}
+
+Ivy::Application* Ivy::CreateApplication(int argc, char* argv[])
+{
+	return new Sandbox(argc, argv);
+}

@@ -14,20 +14,32 @@ namespace Ivy
 		delete _renderer;
 	}
 
-	void Application::RegisterEventCallback(Ivy::EventCategory category, Ivy::EventCallback callback)
+	void Application::RegisterEventCallback(EventCategory category, EventCallback callback)
 	{
 		_Ivy::EventDispatcher::Register(category, callback);
 	}
 
-	void Application::UnregisterEventCallback(Ivy::EventCategory category, Ivy::EventCallback callback)
+	void Application::UnregisterEventCallback(EventCategory category, EventCallback callback)
 	{
 		_Ivy::EventDispatcher::Unregister(category, callback);
+	}
+
+	void Application::SetSceneTranslation(float transX, float transY, float transZ)
+	{
+		_renderer->SetSceneTranslation(cy::Vec3f(transX, transY, transZ));
+	}
+
+	void Application::SetSceneRotation(float angleX, float angleY, float angleZ)
+	{
+		_renderer->SetSceneRotation(angleX, angleY, angleZ);
 	}
 
 	bool Application::Run(int argc, char* argv[])
 	{
 		while (_active)
 		{
+			Tick();
+
 			GLint width, height;
 			obtainWindowContext();
 			glfwGetWindowSize(_window, &width, &height);
