@@ -1,25 +1,25 @@
 #include "Core/IvyPCH.h"
-#include "Render/Render.h"
+#include "Render/Renderer.h"
 #include "Resource/Resource.h"
 
 namespace _Ivy
 {
-	void Render::DrawRequest(Ivy::Ref<Ivy::StaticMesh> object)
+	void Renderer::DrawRequest(Ivy::Ref<Ivy::StaticMesh> object)
 	{
         _staticMeshDrawRequests[object->GetMeshPath()].push_back(object);
 	}
 
-    void Render::SetSceneTranslation(const cy::Vec3f& translation)
+    void Renderer::SetSceneTranslation(const cy::Vec3f& translation)
     {
         _sceneTranslation = cy::Matrix4f::Translation(translation);
     }
 
-    void Render::SetSceneRotation(float angleX, float angleY, float angleZ)
+    void Renderer::SetSceneRotation(float angleX, float angleY, float angleZ)
     {
         _sceneRotation = cy::Matrix4f::RotationXYZ(angleX, angleY, angleZ);
     }
 
-	void Render::ProcessRequests(GLFWwindow* window)
+	void Renderer::ProcessRequests(GLFWwindow* window)
 	{
         // Hardcoded Shader Binding... TODO: abstract this.
         if (Resource::_vertexShader == nullptr || Resource::_fragmentShader == nullptr)

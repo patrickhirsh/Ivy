@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/IvyPCH.h"
-#include "Render/Render.h"
+#include "Render/Renderer.h"
 #include "Event/Event.h"
 
 
@@ -11,18 +11,24 @@ namespace Ivy
 	class IVY_API Application
 	{
 	public:
-		Application();
-		virtual ~Application();
+		Application						();
+		virtual ~Application			();
+		void RegisterEventCallback		(Ivy::EventCategory category, Ivy::EventCallback callback);
+		void UnregisterEventCallback	(Ivy::EventCategory category, Ivy::EventCallback callback);
 	
 	private:
-		bool Run(int argc, char* argv[]);
+		bool Run						(int argc, char* argv[]);
 
-		GLFWwindow* _window;
-		_Ivy::Render* _render;
-		_Ivy::EventDispatcher _event;
+		bool							_active;
+		GLFWwindow*						_window;
+		_Ivy::Renderer*					_renderer;
 
-		bool initEngine();
-		bool initOpenGL();
+		bool initEngine					();
+		bool initGLFW					();
+		bool initGLEW					();
+		bool initRenderer				();
+
+		void obtainWindowContext		();
 
 		friend int ::main(int argc, char* argv[]);
 	};

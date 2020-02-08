@@ -28,7 +28,7 @@
     <ClInclude Include="include\Core\IvyPCH.h" />
     <ClInclude Include="include\Core\IvyCore.h" />
     <ClInclude Include="Include\Entity\Entity.h" />
-    <ClInclude Include="include\Render\Render.h" />
+    <ClInclude Include="include\Render\Renderer.h" />
     <ClInclude Include="include\Resource\Resource.h" />
     <ClInclude Include="include\Render\Shader.h" />
     <ClInclude Include="include\Entity\Transform.h" />
@@ -36,7 +36,6 @@
     <ClInclude Include="include\Render\VertexBuffer.h" />
     <ClInclude Include="include\Render\VertexBufferLayout.h" />
     <ClInclude Include="include\Resource\StaticMeshResource.h" />
-    <ClInclude Include="include\Window\Window.h" />
     <ClInclude Include="vendor\CY\include\CY\cyCore.h" />
     <ClInclude Include="vendor\CY\include\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h" />
@@ -51,11 +50,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Entity\StaticMesh.cpp" />
-    <ClCompile Include="src\Render\Render.cpp" />
+    <ClCompile Include="src\Render\Renderer.cpp" />
     <ClCompile Include="src\Render\IndexBuffer.cpp" />
     <ClCompile Include="src\Render\Shader.cpp" />
     <ClCompile Include="src\Resource\Resource.cpp" />
-    <ClCompile Include="src\Window\Window.cpp" />
     <ClCompile Include="src\Render\VertexArray.cpp" />
     <ClCompile Include="src\Render\VertexBuffer.cpp" />
     <ClCompile Include="src\Resource\StaticMeshResource.cpp" />

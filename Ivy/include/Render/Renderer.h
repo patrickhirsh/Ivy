@@ -6,14 +6,14 @@
 
 namespace _Ivy
 {
-	class Render
+	class Renderer
 	{
 		template<typename T>
 		using DrawRequestQueue = std::unordered_map<std::string, std::vector<Ivy::Ref<T>>>;
 
 	public:
-		Render									() {};
-		~Render									() {};
+		Renderer									() {};
+		~Renderer									() {};
 		void DrawRequest						(Ivy::Ref<Ivy::StaticMesh> object);
 		void ProcessRequests					(GLFWwindow* window);
 

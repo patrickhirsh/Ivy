@@ -3,12 +3,14 @@
 
 namespace _Ivy
 {
-	void EventDispatcher::Register(Ivy::EventCategory category, Ivy::EventCallback callback)
+	EventDispatcher* EventDispatcher::_instance = nullptr;
+
+	void EventDispatcher::InternalRegister(Ivy::EventCategory category, Ivy::EventCallback callback)
 	{
 		_handlers.push_back(EventHandler(category, callback));
 	}
 
-	void EventDispatcher::Unregister(Ivy::EventCategory category, Ivy::EventCallback callback)
+	void EventDispatcher::InternalUnregister(Ivy::EventCategory category, Ivy::EventCallback callback)
 	{
 		for (auto it = _handlers.begin(); it != _handlers.end(); )
 		{
@@ -22,7 +24,7 @@ namespace _Ivy
 		}
 	}
 
-	void EventDispatcher::Fire(Ivy::Event& event)
+	void EventDispatcher::InternalFire(Ivy::Event& event)
 	{
 		for (EventHandler handler : _handlers)
 		{
