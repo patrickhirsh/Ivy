@@ -4,6 +4,9 @@ layout(location = 0) out vec4 color;
 
 in vec3 fPosition;
 in vec3 fNormal;
+in vec2 fTexCoord;
+
+uniform sampler2D textureData;
 
 void main()
 {
@@ -28,6 +31,5 @@ void main()
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 16);
 	vec3 specular = specularIntensity * spec * lightColor;
 
-	vec3 composite = (ambient + diffuse + specular) * objectColor;
-	color = vec4(composite, 1.0);
+	color = vec4((ambient + diffuse + specular), 1.0) * texture(textureData, fTexCoord);
 }

@@ -97,7 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>

@@ -16,16 +16,19 @@ namespace _Ivy
 			MetaData(
 				bool VertexPositions,
 				bool VertexNormals,
+				bool VertexTextures,
 				GLuint BufferSize,
 				GLuint BufferCount)
 				:
 				VertexPositions(VertexPositions),
 				VertexNormals(VertexNormals),
+				VertexTextures(VertexTextures),
 				BufferSize(BufferSize),
 				BufferCount(BufferCount) {}
 
 			bool VertexPositions;
 			bool VertexNormals;
+			bool VertexTextures;
 			GLuint BufferSize;
 			GLuint BufferCount;
 		};
@@ -46,7 +49,13 @@ namespace _Ivy
 		std::string					_source;
 		bool						_hasVertexPositions = false;
 		bool						_hasVertexNormals = false;
+		bool						_hasVertexTextures = false;
 		std::vector<float>			_buffer;
+		GLuint						_texture;
+		unsigned char*				_textureData;
+		int							_textureWidth;
+		int							_textureHeight;
+		int							_textureNRChannels;
 		Ivy::Ref<VertexBuffer>		_vb = nullptr;
 		Ivy::Ref<VertexArray>		_va = nullptr;
 		VertexBufferLayout			_vbLayout;

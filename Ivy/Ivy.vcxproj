@@ -40,6 +40,7 @@
     <ClInclude Include="vendor\CY\include\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h" />
     <ClInclude Include="vendor\CY\include\CY\cyVector.h" />
+    <ClInclude Include="vendor\STB\include\STB\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\IvyApplication.cpp" />
@@ -138,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
