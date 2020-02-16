@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug Editor|x64">
@@ -21,21 +21,28 @@
   <ItemGroup>
     <ClInclude Include="include\Core\IvyApplication.h" />
     <ClInclude Include="include\Core\IvyEntryPoint.h" />
+    <ClInclude Include="include\Component\ComponentArray.h" />
+    <ClInclude Include="include\Component\ComponentManager.h" />
+    <ClInclude Include="include\System\SystemManager.h" />
+    <ClInclude Include="include\Window\Window.h" />
+    <ClInclude Include="include\Component\Component.h" />
+    <ClInclude Include="include\Entity\EntityManager.h" />
     <ClInclude Include="include\Ivy.h" />
     <ClInclude Include="include\Event\Event.h" />
-    <ClInclude Include="include\Entity\StaticMesh.h" />
     <ClInclude Include="include\Render\IndexBuffer.h" />
     <ClInclude Include="include\Core\IvyPCH.h" />
     <ClInclude Include="include\Core\IvyCore.h" />
     <ClInclude Include="Include\Entity\Entity.h" />
-    <ClInclude Include="include\Render\Renderer.h" />
+    <ClInclude Include="include\System\Renderer.h" />
     <ClInclude Include="include\Resource\Resource.h" />
     <ClInclude Include="include\Render\Shader.h" />
-    <ClInclude Include="include\Entity\Transform.h" />
     <ClInclude Include="include\Render\VertexArray.h" />
     <ClInclude Include="include\Render\VertexBuffer.h" />
     <ClInclude Include="include\Render\VertexBufferLayout.h" />
     <ClInclude Include="include\Resource\StaticMeshResource.h" />
+    <ClInclude Include="include\System\System.h" />
+    <ClInclude Include="include\World\ECS.h" />
+    <ClInclude Include="include\World\World.h" />
     <ClInclude Include="vendor\CY\include\CY\cyCore.h" />
     <ClInclude Include="vendor\CY\include\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h" />
@@ -45,19 +52,25 @@
   <ItemGroup>
     <ClCompile Include="src\Core\IvyApplication.cpp" />
     <ClCompile Include="src\Core\IvyCore.cpp" />
+    <ClCompile Include="src\Component\ComponentArray.cpp" />
+    <ClCompile Include="src\Component\ComponentManager.cpp" />
+    <ClCompile Include="src\Entity\EntityManager.cpp" />
+    <ClCompile Include="src\System\SystemManager.cpp" />
+    <ClCompile Include="src\Window\Window.cpp" />
     <ClCompile Include="src\Event\Event.cpp" />
     <ClCompile Include="src\Core\IvyPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Entity\StaticMesh.cpp" />
-    <ClCompile Include="src\Render\Renderer.cpp" />
+    <ClCompile Include="src\System\Renderer.cpp" />
     <ClCompile Include="src\Render\IndexBuffer.cpp" />
     <ClCompile Include="src\Render\Shader.cpp" />
     <ClCompile Include="src\Resource\Resource.cpp" />
     <ClCompile Include="src\Render\VertexArray.cpp" />
     <ClCompile Include="src\Render\VertexBuffer.cpp" />
     <ClCompile Include="src\Resource\StaticMeshResource.cpp" />
+    <ClCompile Include="src\World\ECS.cpp" />
+    <ClCompile Include="src\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="vendor\GLFW\lib-vc2019\glfw3.lib" />

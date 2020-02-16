@@ -3,12 +3,10 @@
 
 namespace _Ivy
 {
-	std::unordered_map<std::string, Resource::MetaResource<Ivy::StaticMesh, StaticMeshResource>*> Resource::_resourcePoolStaticMesh;
+	std::unordered_map<std::string, Resource::MetaResource<Ivy::Mesh, StaticMeshResource>*> Resource::_resourcePoolStaticMesh;
 
 	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
 	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
-
-
 	
 
 	template<typename ObjectType, typename ResourceType>
@@ -43,10 +41,10 @@ namespace _Ivy
 		return stream.str();
 	}
 
-	Ivy::Ref<StaticMeshResource::MetaData> Resource::BindStaticMesh(Ivy::WeakRef<Ivy::StaticMesh> staticMesh)
+	Ivy::Ref<StaticMeshResource::MetaData> Resource::BindStaticMesh(Ivy::WeakRef<Ivy::Mesh> staticMesh)
 	{
-		MetaResource<Ivy::StaticMesh, StaticMeshResource>* resourceMeta;
-		auto it = _resourcePoolStaticMesh.find(staticMesh.lock()->GetMeshPath());
+		MetaResource<Ivy::Mesh, StaticMeshResource>* resourceMeta;
+		auto it = _resourcePoolStaticMesh.find(staticMesh.lock()->SourcePath);
 		if (it != _resourcePoolStaticMesh.end()) { resourceMeta = it->second; }
 		else
 		{

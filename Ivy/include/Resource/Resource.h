@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/IvyPCH.h"
 #include "Render/Shader.h"
-#include "Entity/StaticMesh.h"
+#include "Component/Component.h"
 #include "Resource/StaticMeshResource.h"
 
 namespace _Ivy
@@ -29,12 +29,12 @@ namespace _Ivy
 		// TODO: implement singleton + internal pattern to control initialization
 		// TODO: use generic-type binding and auto-unbind on a new bind call
 		static std::string LoadShader									(std::string shaderPath);
-		static Ivy::Ref<StaticMeshResource::MetaData> BindStaticMesh	(Ivy::WeakRef<Ivy::StaticMesh> staticMesh);
-		static void UnbindStaticMesh									(Ivy::WeakRef<Ivy::StaticMesh> staticMesh);
+		static Ivy::Ref<StaticMeshResource::MetaData> BindStaticMesh	(Ivy::WeakRef<Ivy::Mesh> staticMesh);
+		static void UnbindStaticMesh									(Ivy::WeakRef<Ivy::Mesh> staticMesh);
 		static Ivy::Ref<Shader>											_vertexShader;
 		static Ivy::Ref<Shader>											_fragmentShader;
 	private:
 
-		static ResourcePool<Ivy::StaticMesh, StaticMeshResource>		_resourcePoolStaticMesh;
+		static ResourcePool<Ivy::Mesh, StaticMeshResource>				_resourcePoolStaticMesh;
 	};
 }

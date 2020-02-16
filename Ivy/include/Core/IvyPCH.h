@@ -1,9 +1,13 @@
 #pragma once
 
+#include <array>
+#include <bitset>
 #include <fstream>
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <queue>
+#include <set>
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>

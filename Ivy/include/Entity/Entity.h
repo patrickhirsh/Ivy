@@ -1,13 +1,10 @@
 #pragma once
 #include "Core/IvyPCH.h"
-#include "Entity/Transform.h"
+#include "Entity/Component.h"
 
 
-namespace Ivy
+namespace _Ivy
 {
-	class IVY_API Entity
-	{
-	public:
-		Transform Transform;
-	};
+	using Entity = unsigned int;
+	const Entity MAX_ENTITIES = 5000;
 }

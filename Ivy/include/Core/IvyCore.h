@@ -7,7 +7,7 @@
 #include <string.h>
 #include <vector>
 
-#define IVY_VERSION "1.0.1"
+#define IVY_VERSION "1.1.0"
 
 namespace Ivy
 {
@@ -48,6 +48,10 @@ namespace _Ivy
 
 
 /* MACROS */
+
+// Exit Codes
+#define IVY_OK 0
+#define IVY_FATAL 1
 
 // Filesystem Constants
 #define MAX_PATH_LENGTH 1024
@@ -107,6 +111,13 @@ LOG_SYS("Version: " << IVY_VERSION);\
 #define LOG_INIT_SYS_END do { \
 LOG_SYS("==================================================");\
 } while(0);
+#define LOG_SYSTEM_STARTUP() do { \
+LOG_INIT_SYS_BEGIN \
+LOG_INIT_SYS_HEADER("OpenGL"); \
+LOG_INIT_SYS_ENTRY("Hardware Vendor:    " << (glGetString(GL_VENDOR) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VENDOR))); \
+LOG_INIT_SYS_ENTRY("Hardware Renderer:  " << (glGetString(GL_RENDERER) == GL_NONE ? "N/A" : (const char*)glGetString(GL_RENDERER))); \
+LOG_INIT_SYS_ENTRY("OpenGL Version:     " << (glGetString(GL_VERSION) == GL_NONE ? "N/A" : (const char*)glGetString(GL_VERSION))); \
+LOG_INIT_SYS_END } while(0)
 #else
 #define LOG_SYS(m) do { } while(0)
 #define LOG_INIT_SYS_HEADER(m) do { } while(0)
@@ -115,4 +126,5 @@ LOG_SYS("==================================================");\
 #define LOG_INIT_SYS_SUB_ENTRY(m) do { } while(0)
 #define LOG_INIT_SYS_BEGIN
 #define LOG_INIT_SYS_END
+#define LOG_SYSTEM_STARTUP()
 #endif
