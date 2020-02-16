@@ -37,6 +37,7 @@
     <ClInclude Include="include\Render\VertexBufferLayout.h" />
     <ClInclude Include="include\Resource\StaticMeshResource.h" />
     <ClInclude Include="vendor\CY\include\CY\cyCore.h" />
+    <ClInclude Include="vendor\CY\include\CY\cyGL.h" />
     <ClInclude Include="vendor\CY\include\CY\cyMatrix.h" />
     <ClInclude Include="vendor\CY\include\CY\cyTriMesh.h" />
     <ClInclude Include="vendor\CY\include\CY\cyVector.h" />

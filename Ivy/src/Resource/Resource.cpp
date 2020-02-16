@@ -5,10 +5,12 @@ namespace _Ivy
 {
 	std::unordered_map<std::string, Resource::MetaResource<Ivy::StaticMesh, StaticMeshResource>*> Resource::_resourcePoolStaticMesh;
 
-	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
-	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
-
-
+	Ivy::Ref<Shader>				Resource::_vertexShader = nullptr;
+	Ivy::Ref<Shader>				Resource::_fragmentShader = nullptr;
+	Ivy::Ref<Shader>				Resource::_unlitVertexShader = nullptr;
+	Ivy::Ref<Shader>				Resource::_unlitFragmentShader = nullptr;
+	std::vector<Ivy::Ref<Shader>>	Resource::_litShaders;
+	std::vector<Ivy::Ref<Shader>>	Resource::_unlitShaders;
 	
 
 	template<typename ObjectType, typename ResourceType>

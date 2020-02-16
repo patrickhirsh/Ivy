@@ -129,6 +129,7 @@ namespace _Ivy
 			GL(glBindTexture(GL_TEXTURE_2D, _texture));
 			GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _textureWidth, _textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, _textureData));
 			GL(glGenerateMipmap(GL_TEXTURE_2D));
+
 			return true;
 		}
 		return false;

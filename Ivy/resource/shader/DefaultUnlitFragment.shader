@@ -2,7 +2,11 @@
 
 layout(location = 0) out vec4 color;
 
+in vec2 fTexCoord;
+
+uniform sampler2D textureData;
+
 void main()
 {
-	color = vec4(1.0, 0.0, 0.0, 1.0);
+	color = texture(textureData, fTexCoord);
 }

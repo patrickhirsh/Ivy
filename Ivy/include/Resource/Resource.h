@@ -33,6 +33,10 @@ namespace _Ivy
 		static void UnbindStaticMesh									(Ivy::WeakRef<Ivy::StaticMesh> staticMesh);
 		static Ivy::Ref<Shader>											_vertexShader;
 		static Ivy::Ref<Shader>											_fragmentShader;
+		static Ivy::Ref<Shader>											_unlitVertexShader;
+		static Ivy::Ref<Shader>											_unlitFragmentShader;
+		static std::vector<Ivy::Ref<Shader>>							_litShaders;
+		static std::vector<Ivy::Ref<Shader>>							_unlitShaders;
 	private:
 
 		static ResourcePool<Ivy::StaticMesh, StaticMeshResource>		_resourcePoolStaticMesh;
