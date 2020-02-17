@@ -15,7 +15,7 @@ namespace _Ivy
 		using DrawRequestQueue = std::unordered_map<std::string, std::vector<Ivy::Ref<T>>>;
 
 	public:
-		Renderer								();
+		Renderer								(GLFWwindow* window);
 		~Renderer								() {};
 		void DrawRequest						(Ivy::Ref<Ivy::StaticMesh> object);
 		void ProcessRequests					(GLFWwindow* window);
@@ -37,5 +37,11 @@ namespace _Ivy
 		Ivy::Ref<VertexBuffer> _vbo;
 		VertexBufferLayout _vbl;
 		std::vector<float> _quad;
+
+		// off-screen rendering
+		GLuint _fbo;
+		GLuint _tcb;
+		GLuint _rbo;
+
 	};
 }

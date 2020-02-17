@@ -4,7 +4,7 @@
 
 namespace _Ivy
 {
-    Renderer::Renderer()
+    Renderer::Renderer(GLFWwindow* window)
     {
         // Hardcoded Shader Binding... TODO: abstract this.
         Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultLitVertex.shader");
@@ -16,27 +16,65 @@ namespace _Ivy
         Resource::_unlitShaders.push_back(Resource::_unlitVertexShader);
         Resource::_unlitShaders.push_back(Resource::_unlitFragmentShader);
 
+        GLint width, height;
+        glfwGetWindowSize(window, &width, &height);
 
         /* Temp Quad stuff */
 
-        _quad = 
+        GL(glGenFramebuffers(1, &_fbo));
+        GL(glBindFramebuffer(GL_FRAMEBUFFER, _fbo));
+
+        // generate texture
+        GL(glGenTextures(1, &_tcb));
+        GL(glBindTexture(GL_TEXTURE_2D, _tcb));
+        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
+        GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+        GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+        GL(glBindTexture(GL_TEXTURE_2D, 0));
+
+        // attatch to fbo
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _tcb, 0);
+
+        // generate render buffer
+        GL(glGenRenderbuffers(1, &_rbo));
+        GL(glBindRenderbuffer(GL_RENDERBUFFER, _rbo));
+        GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height));
+
+        // safe to unbind after memory is allocated
+        GL(glBindRenderbuffer(GL_RENDERBUFFER, 0));
+
+        // attatch rbo to the depth and stencil attatchment of the fbo
+        GL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _rbo));
+
+        // ensure framebuffer is complete
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            LOG_ERROR("Frame buffer not complete!");
+
+        _quad =
         {
-            0.5f, 0.5f, 0.0f,       //1.0f, 1.0f, 0.0f,
-            -0.5f, 0.5f, 0.0f,      //0.0f, 1.0f, 0.0f,
-            -0.5f, -0.5f, 0.0f,     //0.0f, 0.0f, 0.0f,
-            0.5f, 0.5f, 0.0f,       //1.0f, 1.0f, 0.0f,
-            0.5f, -0.5f, 0.0f,      //1.0f, 0.0f, 0.0f,
-            -0.5f, -0.5f, 0.0f,     //0.0f, 0.0f, 0.0f
+            // first triangle
+             20.0f,  20.0f, 0.0f,   1.0f,  1.0f, 0.0f, // top right
+             20.0f,  20.0f, 0.0f,   1.0f,  1.0f, 0.0f, // top right
+             20.0f, -20.0f, 0.0f,   1.0f,  0.0f, 0.0f, // bottom right
+            -20.0f,  20.0f, 0.0f,   0.0f,  1.0f, 0.0f, // top left 
+            // second triangle
+             20.0f, -20.0f, 0.0f,   1.0f,  0.0f, 0.0f, // bottom right
+            -20.0f, -20.0f, 0.0f,   0.0f,  0.0f, 0.0f, // bottom left
+            -20.0f,  20.0f, 0.0f,   0.0f,  1.0f, 0.0f  // top left
         };
 
         // vertex buffer layout
         _vbl.Push<float>(3);       // pos
-        //vbl.Push<float>(3);     // tex coord
+        _vbl.Push<float>(3);       // tex coord
 
         // create vao and vbo for quad
         _vao = VertexArray::Create();
         _vbo = VertexBuffer::Create(_quad.data(), _quad.size() * sizeof(float));
         _vao->SetVertexBuffer(_vbo, _vbl);
+
+        // rebind GLFW's FrameBuffer
+        GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+        
     }
 
 	void Renderer::DrawRequest(Ivy::Ref<Ivy::StaticMesh> object)
@@ -90,61 +128,27 @@ namespace _Ivy
 
                     /* Begin Project 5 Render buff impl (temporary)*/
 
-                    /*
-                    // generate frame buffer for off-screen rendering
-                    GLuint fbo;
-                    GL(glGenFramebuffers(1, &fbo));
-                    GL(glBindFramebuffer(GL_FRAMEBUFFER, fbo));
+                    GL(glBindFramebuffer(GL_FRAMEBUFFER, _fbo));
 
                     // clear frame buffer
                     glClearColor(0.7f, 0.7f, 0.7f, 1.0f); // use a different clear color so the background stands out
                     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                     glEnable(GL_DEPTH_TEST);
 
-                    // generate texture
-                    GLuint tcb;
-                    GL(glGenTextures(1, &tcb));
-                    GL(glBindTexture(GL_TEXTURE_2D, tcb));
-                    GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL));
-                    GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-                    GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-                    GL(glBindTexture(GL_TEXTURE_2D, 0));
-
-                    // attatch to fbo
-                    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tcb, 0);
-
-                    // generate render buffer
-                    GLuint rbo;
-                    GL(glGenRenderbuffers(1, &rbo));
-                    GL(glBindRenderbuffer(GL_RENDERBUFFER, rbo));
-                    GL(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height));
-
-                    // safe to unbind after memory is allocated
-                    GL(glBindRenderbuffer(GL_RENDERBUFFER, 0));
-
-                    // attatch rbo to the depth and stencil attatchment of the fbo
-                    GL(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo));
-
-                    // ensure framebuffer is complete
-                    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-                        LOG_ERROR("Frame buffer not complete!");
-
-                    */
                     // execute teapot draw call
                     GL(glDrawArrays(GL_TRIANGLES, 0, resourceMeta->BufferCount));
                     Resource::UnbindStaticMesh(requestInstance);
 
+
+                    glBindFramebuffer(GL_FRAMEBUFFER, 0); // bind default on-screen buffer
+
                     // === Draw quad ===
-
-                    //glBindFramebuffer(GL_FRAMEBUFFER, 0); // bind default on-screen buffer
-
-                    //glDisable(GL_DEPTH_TEST);
-
-                    Shader::Bind(Resource::_unlitShaders);
+                    glDisable(GL_DEPTH_TEST);
 
                     _vbo->Bind();
                     _vao->Bind();
 
+                    Shader::Bind(Resource::_unlitShaders);
                     GLuint mLocu = glGetUniformLocation(Shader::GetActiveProgram(), "model");
                     GLuint vLocu = glGetUniformLocation(Shader::GetActiveProgram(), "view");
                     GLuint pLocu = glGetUniformLocation(Shader::GetActiveProgram(), "projection");
@@ -154,14 +158,11 @@ namespace _Ivy
 
                     // bind quad vbo and vao, then bind texture from off-screen frame buffer
                     
-                    //GL(glBindTexture(GL_TEXTURE_2D, tcb));
-                    //GL(glGenerateMipmap(GL_TEXTURE_2D));
+                    GL(glBindTexture(GL_TEXTURE_2D, _tcb));
+                    GL(glGenerateMipmap(GL_TEXTURE_2D));
 
                     // draw quad
-                    GL(glDrawArrays(GL_TRIANGLES, 0, ((_quad.size() * sizeof(float)) / _vbl.GetStride())));
-
-                    // delete frame buffer
-                    //GL(glDeleteFramebuffers(1, &fbo));
+                    GL(glDrawArrays(GL_TRIANGLES, 1, 6));
                 }
             }
         }

@@ -27,7 +27,7 @@ namespace _Ivy
 			const auto& element = elements[i];
 			GL(glEnableVertexAttribArray(i));
 			GL(glVertexAttribPointer(i, element.Count, element.Type, element.Normalized, 
-				layout.GetStride(), (const void*)offset));
+				layout.GetStride(), (const void*) offset));
 
 			offset += element.Count * VertexBufferLayoutElement::SizeOf(element.Type);
 		}

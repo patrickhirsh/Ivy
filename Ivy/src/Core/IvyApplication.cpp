@@ -153,7 +153,7 @@ namespace Ivy
 
 	bool Application::initRenderer()
 	{
-		_renderer = new _Ivy::Renderer();
+		_renderer = new _Ivy::Renderer(_window);
 		return true;
 	}
 
