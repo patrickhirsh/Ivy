@@ -34,9 +34,6 @@ namespace _Ivy
 	void Shader::Unbind()
 	{
 		GL(glDeleteProgram(_activeProgram));
-		for (Ivy::Ref<Shader> shader : _activeShaders)
-			GL(glDeleteShader(shader->_id));
-		
 		_activeProgram = 0;
 		_activeShaders.clear();
 	}
