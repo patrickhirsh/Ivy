@@ -61,26 +61,21 @@ namespace _Ivy
         GLint width, height;
         glfwGetWindowSize(window, &width, &height);
 
-        //for (auto request : _staticMeshDrawRequests)
-        if (true)
+        for (auto request : _staticMeshDrawRequests)
         {
-            //for (auto requestInstance : request.second)
-            if (true)
+            for (auto requestInstance : request.second)
             {
-                //Ivy::Ref<StaticMeshResource::MetaData> resourceMeta = Resource::BindStaticMesh(requestInstance);
-                //if (resourceMeta)
-                if (true)
+                Ivy::Ref<StaticMeshResource::MetaData> resourceMeta = Resource::BindStaticMesh(requestInstance);
+                if (resourceMeta)
                 {
                     //cy::Matrix4f MVP = _projection * (_sceneTranslation * _sceneRotation) * _model;
 
                     // TODO: Fix scene transformation to properly account for aspect ratio
                     // scene transformations
-                    //Shader::Bind(Resource::_litShaders);
+                    Shader::Bind(Resource::_litShaders);
                     _model = cy::Matrix4f::Scale(1);
                     _view = _sceneTranslation * _sceneRotation;
                     _projection = cy::Matrix4f::Perspective(1.0f, (width / height), 1, 100);
-
-                    /*
                     cy::Matrix4f NTRANS = (_sceneTranslation * _sceneRotation) * _model;
                     NTRANS.Invert();
                     NTRANS.Transpose();
@@ -92,7 +87,6 @@ namespace _Ivy
                     GL(glUniformMatrix4fv(vLoc, 1, GL_FALSE, _view.cell));
                     GL(glUniformMatrix4fv(pLoc, 1, GL_FALSE, _projection.cell));
                     GL(glUniformMatrix4fv(ntransLoc, 1, GL_FALSE, NTRANS.cell));
-                    */
 
                     /* Begin Project 5 Render buff impl (temporary)*/
 
@@ -135,16 +129,17 @@ namespace _Ivy
                     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
                         LOG_ERROR("Frame buffer not complete!");
 
+                    */
                     // execute teapot draw call
                     GL(glDrawArrays(GL_TRIANGLES, 0, resourceMeta->BufferCount));
                     Resource::UnbindStaticMesh(requestInstance);
 
                     // === Draw quad ===
 
-                    glBindFramebuffer(GL_FRAMEBUFFER, 0); // bind default on-screen buffer
-                    */
+                    //glBindFramebuffer(GL_FRAMEBUFFER, 0); // bind default on-screen buffer
 
                     //glDisable(GL_DEPTH_TEST);
+
                     Shader::Bind(Resource::_unlitShaders);
 
                     _vbo->Bind();
