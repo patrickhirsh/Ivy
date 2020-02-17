@@ -17,6 +17,7 @@ namespace _Ivy
 
 	void VertexArray::SetVertexBuffer(Ivy::Ref<VertexBuffer> vb, const VertexBufferLayout& layout)
 	{
+		_numElements = layout.GetElements().size();
 		Bind();
 		vb->Bind();
 		const auto& elements = layout.GetElements();

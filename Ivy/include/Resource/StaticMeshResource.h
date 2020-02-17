@@ -31,7 +31,6 @@ namespace _Ivy
 			bool VertexTextures;
 			GLuint BufferSize;
 			GLuint BufferCount;
-			Ivy::Ref<cy::GLRenderTexture<GL_TEXTURE_2D>> RT;
 		};
 
 		StaticMeshResource					(std::string sourcePath);

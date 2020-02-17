@@ -18,5 +18,6 @@ namespace _Ivy
 	private:
 		VertexArray				() {};
 		GLuint					_id;
+		GLuint					_numElements;
 	};
 }

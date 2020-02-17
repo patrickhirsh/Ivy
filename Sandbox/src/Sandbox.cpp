@@ -80,8 +80,8 @@ Sandbox::Sandbox(int argc, char* argv[])
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
-	_mesh = Ivy::StaticMesh::Create(_obj);
-	AddEntity(_mesh);
+	//_mesh = Ivy::StaticMesh::Create(_obj);
+	//AddEntity(_mesh);
 }
 
 Sandbox::~Sandbox()

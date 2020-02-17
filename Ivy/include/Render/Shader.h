@@ -15,7 +15,7 @@ namespace _Ivy
 		static std::vector<Ivy::Ref<Shader>>	_activeShaders;
 
 	public:
-		~Shader									() {};
+		~Shader									() { GL(glDeleteShader(_id)); };
 		void Compile							();
 	private:
 		Shader									() {};

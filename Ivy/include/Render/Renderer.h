@@ -2,6 +2,9 @@
 #include "Core/IvyPCH.h"
 #include "Entity/Entity.h"
 #include "Entity/StaticMesh.h"
+#include "Render/VertexArray.h"
+#include "Render/VertexBuffer.h"
+
 
 
 namespace _Ivy
@@ -12,7 +15,7 @@ namespace _Ivy
 		using DrawRequestQueue = std::unordered_map<std::string, std::vector<Ivy::Ref<T>>>;
 
 	public:
-		Renderer								() {};
+		Renderer								();
 		~Renderer								() {};
 		void DrawRequest						(Ivy::Ref<Ivy::StaticMesh> object);
 		void ProcessRequests					(GLFWwindow* window);
@@ -28,5 +31,11 @@ namespace _Ivy
 		cy::Matrix4f							_projection;
 		cy::Matrix4f							_model;
 		cy::Matrix4f							_view;
+
+		// Temp quad stuff
+		Ivy::Ref<VertexArray> _vao;
+		Ivy::Ref<VertexBuffer> _vbo;
+		VertexBufferLayout _vbl;
+		std::vector<float> _quad;
 	};
 }
