@@ -9,5 +9,4 @@ public:
 	void Tick();
 private:
 	std::string _obj;
-	Ivy::Ref<Ivy::StaticMesh> _mesh;
 };

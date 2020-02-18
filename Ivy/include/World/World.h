@@ -18,7 +18,7 @@ namespace _Ivy
 		~World() {};
 
 	private:
-		World();
+		World() {};
 		Ivy::Ref<ECS> _ecs;
 	};
 }

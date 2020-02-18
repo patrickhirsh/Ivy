@@ -23,6 +23,7 @@
     <ClInclude Include="include\Core\IvyEntryPoint.h" />
     <ClInclude Include="include\Component\ComponentArray.h" />
     <ClInclude Include="include\Component\ComponentManager.h" />
+    <ClInclude Include="include\Resource\Resource.h" />
     <ClInclude Include="include\System\SystemManager.h" />
     <ClInclude Include="include\Window\Window.h" />
     <ClInclude Include="include\Component\Component.h" />
@@ -34,12 +35,10 @@
     <ClInclude Include="include\Core\IvyCore.h" />
     <ClInclude Include="Include\Entity\Entity.h" />
     <ClInclude Include="include\System\Renderer.h" />
-    <ClInclude Include="include\Resource\Resource.h" />
     <ClInclude Include="include\Render\Shader.h" />
     <ClInclude Include="include\Render\VertexArray.h" />
     <ClInclude Include="include\Render\VertexBuffer.h" />
     <ClInclude Include="include\Render\VertexBufferLayout.h" />
-    <ClInclude Include="include\Resource\StaticMeshResource.h" />
     <ClInclude Include="include\System\System.h" />
     <ClInclude Include="include\World\ECS.h" />
     <ClInclude Include="include\World\World.h" />
@@ -52,10 +51,8 @@
   <ItemGroup>
     <ClCompile Include="src\Core\IvyApplication.cpp" />
     <ClCompile Include="src\Core\IvyCore.cpp" />
-    <ClCompile Include="src\Component\ComponentArray.cpp" />
-    <ClCompile Include="src\Component\ComponentManager.cpp" />
     <ClCompile Include="src\Entity\EntityManager.cpp" />
-    <ClCompile Include="src\System\SystemManager.cpp" />
+    <ClCompile Include="src\Resource\Resource.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
     <ClCompile Include="src\Event\Event.cpp" />
     <ClCompile Include="src\Core\IvyPCH.cpp">
@@ -65,11 +62,8 @@
     <ClCompile Include="src\System\Renderer.cpp" />
     <ClCompile Include="src\Render\IndexBuffer.cpp" />
     <ClCompile Include="src\Render\Shader.cpp" />
-    <ClCompile Include="src\Resource\Resource.cpp" />
     <ClCompile Include="src\Render\VertexArray.cpp" />
     <ClCompile Include="src\Render\VertexBuffer.cpp" />
-    <ClCompile Include="src\Resource\StaticMeshResource.cpp" />
-    <ClCompile Include="src\World\ECS.cpp" />
     <ClCompile Include="src\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>

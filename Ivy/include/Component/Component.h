@@ -41,22 +41,19 @@ namespace Ivy
 	class IVY_API Mesh : public Component
 	{
 	public:
-		std::string SourcePath;
-
-		// TODO: move a bunch of this into a material class
-		bool						_loaded;
-		std::string					_source;
-		bool						_hasVertexPositions = false;
-		bool						_hasVertexNormals = false;
-		bool						_hasVertexTextures = false;
-		std::vector<float>			_buffer;
-		GLuint						_texture;
-		unsigned char*				_textureData;
-		int							_textureWidth;
-		int							_textureHeight;
-		int							_textureNRChannels;
-		_Ivy::VertexBuffer			_vb;
-		_Ivy::VertexArray			_va;
-		_Ivy::VertexBufferLayout	_vbLayout;
+		bool						Loaded = false;
+		std::string					SourceMeshPath;
+		std::string					SourceTexturePath;
+		bool						HasVertexPositions = false;
+		bool						HasVertexNormals = false;
+		bool						HasVertexTextures = false;
+		GLuint						VBOSize;
+		GLuint						VBO;
+		GLuint						VAO;
+		unsigned char*				TextureData;
+		int							TextureWidth;
+		int							TextureHeight;
+		int							TextureNRChannels;
+		GLuint						Texture;
 	};
 }

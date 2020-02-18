@@ -76,12 +76,12 @@ void InputCallback(Ivy::Event& Event)
 
 Sandbox::Sandbox(int argc, char* argv[])
 {
-	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to 'Resource'\n"); Shutdown(); }
+	if (argc != 2) { printf("Please provide an argument with the path to a valid OBJ file, relative to 'Resource'\n"); }
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
-	_mesh = Ivy::StaticMesh::Create(_obj);
-	AddEntity(_mesh);
+	//_mesh = Ivy::StaticMesh::Create(_obj);
+	//AddEntity(_mesh);
 }
 
 Sandbox::~Sandbox()
@@ -91,8 +91,8 @@ Sandbox::~Sandbox()
 
 void Sandbox::Tick()
 {
-	SetSceneTranslation(0, 0, modelDistance);
-	SetSceneRotation(xModelRotation, yModelRotation, 0);
+	//SetSceneTranslation(0, 0, modelDistance);
+	//SetSceneRotation(xModelRotation, yModelRotation, 0);
 }
 
 Ivy::Application* Ivy::CreateApplication(int argc, char* argv[])

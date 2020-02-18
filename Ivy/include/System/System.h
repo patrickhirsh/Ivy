@@ -4,11 +4,13 @@
 
 namespace _Ivy
 {
+	class ECS;
+	class Window;
 
 	class System
 	{
 	public:
-		virtual void Update		(Ivy::Ref<Window> window) = 0;
+		virtual void Update		(Ivy::Ref<Window> window, Ivy::Ref<ECS> ecs) = 0;
 		virtual ~System			() {};
 		std::set<Entity>		Entities;
 	};
