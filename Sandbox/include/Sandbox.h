@@ -9,4 +9,5 @@ public:
 	void Tick();
 private:
 	std::string _obj;
+	Ivy::Entity _teapot;
 };

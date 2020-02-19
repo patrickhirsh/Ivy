@@ -16,10 +16,9 @@ namespace _Ivy
 		Ivy::Ref<System> RegisterSystem()
 		{
 			const char* typeName = typeid(System).name();
-
-			// Registering a system that's already registered!
-			assert(_systems.find(typeName) == _systems.end());
-
+			ASSERTM(_systems.find(typeName) == _systems.end(), 
+				"Tried to register system " << typeName << ", which is already registered!");
+			
 			auto system = Ivy::Ref<System>(new System());
 			_systems.insert({ typeName, system });
 			return system;
@@ -29,14 +28,13 @@ namespace _Ivy
 		void SetSignature(ComponentSignature signature)
 		{
 			const char* typeName = typeid(System).name();
-
-			// System isn't registered!
-			assert(_systems.find(typeName) != _systems.end());
+			ASSERTMF(_systems.find(typeName) != _systems.end(), 
+				"Tried to set signature of unregistered system " << typeName << "!");
 
 			_signatures.insert({ typeName, signature });
 		}
 
-		void EntityDestroyed(Entity entity)
+		void EntityDestroyed(Ivy::Entity entity)
 		{
 			for (auto const& system : _systems)
 			{
@@ -44,7 +42,7 @@ namespace _Ivy
 			}
 		}
 
-		void EntitySignatureChanged(Entity entity, ComponentSignature signature)
+		void EntitySignatureChanged(Ivy::Entity entity, ComponentSignature signature)
 		{
 			for (auto const& pair : _systems)
 			{

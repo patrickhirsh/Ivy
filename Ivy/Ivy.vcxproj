@@ -23,6 +23,7 @@
     <ClInclude Include="include\Core\IvyEntryPoint.h" />
     <ClInclude Include="include\Component\ComponentArray.h" />
     <ClInclude Include="include\Component\ComponentManager.h" />
+    <ClInclude Include="include\Core\IvyMemory.h" />
     <ClInclude Include="include\Resource\Resource.h" />
     <ClInclude Include="include\System\SystemManager.h" />
     <ClInclude Include="include\Window\Window.h" />

@@ -9,31 +9,6 @@
 
 #define IVY_VERSION "1.1.0"
 
-namespace Ivy
-{
-	// Unique Pointer Implemetation
-	template<typename T>
-	using Scope = std::unique_ptr<T>;
-	template<typename T, typename ... Args>
-	constexpr Scope<T> CreateScope(Args&& ... args)
-	{
-		return std::make_unique<T>(std::forward<Args>(args)...);
-	}
-
-	// Shared Pointer Implemetation
-	template<typename T>
-	using Ref = std::shared_ptr<T>;
-	template<typename T, typename ... Args>
-	constexpr Ref<T> CreateRef(Args&& ... args)
-	{
-		return std::make_shared<T>(std::forward<Args>(args)...);
-	}
-
-	// Weak Pointer Implemetation
-	template<typename T>
-	using WeakRef = std::weak_ptr<T>;
-}
-
 
 namespace _Ivy
 {
@@ -61,16 +36,6 @@ namespace _Ivy
 #define IVY_API __declspec(dllexport)
 #else
 #define IVY_API __declspec(dllimport)
-#endif
-
-// OpenGL Error Handling
-#ifdef _DEBUG
-#define ASSERT(x) do { if (!(x)) __debugbreak(); } while(0)
-#define GL(x) do { _Ivy::GLClearError();\
- x; ASSERT(_Ivy::GLStatus(__FILE__, #x, std::to_string(__LINE__).c_str())); } while(0)
-#else
-#define ASSERT(x)
-#define GL(x) x
 #endif
 
 // Low-Level Data Manipulation
@@ -126,5 +91,24 @@ LOG_INIT_SYS_END } while(0)
 #define LOG_INIT_SYS_SUB_ENTRY(m) do { } while(0)
 #define LOG_INIT_SYS_BEGIN
 #define LOG_INIT_SYS_END
-#define LOG_SYSTEM_STARTUP()
+#define LOG_SYSTEM_STARTUP() do { } while(0)
+#endif
+
+// Assertions
+#ifdef _DEBUG
+#define ASSERT(x) do { if (!(x)) __debugbreak(); } while(0)
+#define ASSERTM(x, m) { if (!(x)) { LOG_WARN(m); __debugbreak(); } } while(0)
+#define ASSERTMF(x, m) { if (!(x)) { LOG_ERROR(m); __debugbreak(); } } while(0)
+#else
+#define ASSERT(x) do { } while(0)
+#define ASSERTM(x, m) do { } while(0)
+#define ASSERTMF(x, m) do { } while(0)
+#endif
+
+// OpenGL Error Handling
+#ifdef _DEBUG
+#define GL(x) do { _Ivy::GLClearError();\
+ x; ASSERT(_Ivy::GLStatus(__FILE__, #x, std::to_string(__LINE__).c_str())); } while(0)
+#else
+#define GL(x) do {x;} while(0)
 #endif

@@ -46,9 +46,9 @@ namespace _Ivy
                     transform.Position.Y,
                     transform.Position.Z));
                 auto meshRotation = cy::Matrix4f::RotationXYZ(
-                    transform.Position.X,
-                    transform.Position.Y,
-                    transform.Position.Z);
+                    transform.Rotation.X,
+                    transform.Rotation.Y,
+                    transform.Rotation.Z);
 
                 // model / view / projection matrices
                 auto model = cy::Matrix4f::Scale(1);

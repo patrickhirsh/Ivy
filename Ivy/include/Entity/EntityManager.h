@@ -10,13 +10,13 @@ namespace _Ivy
 	public:
 		EntityManager						();
 		~EntityManager						() {};
-		Entity CreateEntity					();
-		void DestroyEntity					(Entity entity);
-		void SetSignature					(Entity entity, ComponentSignature signature);
-		ComponentSignature GetSignature		(Entity entity);
+		Ivy::Entity CreateEntity			();
+		void DestroyEntity					(Ivy::Entity entity);
+		void SetSignature					(Ivy::Entity entity, ComponentSignature signature);
+		ComponentSignature GetSignature		(Ivy::Entity entity);
 
 	private:
-		std::queue<Entity> _availableEntities{};
+		std::queue<Ivy::Entity> _availableEntities{};
 		std::array<ComponentSignature, MAX_ENTITIES> _componentSignatures{};
 		unsigned int _livingEntityCount{};
 	};

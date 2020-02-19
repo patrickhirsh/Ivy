@@ -32,12 +32,12 @@ namespace _Ivy
 
 		/* Entity Methods */
 
-		Entity CreateEntity()
+		Ivy::Entity CreateEntity()
 		{
 			return _entityManager->CreateEntity();
 		}
 
-		void DestroyEntity(Entity entity)
+		void DestroyEntity(Ivy::Entity entity)
 		{
 			_entityManager->DestroyEntity(entity);
 		}
@@ -52,7 +52,7 @@ namespace _Ivy
 		}
 
 		template<typename Component>
-		void AddComponent(Entity entity, Component component)
+		void AddComponent(Ivy::Entity entity, Component component)
 		{
 			_componentManager->AddComponent<Component>(entity, component);
 
@@ -63,7 +63,7 @@ namespace _Ivy
 		}
 
 		template<typename Component>
-		void RemoveComponent(Entity entity)
+		void RemoveComponent(Ivy::Entity entity)
 		{
 			_componentManager->RemoveComponent<Component>(entity);
 
@@ -75,7 +75,13 @@ namespace _Ivy
 		}
 
 		template<typename Component>
-		Component& GetComponent(Entity entity)
+		bool HasComponent(Ivy::Entity entity)
+		{
+			return _componentManager->HasComponent<Component>(entity);
+		}
+
+		template<typename Component>
+		Component& GetComponent(Ivy::Entity entity)
 		{
 			return _componentManager->GetComponent<Component>(entity);
 		}

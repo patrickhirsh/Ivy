@@ -33,3 +33,4 @@
 
 // Local
 #include "Core/IvyCore.h"
+#include "Core/IvyMemory.h"

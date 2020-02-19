@@ -5,49 +5,38 @@ namespace _Ivy
 {
 	EntityManager::EntityManager()
 	{
-		for (Entity entity = 0; entity < MAX_ENTITIES; ++entity)
+		for (Ivy::Entity entity = 0; entity < MAX_ENTITIES; ++entity)
 		{
 			_availableEntities.push(entity);
 		}
 	}
 
-	Entity EntityManager::CreateEntity()
+	Ivy::Entity EntityManager::CreateEntity()
 	{
-		// too many entities created!
-		assert(_livingEntityCount < MAX_ENTITIES);
-
-		Entity id = _availableEntities.front();
+		ASSERTMF(_livingEntityCount < MAX_ENTITIES, "Exceeded entity limit!");
+		Ivy::Entity id = _availableEntities.front();
 		_availableEntities.pop();
 		_livingEntityCount++;
-
 		return id;
 	}
 
-	void EntityManager::DestroyEntity(Entity entity)
+	void EntityManager::DestroyEntity(Ivy::Entity entity)
 	{
-		// entity out of range!
-		assert(entity < MAX_ENTITIES);
-
-		// reset bit signature to all 0's
+		ASSERTMF(entity < MAX_ENTITIES, "Entity out of range!");
 		_componentSignatures[entity].reset();
-
 		_availableEntities.push(entity);
 		_livingEntityCount--;
 	}
 
-	void EntityManager::SetSignature(Entity entity, ComponentSignature signature)
+	void EntityManager::SetSignature(Ivy::Entity entity, ComponentSignature signature)
 	{
-		// entity out of range!
-		assert(entity < MAX_ENTITIES);
-
+		ASSERTMF(entity < MAX_ENTITIES, "Entity out of range!");
 		_componentSignatures[entity] = signature;
 	}
 
-	ComponentSignature EntityManager::GetSignature(Entity entity)
+	ComponentSignature EntityManager::GetSignature(Ivy::Entity entity)
 	{
-		// entity out of range!
-		assert(entity < MAX_ENTITIES);
-
+		ASSERTMF(entity < MAX_ENTITIES, "Entity out of range!");
 		return _componentSignatures[entity];
 	}
 }

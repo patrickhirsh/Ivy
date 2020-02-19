@@ -12,6 +12,6 @@ namespace _Ivy
 	public:
 		virtual void Update		(Ivy::Ref<Window> window, Ivy::Ref<ECS> ecs) = 0;
 		virtual ~System			() {};
-		std::set<Entity>		Entities;
+		std::set<Ivy::Entity>		Entities;
 	};
 }

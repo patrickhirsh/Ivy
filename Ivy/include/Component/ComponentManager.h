@@ -14,9 +14,9 @@ namespace _Ivy
 		{
 			const char* typeName = typeid(Component).name();
 
-			// Registering an already registered component!
-			assert(_componentTypes.find(typeName) == _componentTypes.end());
-
+			ASSERTMF(_componentTypes.find(typeName) == _componentTypes.end(), 
+				"Tried to register component " << typeName << ", which has already been registered!");
+			
 			_componentTypes.insert({ typeName, _nextComponentType });
 			_componentArrays.insert({ typeName, Ivy::Ref<ComponentArray<Component>>(new ComponentArray<Component>()) });
 			_nextComponentType++;
@@ -26,32 +26,37 @@ namespace _Ivy
 		ComponentType GetComponentType()
 		{
 			const char* typeName = typeid(Component).name();
-
-			// Getting a non-existant component type! (did you register it?)
-			assert(_componentTypes.find(typeName) != _componentTypes.end());
+			ASSERTMF(_componentTypes.find(typeName) != _componentTypes.end(),
+				"Tried to get unregistered component type " << typeName << "!");
 
 			return _componentTypes[typeName];
 		}
 
 		template<typename Component>
-		void AddComponent(Entity entity, Component component)
+		void AddComponent(Ivy::Entity entity, Component component)
 		{
 			GetComponentArray<Component>()->AddComponent(entity, component);
 		}
 
 		template<typename Component>
-		void RemoveComponent(Entity entity)
+		void RemoveComponent(Ivy::Entity entity)
 		{
 			GetComponentArray<Component>()->RemoveComponent(entity);
 		}
 
 		template<typename Component>
-		Component& GetComponent(Entity entity)
+		bool HasComponent(Ivy::Entity entity)
+		{
+			return GetComponentArray<Component>()->HasComponent(entity);
+		}
+
+		template<typename Component>
+		Component& GetComponent(Ivy::Entity entity)
 		{
 			return GetComponentArray<Component>()->GetComponent(entity);
 		}
 
-		void EntityDestroyed(Entity entity)
+		void EntityDestroyed(Ivy::Entity entity)
 		{
 			for (auto const& component : _componentArrays)
 			{
@@ -68,9 +73,8 @@ namespace _Ivy
 		Ivy::Ref<ComponentArray<Component>> GetComponentArray()
 		{
 			const char* typeName = typeid(Component).name();
-
-			// Component not registered before use!
-			assert(_componentTypes.find(typeName) != _componentTypes.end());
+			ASSERTMF(_componentTypes.find(typeName) != _componentTypes.end(),
+				"Tried to get component array for unregistered component " << typeName << "!");
 
 			return std::static_pointer_cast<ComponentArray<Component>>(_componentArrays[typeName]);
 		}

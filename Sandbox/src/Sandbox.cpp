@@ -80,8 +80,14 @@ Sandbox::Sandbox(int argc, char* argv[])
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
-	//_mesh = Ivy::StaticMesh::Create(_obj);
-	//AddEntity(_mesh);
+	auto transform = Ivy::Transform();
+	transform.Position.Z = -50;
+	auto mesh = Ivy::Mesh();
+	mesh.SourceMeshPath = "teapot.obj";
+	mesh.SourceTexturePath = "brick.png";
+	_teapot = CreateEntity();
+	AddComponent<Ivy::Transform>(_teapot, transform);
+	AddComponent<Ivy::Mesh>(_teapot, mesh);
 }
 
 Sandbox::~Sandbox()
@@ -91,6 +97,10 @@ Sandbox::~Sandbox()
 
 void Sandbox::Tick()
 {
+	Ivy::Transform& transform = GetComponent<Ivy::Transform>(_teapot);
+	transform.Position.Z = modelDistance;
+	transform.Rotation.X = xModelRotation;
+	transform.Rotation.Y = yModelRotation;
 	//SetSceneTranslation(0, 0, modelDistance);
 	//SetSceneRotation(xModelRotation, yModelRotation, 0);
 }
