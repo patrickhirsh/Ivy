@@ -80,14 +80,33 @@ Sandbox::Sandbox(int argc, char* argv[])
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
+	// Cubemap
+	auto transformCM = Ivy::Transform();
+	auto meshCM = Ivy::Mesh();
+	meshCM.SourceMeshPath = "cube.obj";
+	auto cubemapCM = Ivy::Cubemap();
+	cubemapCM.SourceTexturePathPosX = "cubemap/cubemap_posx.png";
+	cubemapCM.SourceTexturePathNegX = "cubemap/cubemap_negx.png";
+	cubemapCM.SourceTexturePathPosY = "cubemap/cubemap_posy.png";
+	cubemapCM.SourceTexturePathNegY = "cubemap/cubemap_negy.png";
+	cubemapCM.SourceTexturePathPosZ = "cubemap/cubemap_posz.png";
+	cubemapCM.SourceTexturePathNegZ = "cubemap/cubemap_negz.png";
+	_cubemap = CreateEntity();
+	AddComponent<Ivy::Transform>(_cubemap, transformCM);
+	AddComponent<Ivy::Mesh>(_cubemap, meshCM);
+	AddComponent<Ivy::Cubemap>(_cubemap, cubemapCM);
+
+	// Teapot
 	auto transform = Ivy::Transform();
 	transform.Position.Z = -50;
 	auto mesh = Ivy::Mesh();
 	mesh.SourceMeshPath = "teapot.obj";
-	mesh.SourceTexturePath = "brick.png";
+	auto material = Ivy::Material();
+	material.SourceTexturePath = "brick.png";
 	_teapot = CreateEntity();
 	AddComponent<Ivy::Transform>(_teapot, transform);
 	AddComponent<Ivy::Mesh>(_teapot, mesh);
+	AddComponent<Ivy::Material>(_teapot, material);
 }
 
 Sandbox::~Sandbox()
@@ -101,8 +120,6 @@ void Sandbox::Tick()
 	transform.Position.Z = modelDistance;
 	transform.Rotation.X = xModelRotation;
 	transform.Rotation.Y = yModelRotation;
-	//SetSceneTranslation(0, 0, modelDistance);
-	//SetSceneRotation(xModelRotation, yModelRotation, 0);
 }
 
 Ivy::Application* Ivy::CreateApplication(int argc, char* argv[])

@@ -3,8 +3,12 @@
 
 namespace _Ivy
 {
-	Ivy::Ref<Shader>			Resource::_vertexShader = nullptr;
-	Ivy::Ref<Shader>			Resource::_fragmentShader = nullptr;
+	std::vector<Ivy::Ref<Shader>>	Resource::_shaders;
+	std::vector<Ivy::Ref<Shader>>	Resource::_shadersCM;
+	Ivy::Ref<Shader>				Resource::_vertexShader = nullptr;
+	Ivy::Ref<Shader>				Resource::_fragmentShader = nullptr;
+	Ivy::Ref<Shader>				Resource::_vertexShaderCM = nullptr;
+	Ivy::Ref<Shader>				Resource::_fragmentShaderCM = nullptr;
 
 	std::string Resource::LoadShader(std::string shaderPath)
 	{

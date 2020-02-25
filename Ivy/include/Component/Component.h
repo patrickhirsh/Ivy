@@ -43,17 +43,39 @@ namespace Ivy
 	public:
 		bool						Loaded = false;
 		std::string					SourceMeshPath;
-		std::string					SourceTexturePath;
 		bool						HasVertexPositions = false;
 		bool						HasVertexNormals = false;
 		bool						HasVertexTextures = false;
 		GLuint						VBOSize;
 		GLuint						VBO;
 		GLuint						VAO;
+	};
+
+	class IVY_API Material : public Component
+	{
+	public:
+		bool						Loaded = false;
+		std::string					SourceTexturePath;
 		unsigned char*				TextureData;
 		int							TextureWidth;
 		int							TextureHeight;
 		int							TextureNRChannels;
-		GLuint						Texture;
+		GLuint						TBO;
+	};
+
+	class IVY_API Cubemap : public Component
+	{
+	public:
+		bool						Loaded = false;
+		std::string					SourceTexturePathPosX;
+		std::string					SourceTexturePathNegX;
+		std::string					SourceTexturePathPosY;
+		std::string					SourceTexturePathNegY;
+		std::string					SourceTexturePathPosZ;
+		std::string					SourceTexturePathNegZ;
+		std::vector<unsigned char*> TextureData;
+		int							TextureWidth;
+		int							TextureHeight;
+		GLuint						TBO;
 	};
 }

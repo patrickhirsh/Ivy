@@ -11,6 +11,8 @@ namespace _Ivy
 		world->_ecs = ECS::Create();
 		world->_ecs->RegisterComponent<Ivy::Transform>();
 		world->_ecs->RegisterComponent<Ivy::Mesh>();
+		world->_ecs->RegisterComponent<Ivy::Material>();
+		world->_ecs->RegisterComponent<Ivy::Cubemap>();
 
 		// register render system
 		world->_renderer = world->_ecs->RegisterSystem<Renderer>();

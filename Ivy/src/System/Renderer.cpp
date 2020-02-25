@@ -10,33 +10,69 @@
 
 namespace _Ivy
 {
-    void Renderer::Update(Ivy::Ref<Window> window, Ivy::Ref<ECS> ecs)
+    Renderer::Renderer()
     {
         // Hardcoded Shader Binding... TODO: abstract this.
-        if (Resource::_vertexShader == nullptr || Resource::_fragmentShader == nullptr)
-        {
-            Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultLitVertex.shader");
-            Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultLitFragment.shader");
-            std::vector<Ivy::Ref<Shader>> shaders;
-            shaders.push_back(Resource::_vertexShader);
-            shaders.push_back(Resource::_fragmentShader);
-            Shader::Bind(shaders);
-        }
+        Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultLitVertex.shader");
+        Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultLitFragment.shader");
+        Resource::_vertexShaderCM = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultUnlitVertexCM.shader");
+        Resource::_fragmentShaderCM = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultUnlitFragmentCM.shader");
+        Resource::_shaders.push_back(Resource::_vertexShader);
+        Resource::_shaders.push_back(Resource::_fragmentShader);
+        Resource::_shadersCM.push_back(Resource::_vertexShaderCM);
+        Resource::_shadersCM.push_back(Resource::_fragmentShaderCM);
+    }
 
-        glEnable(GL_DEPTH_TEST);
+    void Renderer::Update(Ivy::Ref<Window> window, Ivy::Ref<ECS> ecs)
+    {
+        glDisable(GL_DEPTH_TEST);
         auto windowDimensions = window->GetDimensions();
 
         for (auto entity : Entities)
         {
+            // required components
             Ivy::Transform& transform =     ecs->GetComponent<Ivy::Transform>(entity);
             Ivy::Mesh& mesh =               ecs->GetComponent<Ivy::Mesh>(entity);
+            
+            // optional material
+            bool hasMaterial = false;
+            auto dummyMat = Ivy::Material();    // TODO: not this...
+            Ivy::Material& material = (hasMaterial = ecs->HasComponent<Ivy::Material>(entity)) ?
+                ecs->GetComponent<Ivy::Material>(entity) : 
+                dummyMat;
+            
+            // optional cubemap
+            bool hasCubemap = false;
+            auto dummyCube = Ivy::Cubemap();    // TODO: not this...
+            Ivy::Cubemap& cubemap = (hasCubemap = ecs->HasComponent<Ivy::Cubemap>(entity)) ?
+                ecs->GetComponent<Ivy::Cubemap>(entity) :
+                dummyCube;
 
             if (!mesh.Loaded) { LoadMesh(mesh); }
             if (mesh.Loaded)
             {
                 BindVBO(mesh.VBO);
                 BindVAO(mesh.VAO);
-                BindTexture(mesh.Texture, mesh.TextureWidth, mesh.TextureHeight, mesh.TextureData);
+
+                glEnable(GL_DEPTH_TEST);
+                GL(glDepthMask(GL_TRUE));
+
+                if (hasCubemap)
+                {
+                    if (!cubemap.Loaded) { LoadCubemap(cubemap); }
+                    if (!cubemap.Loaded) { LOG_ERROR("Couldn't load cubemap!"); }
+                    BindCubemap(cubemap);
+                }
+                else if (hasMaterial)
+                {
+                    if (!material.Loaded) { LoadMaterial(material); }
+                    if (!material.Loaded) { LOG_ERROR("Couldn't load material!"); }
+                    BindMaterial(material);
+                }
+                if (!hasMaterial && !hasCubemap)
+                {
+                    LOG_ERROR("No material provided! (TODO: Add default materials...)");
+                }
 
                 // TODO: Fix scene transformation to properly account for aspect ratio
 
@@ -60,6 +96,11 @@ namespace _Ivy
                 NTRANS.Invert();
                 NTRANS.Transpose();
 
+                // bind shaders
+                if (hasCubemap) { Shader::Bind(Resource::_shadersCM); }
+                else if (hasMaterial) { Shader::Bind(Resource::_shaders); }
+                else { LOG_ERROR("No material provided! (TODO: Add default materials...)"); }
+
                 // set shader uniforms
                 GLuint mLoc = glGetUniformLocation(Shader::GetActiveProgram(), "model");
                 GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "view");
@@ -71,7 +112,7 @@ namespace _Ivy
                 GL(glUniformMatrix4fv(ntransLoc, 1, GL_FALSE, NTRANS.cell));
 
                 // execute draw call
-                GL(glDrawArrays(GL_TRIANGLES, 0, mesh.VBOSize));
+                GL(glDrawArrays(GL_TRIANGLES, 1, mesh.VBOSize));
 
                 UnbindAll();
             }
@@ -89,12 +130,27 @@ namespace _Ivy
         GL(glBindBuffer(GL_ARRAY_BUFFER, VBO));
     }
 
-    void Renderer::BindTexture(GLuint TBO, int TextureWidth, int TextureHeight, unsigned char* TextureData)
+    void Renderer::BindMaterial(Ivy::Material& material)
     {
-        GL(glBindTexture(GL_TEXTURE_2D, TBO));
+        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        GL(glDepthMask(GL_TRUE));
         // need these every bind?
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TextureWidth, TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, TextureData));
+        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
         GL(glGenerateMipmap(GL_TEXTURE_2D));
+    }
+
+    void Renderer::BindCubemap(Ivy::Cubemap& cubemap)
+    {
+        GL(glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap.TBO));
+        GL(glDepthMask(GL_FALSE));
+
+        // need these every bind?
+        for (GLuint i = 0; i < cubemap.TextureData.size(); i++)
+        {
+            glTexImage2D(
+                GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,     // offset to correct cubemap enum
+                0, GL_RGB, cubemap.TextureWidth, cubemap.TextureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, cubemap.TextureData[i]);
+        }
     }
 
     void Renderer::UnbindAll()
@@ -125,6 +181,9 @@ namespace _Ivy
         if (mesh.HasVertexTextures)     { VBL.Push<float>(3); } // xt, yt, zt
 
         std::vector<float> buffer;
+
+        // TODO: REMOVE THIS HACK and figure out why a draw index of 0 causes problems...
+        for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
 
         // for each face...
         for (int face = 0; face < cymesh.NF(); face++)
@@ -205,13 +264,40 @@ namespace _Ivy
 
         // set VBO size
         mesh.VBOSize = (buffer.size() * sizeof(float)) / VBL.GetStride();
-
-        // hardcoded texture (TODO: not this)
-        mesh.TextureData = stbi_load((GetResourceDirectory() + "brick.png").c_str(), &mesh.TextureWidth, &mesh.TextureHeight, &mesh.TextureNRChannels, STBI_rgb_alpha);
-        GL(glGenTextures(1, &mesh.Texture));
-        GL(glBindTexture(GL_TEXTURE_2D, mesh.Texture));
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mesh.TextureWidth, mesh.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, mesh.TextureData));
-
+   
         mesh.Loaded = true;
+    }
+
+    void Renderer::LoadMaterial(Ivy::Material& material)
+    {
+        material.TextureData = stbi_load((GetResourceDirectory() + material.SourceTexturePath).c_str(), &material.TextureWidth, &material.TextureHeight, &material.TextureNRChannels, STBI_rgb_alpha);
+        GL(glGenTextures(1, &material.TBO));
+        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
+        material.Loaded = true;
+    }
+
+    void Renderer::LoadCubemap(Ivy::Cubemap& cubemap)
+    {
+        GL(glGenTextures(1, &cubemap.TBO));
+        GL(glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap.TBO));
+
+        // TODO: Check for mismatched texture sizes...
+        int width, height, nrChannels;
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathPosX).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathNegX).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathPosY).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathNegY).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathPosZ).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureData.push_back(stbi_load((GetResourceDirectory() + cubemap.SourceTexturePathNegZ).c_str(), &width, &height, &nrChannels, 0));
+        cubemap.TextureWidth = width;
+        cubemap.TextureHeight = height;
+
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+        cubemap.Loaded = true;
     }
 }
