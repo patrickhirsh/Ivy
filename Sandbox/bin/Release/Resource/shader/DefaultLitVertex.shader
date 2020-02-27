@@ -10,12 +10,10 @@ uniform mat4 NTRANS;
 
 out vec3 fPosition;
 out vec3 fNormal;
-out vec2 fTexCoord;
 
 void main()
 {
 	gl_Position = projection * view * model * vec4(vPosition, 1.0);
 	fPosition = vec3(view * model * vec4(vPosition, 1.0));
 	fNormal = vec3(NTRANS * vec4(vNormal, 1.0));
-	fTexCoord = vTexCoord;
 }

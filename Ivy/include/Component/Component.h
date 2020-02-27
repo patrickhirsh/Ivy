@@ -55,11 +55,15 @@ namespace Ivy
 	{
 	public:
 		bool						Loaded = false;
-		std::string					SourceTexturePath;
-		unsigned char*				TextureData;
+		std::string					SourceTexturePathPosX;
+		std::string					SourceTexturePathNegX;
+		std::string					SourceTexturePathPosY;
+		std::string					SourceTexturePathNegY;
+		std::string					SourceTexturePathPosZ;
+		std::string					SourceTexturePathNegZ;
+		std::vector<unsigned char*> TextureData;
 		int							TextureWidth;
 		int							TextureHeight;
-		int							TextureNRChannels;
 		GLuint						TBO;
 	};
 

@@ -132,11 +132,16 @@ namespace _Ivy
 
     void Renderer::BindMaterial(Ivy::Material& material)
     {
-        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        GL(glBindTexture(GL_TEXTURE_CUBE_MAP, material.TBO));
         GL(glDepthMask(GL_TRUE));
+
         // need these every bind?
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
-        GL(glGenerateMipmap(GL_TEXTURE_2D));
+        for (GLuint i = 0; i < material.TextureData.size(); i++)
+        {
+            glTexImage2D(
+                GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,     // offset to correct cubemap enum
+                0, GL_RGB, material.TextureWidth, material.TextureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, material.TextureData[i]);
+        }
     }
 
     void Renderer::BindCubemap(Ivy::Cubemap& cubemap)
@@ -144,7 +149,6 @@ namespace _Ivy
         GL(glBindTexture(GL_TEXTURE_CUBE_MAP, cubemap.TBO));
         GL(glDepthMask(GL_FALSE));
 
-        // need these every bind?
         for (GLuint i = 0; i < cubemap.TextureData.size(); i++)
         {
             glTexImage2D(
@@ -270,10 +274,25 @@ namespace _Ivy
 
     void Renderer::LoadMaterial(Ivy::Material& material)
     {
-        material.TextureData = stbi_load((GetResourceDirectory() + material.SourceTexturePath).c_str(), &material.TextureWidth, &material.TextureHeight, &material.TextureNRChannels, STBI_rgb_alpha);
         GL(glGenTextures(1, &material.TBO));
-        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
+        GL(glBindTexture(GL_TEXTURE_CUBE_MAP, material.TBO));
+
+        // TODO: Check for mismatched texture sizes...
+        int width, height, nrChannels;
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathPosX).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathNegX).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathPosY).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathNegY).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathPosZ).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureData.push_back(stbi_load((GetResourceDirectory() + material.SourceTexturePathNegZ).c_str(), &width, &height, &nrChannels, 0));
+        material.TextureWidth = width;
+        material.TextureHeight = height;
+
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
         material.Loaded = true;
     }
 

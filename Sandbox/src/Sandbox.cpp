@@ -82,6 +82,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 
 	// Cubemap
 	auto transformCM = Ivy::Transform();
+	transformCM.Rotation.X = -50;
 	auto meshCM = Ivy::Mesh();
 	meshCM.SourceMeshPath = "cube.obj";
 	auto cubemapCM = Ivy::Cubemap();
@@ -98,11 +99,15 @@ Sandbox::Sandbox(int argc, char* argv[])
 
 	// Teapot
 	auto transform = Ivy::Transform();
-	transform.Position.Z = -50;
 	auto mesh = Ivy::Mesh();
-	mesh.SourceMeshPath = "teapot.obj";
+	mesh.SourceMeshPath = _obj;
 	auto material = Ivy::Material();
-	material.SourceTexturePath = "brick.png";
+	material.SourceTexturePathPosX = "cubemap/cubemap_posx.png";
+	material.SourceTexturePathNegX = "cubemap/cubemap_negx.png";
+	material.SourceTexturePathPosY = "cubemap/cubemap_posy.png";
+	material.SourceTexturePathNegY = "cubemap/cubemap_negy.png";
+	material.SourceTexturePathPosZ = "cubemap/cubemap_posz.png";
+	material.SourceTexturePathNegZ = "cubemap/cubemap_negz.png";
 	_teapot = CreateEntity();
 	AddComponent<Ivy::Transform>(_teapot, transform);
 	AddComponent<Ivy::Mesh>(_teapot, mesh);
