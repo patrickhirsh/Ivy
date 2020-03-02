@@ -20,8 +20,8 @@ const vec3		CameraPosition = vec3(0.0, 0.0, 0.0);
 //uniform vec3	CameraPosition;
 
 // Lights
-const vec3		LightPositions[LIGHT_COUNT] = vec3[](vec3(10.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
-const vec3		LightColors[LIGHT_COUNT]	= vec3[](vec3(255.0, 255.0, 255.0), vec3(0.5, 0.1, 0.1));
+const vec3		LightPositions[LIGHT_COUNT] = vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
+const vec3		LightColors[LIGHT_COUNT]	= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
 
 
 float DistributionTRGGX(vec3 N, vec3 H, float roughness);
@@ -50,21 +50,22 @@ void main()
 
 		// Compute DGF
 		float NDF		= DistributionTRGGX(N, H, Roughness);
-		vec3  F			= FresnelSchlick(max(dot(H, V), 0.0), F0);
 		float G			= GeometrySSGGX(N, V, L, Roughness);
-
-		// Compute specular with Cook-Torrance BRDF
-		vec3 num		= NDF * G * F;
-		float denom		= 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
-		vec3 specular	= num / max(denom, 0.001);	// prevent divide-by-zero
+		vec3  F			= FresnelSchlick(max(dot(H, V), 0.0), F0);
 
 		// Determine reflection / refraction ratio
 		vec3 kS = F;
 		vec3 kD = vec3(1.0) - kS;
 		kD *= 1.0 - Metallic;
 
+		// Compute specular with Cook-Torrance BRDF
+		vec3 num		= NDF * G * F;
+		float denom		= 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
+		vec3 specular	= num / max(denom, 0.001);	// prevent divide-by-zero
+
 		// Sum into outgoing radiance
-		Lo += (kD * Albedo / PI + specular) * radiance * max(dot(N, L), 0.0);
+		float NdotL = max(dot(N, L), 0.0);
+		Lo += (kD * ( Albedo / PI ) + specular) * radiance * NdotL;
 	}
 
 	// Ambient lighting
