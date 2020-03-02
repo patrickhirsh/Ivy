@@ -61,6 +61,9 @@ namespace Ivy
 		int							TextureHeight;
 		int							TextureNRChannels;
 		GLuint						TBO;
+		float						Metallic;
+		float						Roughness;
+		float						AO;
 	};
 
 	class IVY_API Cubemap : public Component

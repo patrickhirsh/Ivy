@@ -13,8 +13,8 @@ namespace _Ivy
     Renderer::Renderer()
     {
         // Hardcoded Shader Binding... TODO: abstract this.
-        Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultLitVertex.shader");
-        Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultLitFragment.shader");
+        Resource::_vertexShader = Shader::Create(GL_VERTEX_SHADER, "shader\\PBRVertex.shader");
+        Resource::_fragmentShader = Shader::Create(GL_FRAGMENT_SHADER, "shader\\PBRFragment.shader");
         Resource::_vertexShaderCM = Shader::Create(GL_VERTEX_SHADER, "shader\\DefaultUnlitVertexCM.shader");
         Resource::_fragmentShaderCM = Shader::Create(GL_FRAGMENT_SHADER, "shader\\DefaultUnlitFragmentCM.shader");
         Resource::_shaders.push_back(Resource::_vertexShader);
@@ -106,13 +106,19 @@ namespace _Ivy
                 GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "view");
                 GLuint pLoc = glGetUniformLocation(Shader::GetActiveProgram(), "projection");
                 GLuint ntransLoc = glGetUniformLocation(Shader::GetActiveProgram(), "NTRANS");
+                GLuint Metallic = glGetUniformLocation(Shader::GetActiveProgram(), "Metallic");
+                GLuint Roughness = glGetUniformLocation(Shader::GetActiveProgram(), "Roughness");
+                GLuint AO = glGetUniformLocation(Shader::GetActiveProgram(), "AO");
                 GL(glUniformMatrix4fv(mLoc, 1, GL_FALSE, model.cell));
                 GL(glUniformMatrix4fv(vLoc, 1, GL_FALSE, view.cell));
                 GL(glUniformMatrix4fv(pLoc, 1, GL_FALSE, projection.cell));
                 GL(glUniformMatrix4fv(ntransLoc, 1, GL_FALSE, NTRANS.cell));
+                GL(glUniform1f(Metallic, 0.1));
+                GL(glUniform1f(Roughness, 0.1));
+                GL(glUniform1f(AO, 1.0));
 
                 // execute draw call
-                GL(glDrawArrays(GL_TRIANGLES, 1, mesh.VBOSize));
+                GL(glDrawArrays(GL_TRIANGLES, 0, mesh.VBOSize));
 
                 UnbindAll();
             }
@@ -132,11 +138,11 @@ namespace _Ivy
 
     void Renderer::BindMaterial(Ivy::Material& material)
     {
-        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        //GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
         GL(glDepthMask(GL_TRUE));
         // need these every bind?
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
-        GL(glGenerateMipmap(GL_TEXTURE_2D));
+        //GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
+        //GL(glGenerateMipmap(GL_TEXTURE_2D));
     }
 
     void Renderer::BindCubemap(Ivy::Cubemap& cubemap)
@@ -175,7 +181,7 @@ namespace _Ivy
         VertexBufferLayout VBL;
         mesh.HasVertexPositions =       cymesh.NV() > 0;
         mesh.HasVertexNormals =         cymesh.NVN() > 0;
-        mesh.HasVertexTextures =        cymesh.NVT() > 0;
+        mesh.HasVertexTextures =        false; //cymesh.NVT() > 0;
         if (mesh.HasVertexPositions)    { VBL.Push<float>(3); } // xp, yp, zp
         if (mesh.HasVertexNormals)      { VBL.Push<float>(3); } // xn, yn, zn
         if (mesh.HasVertexTextures)     { VBL.Push<float>(3); } // xt, yt, zt
@@ -183,7 +189,7 @@ namespace _Ivy
         std::vector<float> buffer;
 
         // TODO: REMOVE THIS HACK and figure out why a draw index of 0 causes problems...
-        for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
+        //for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
 
         // for each face...
         for (int face = 0; face < cymesh.NF(); face++)
@@ -270,10 +276,10 @@ namespace _Ivy
 
     void Renderer::LoadMaterial(Ivy::Material& material)
     {
-        material.TextureData = stbi_load((GetResourceDirectory() + material.SourceTexturePath).c_str(), &material.TextureWidth, &material.TextureHeight, &material.TextureNRChannels, STBI_rgb_alpha);
-        GL(glGenTextures(1, &material.TBO));
-        GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
-        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
+        //material.TextureData = stbi_load((GetResourceDirectory() + material.SourceTexturePath).c_str(), &material.TextureWidth, &material.TextureHeight, &material.TextureNRChannels, STBI_rgb_alpha);
+        //GL(glGenTextures(1, &material.TBO));
+        //GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        //GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
         material.Loaded = true;
     }
 

@@ -22,5 +22,8 @@ namespace _Ivy
 		void LoadMesh(Ivy::Mesh& mesh);
 		void LoadMaterial(Ivy::Material& material);
 		void LoadCubemap(Ivy::Cubemap& cubemap);
+
+		std::vector<float> LightPositions;
+		std::vector<float> LightColors;
 	};
 }

@@ -80,6 +80,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
+	/*
 	// Cubemap
 	auto transformCM = Ivy::Transform();
 	auto meshCM = Ivy::Mesh();
@@ -95,6 +96,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	AddComponent<Ivy::Transform>(_cubemap, transformCM);
 	AddComponent<Ivy::Mesh>(_cubemap, meshCM);
 	AddComponent<Ivy::Cubemap>(_cubemap, cubemapCM);
+	//*/
 
 	// Teapot
 	auto transform = Ivy::Transform();
@@ -102,7 +104,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	auto mesh = Ivy::Mesh();
 	mesh.SourceMeshPath = "teapot.obj";
 	auto material = Ivy::Material();
-	material.SourceTexturePath = "brick.png";
+	//material.SourceTexturePath = "brick.png";
 	_teapot = CreateEntity();
 	AddComponent<Ivy::Transform>(_teapot, transform);
 	AddComponent<Ivy::Mesh>(_teapot, mesh);
