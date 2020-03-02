@@ -106,9 +106,9 @@ namespace _Ivy
                 GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "view");
                 GLuint pLoc = glGetUniformLocation(Shader::GetActiveProgram(), "projection");
                 GLuint ntransLoc = glGetUniformLocation(Shader::GetActiveProgram(), "NTRANS");
-                GLuint Metallic = glGetUniformLocation(Shader::GetActiveProgram(), "Metallic");
-                GLuint Roughness = glGetUniformLocation(Shader::GetActiveProgram(), "Roughness");
-                GLuint AO = glGetUniformLocation(Shader::GetActiveProgram(), "AO");
+                GLuint Metallic = glGetUniformLocation(Shader::GetActiveProgram(), "metallic");
+                GLuint Roughness = glGetUniformLocation(Shader::GetActiveProgram(), "roughness");
+                GLuint AO = glGetUniformLocation(Shader::GetActiveProgram(), "ao");
                 GL(glUniformMatrix4fv(mLoc, 1, GL_FALSE, model.cell));
                 GL(glUniformMatrix4fv(vLoc, 1, GL_FALSE, view.cell));
                 GL(glUniformMatrix4fv(pLoc, 1, GL_FALSE, projection.cell));
