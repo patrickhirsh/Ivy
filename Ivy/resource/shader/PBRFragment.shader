@@ -6,10 +6,10 @@ in vec3			fNormal;
 //in vec2		fTexCoord;
 
 // Material Parameters
-const vec3		albedo = vec3(1.0, 0.2, 0.1);
-uniform float   metallic;
-uniform float   roughness;
-uniform float   ao;
+const vec3		Albedo = vec3(1.0, 0.2, 0.1);
+uniform float   Metallic;
+uniform float   Roughness;
+uniform float   AO;
 
 const int		LIGHT_COUNT = 2;
 const float		PI = 3.14159265359;
@@ -20,8 +20,8 @@ const vec3		CameraPosition = vec3(0.0, 0.0, 0.0);
 //uniform vec3	CameraPosition;
 
 // Lights
-const vec3		lightPositions[LIGHT_COUNT] = vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
-const vec3		lightColors[LIGHT_COUNT]	= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
+const vec3		LightPositions[LIGHT_COUNT] = vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
+const vec3		LightColors[LIGHT_COUNT]	= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
 
 
 float DistributionTRGGX(vec3 N, vec3 H, float roughness);
@@ -31,48 +31,52 @@ vec3 FresnelSchlick(float cosTheta, vec3 F0);
 
 void main()
 {
-    vec3 N = normalize(fNormal);
-    vec3 V = normalize(CameraPosition - fPosition);
+	vec3 N = normalize(fNormal);
+	vec3 V = normalize(CameraPosition - fPosition);
 
-    vec3 F0 = vec3(0.04);
-    F0 = mix(F0, albedo, metallic);
+	vec3 F0 = vec3(FRESNEL_F0_CONSTANT);
+	F0 = mix(F0, Albedo, Metallic);
 
-    // reflectance equation
-    vec3 Lo = vec3(0.0);
-    for (int i = 0; i < LIGHT_COUNT; ++i)
-    {
-        // calculate per-light radiance
-        vec3 L = normalize(lightPositions[i] - fPosition);
-        vec3 H = normalize(V + L);
-        float distance = length(lightPositions[i] - fPosition);
-        float attenuation = 1.0 / (distance * distance);
-        vec3 radiance = lightColors[i] * attenuation;
+	// Compute reflectance over all light sources
+	vec3 Lo = vec3(0.0);
+	for (int i = 0; i < LIGHT_COUNT; i++)
+	{
+		// Compute per-light radiance
+		vec3 L = normalize(LightPositions[i] - fPosition);
+		vec3 H = normalize(V + L);
+		float distance = length(LightPositions[i] - fPosition);
+		float attenuation = 1.0 / (distance * distance);				// inverse-square falloff
+		vec3 radiance = LightColors[i] * attenuation;
 
-        // cook-torrance brdf
-        float NDF = DistributionTRGGX(N, H, roughness);
-        float G = GeometrySSGGX(N, V, L, roughness);
-        vec3 F = FresnelSchlick(max(dot(H, V), 0.0), F0);
+		// Compute DGF
+		float NDF = DistributionTRGGX(N, H, Roughness);
+		float G = GeometrySSGGX(N, V, L, Roughness);
+		vec3  F = FresnelSchlick(max(dot(H, V), 0.0), F0);
 
-        vec3 kS = F;
-        vec3 kD = vec3(1.0) - kS;
-        kD *= 1.0 - metallic;
+		// Determine reflection / refraction ratio
+		vec3 kS = F;
+		vec3 kD = vec3(1.0) - kS;
+		kD *= 1.0 - Metallic;
 
-        vec3 numerator = NDF * G * F;
-        float denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
-        vec3 specular = numerator / max(denominator, 0.001);
+		// Compute specular with Cook-Torrance BRDF
+		vec3 num = NDF * G * F;
+		float denom = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
+		vec3 specular = num / max(denom, 0.001);	// prevent divide-by-zero
 
-        // add to outgoing radiance Lo
-        float NdotL = max(dot(N, L), 0.0);
-        Lo += (kD * albedo / PI + specular) * radiance * NdotL;
-    }
+		// Sum into outgoing radiance
+		float NdotL = max(dot(N, L), 0.0);
+		Lo += (kD * (Albedo / PI) + specular) * radiance * NdotL;
+	}
 
-    vec3 ambient = vec3(0.03) * albedo * ao;
-    vec3 color = ambient + Lo;
+	// Ambient lighting
+	vec3 ambient = vec3(AMBIENT_CONSTANT) * Albedo * AO;
+	vec3 color = ambient + Lo;
 
-    color = color / (color + vec3(1.0));
-    color = pow(color, vec3(1.0 / 2.2));
+	// Reinhard operator (tone-map HDR)
+	color = color / (color + vec3(1.0));
+	color = pow(color, vec3(1.0 / 2.2));
 
-    Color = vec4(color, 1.0);
+	Color = vec4(color, 1.0);
 }
 
 // Trowbridge-Reitz GGX
