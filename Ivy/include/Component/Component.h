@@ -55,15 +55,14 @@ namespace Ivy
 	{
 	public:
 		bool						Loaded = false;
-		std::string					SourceTexturePath;
-		unsigned char*				TextureData;
-		int							TextureWidth;
-		int							TextureHeight;
-		int							TextureNRChannels;
-		GLuint						TBO;
-		float						Metallic;
-		float						Roughness;
-		float						AO;
+		std::string					AlbedoPath;
+		std::string					NormalPath;
+		std::string					MetallicPath;
+		std::string					RoughnessPath;
+		GLuint						AlbetoTBO;
+		GLuint						NormalTBO;
+		GLuint						MetallicTBO;
+		GLuint						RoughnessTBO;
 	};
 
 	class IVY_API Cubemap : public Component

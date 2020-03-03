@@ -98,17 +98,43 @@ Sandbox::Sandbox(int argc, char* argv[])
 	AddComponent<Ivy::Cubemap>(_cubemap, cubemapCM);
 	//*/
 
-	// Teapot
+	/* Teapot
 	auto transform = Ivy::Transform();
 	transform.Position.Z = -50;
 	auto mesh = Ivy::Mesh();
 	mesh.SourceMeshPath = "teapot.obj";
 	auto material = Ivy::Material();
-	//material.SourceTexturePath = "brick.png";
-	_teapot = CreateEntity();
-	AddComponent<Ivy::Transform>(_teapot, transform);
-	AddComponent<Ivy::Mesh>(_teapot, mesh);
-	AddComponent<Ivy::Material>(_teapot, material);
+	material.AlbedoPath = "bricks.png";
+	//*/
+
+	/* BHP
+	auto transform = Ivy::Transform();
+	transform.Position.Z = -50;
+	auto mesh = Ivy::Mesh();
+	mesh.SourceMeshPath = "BrowningHP\\BHP.obj";
+	auto material = Ivy::Material();
+	material.AlbedoPath = "BrowningHP\\BHPAlbedo.tga";
+	material.NormalPath = "BrowningHP\\BHPNormal.tga";
+	material.MetallicPath = "BrowningHP\\BHPMetallic.tga";
+	material.RoughnessPath = "BrowningHP\\BHPRoughness.tga";
+	//*/
+
+	//* IceTool
+	auto transform = Ivy::Transform();
+	transform.Position.Z = -50;
+	auto mesh = Ivy::Mesh();
+	mesh.SourceMeshPath = "IceTool\\IceTool.obj";
+	auto material = Ivy::Material();
+	material.AlbedoPath = "IceTool\\ITAlbedo.png";
+	material.NormalPath = "IceTool\\ITNormal.png";
+	material.MetallicPath = "IceTool\\ITMetallic.png";
+	material.RoughnessPath = "IceTool\\ITRoughness.png";
+	//*/
+	
+	_object = CreateEntity();
+	AddComponent<Ivy::Transform>(_object, transform);
+	AddComponent<Ivy::Mesh>(_object, mesh);
+	AddComponent<Ivy::Material>(_object, material);
 }
 
 Sandbox::~Sandbox()
@@ -118,7 +144,7 @@ Sandbox::~Sandbox()
 
 void Sandbox::Tick()
 {
-	Ivy::Transform& transform = GetComponent<Ivy::Transform>(_teapot);
+	Ivy::Transform& transform = GetComponent<Ivy::Transform>(_object);
 	transform.Position.Z = modelDistance;
 	transform.Rotation.X = xModelRotation;
 	transform.Rotation.Y = yModelRotation;

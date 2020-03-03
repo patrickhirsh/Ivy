@@ -69,8 +69,8 @@ namespace _Ivy
 			int length;
 			GL(glGetShaderiv(_id, GL_INFO_LOG_LENGTH, &length));
 			char* message = new char[length];
-			glGetShaderInfoLog(_id, length, &length, message);
-			LOG_ERROR("Failed to compile shader! (" << message << ") shader: " << _path);
+			GL(glGetShaderInfoLog(_id, length, &length, message));
+			LOG_ERROR("Failed to compile shader!" << std::endl << message << "(shader: " << _path << ")");
 			
 			delete[] message;
 			GL(glDeleteShader(_id));

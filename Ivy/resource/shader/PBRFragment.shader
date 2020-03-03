@@ -1,36 +1,38 @@
 #version 460 core
 
-out vec4		Color;
-in vec3			fPosition;
-in vec3			fNormal;
-//in vec2		fTexCoord;
+out vec4			Color;
+in vec3				fPosition;
+in vec3				fNormal;
+in vec2				fTexCoord;
 
-// Material Parameters
-const vec3		Albedo = vec3(1.0, 0.2, 0.1);
-uniform float   Metallic;
-uniform float   Roughness;
-uniform float   AO;
+// Material Maps
+uniform sampler2D	AlbedoMap;
+uniform sampler2D	MetallicMap;
+uniform sampler2D	RoughnessMap;
+//uniform sampler2D	AOMap;
 
-const int		LIGHT_COUNT = 2;
-const float		PI = 3.14159265359;
-const float		FRESNEL_F0_CONSTANT = 0.04;
-const float		AMBIENT_CONSTANT = 0.03;
+// Constants
+const float			PI							= 3.14159265359;
+const float			FRESNEL_F0_CONSTANT			= 0.04;
+const float			AMBIENT_CONSTANT			= 0.53;
 
-const vec3		CameraPosition = vec3(0.0, 0.0, 0.0);
-//uniform vec3	CameraPosition;
+// Temporary Constants
+const int		LIGHT_COUNT						= 2;
+const vec3		LightPositions[LIGHT_COUNT]		= vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
+const vec3		LightColors[LIGHT_COUNT]		= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
+const vec3		CameraPosition					= vec3(0.0, 0.0, 0.0);
 
-// Lights
-const vec3		LightPositions[LIGHT_COUNT] = vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
-const vec3		LightColors[LIGHT_COUNT]	= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
-
-
-float DistributionTRGGX(vec3 N, vec3 H, float roughness);
-float GeometrySGGX(float NdotV, float roughness);
-float GeometrySSGGX(vec3 N, vec3 V, vec3 L, float roughness);
-vec3 FresnelSchlick(float cosTheta, vec3 F0);
+float DistributionTRGGX							(vec3 N, vec3 H, float roughness);
+float GeometrySGGX								(float NdotV, float roughness);
+float GeometrySSGGX								(vec3 N, vec3 V, vec3 L, float roughness);
+vec3 FresnelSchlick								(float cosTheta, vec3 F0);
 
 void main()
 {
+	vec3  Albedo		= texture(AlbedoMap, fTexCoord).rgb;		// convert to linear space
+	float Metallic		= texture(MetallicMap, fTexCoord).r;
+	float Roughness		= texture(RoughnessMap, fTexCoord).r;
+
 	vec3 N = normalize(fNormal);
 	vec3 V = normalize(CameraPosition - fPosition);
 
@@ -45,7 +47,7 @@ void main()
 		vec3 L = normalize(LightPositions[i] - fPosition);
 		vec3 H = normalize(V + L);
 		float distance = length(LightPositions[i] - fPosition);
-		float attenuation = 1.0 / (distance * distance);				// inverse-square falloff
+		float attenuation = 1.0; /// (distance * distance);					
 		vec3 radiance = LightColors[i] * attenuation;
 
 		// Compute DGF
@@ -61,7 +63,7 @@ void main()
 		// Compute specular with Cook-Torrance BRDF
 		vec3 num = NDF * G * F;
 		float denom = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
-		vec3 specular = num / max(denom, 0.001);	// prevent divide-by-zero
+		vec3 specular = num / max(denom, 0.00001);
 
 		// Sum into outgoing radiance
 		float NdotL = max(dot(N, L), 0.0);
@@ -69,14 +71,14 @@ void main()
 	}
 
 	// Ambient lighting
-	vec3 ambient = vec3(AMBIENT_CONSTANT) * Albedo * AO;
+	vec3 ambient = vec3(AMBIENT_CONSTANT) * Albedo; // * AO;
 	vec3 color = ambient + Lo;
 
 	// Reinhard operator (tone-map HDR)
 	color = color / (color + vec3(1.0));
 	color = pow(color, vec3(1.0 / 2.2));
 
-	Color = vec4(color, 1.0);
+	Color = vec4(Albedo, 1.0);
 }
 
 // Trowbridge-Reitz GGX

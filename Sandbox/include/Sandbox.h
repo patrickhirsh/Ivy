@@ -9,6 +9,6 @@ public:
 	void Tick();
 private:
 	std::string _obj;
-	Ivy::Entity _teapot;
+	Ivy::Entity _object;
 	Ivy::Entity _cubemap;
 };

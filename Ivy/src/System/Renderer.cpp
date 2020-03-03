@@ -59,12 +59,14 @@ namespace _Ivy
 
                 if (hasCubemap)
                 {
+                    Shader::Bind(Resource::_shadersCM);
                     if (!cubemap.Loaded) { LoadCubemap(cubemap); }
                     if (!cubemap.Loaded) { LOG_ERROR("Couldn't load cubemap!"); }
                     BindCubemap(cubemap);
                 }
                 else if (hasMaterial)
                 {
+                    Shader::Bind(Resource::_shaders);
                     if (!material.Loaded) { LoadMaterial(material); }
                     if (!material.Loaded) { LOG_ERROR("Couldn't load material!"); }
                     BindMaterial(material);
@@ -89,33 +91,22 @@ namespace _Ivy
                 // model / view / projection matrices
                 auto model = cy::Matrix4f::Scale(1);
                 auto view = meshTranslation * meshRotation;
-                auto projection = cy::Matrix4f::Perspective(1.0f, (std::get<0>(windowDimensions) / std::get<1>(windowDimensions)), 1, 100);
+                auto projection = cy::Matrix4f::Perspective(1.0f, (std::get<0>(windowDimensions) / std::get<1>(windowDimensions)), 1, 10000);
 
                 // normal transformation
-                cy::Matrix4f NTRANS = (meshTranslation * meshRotation) * model;
-                NTRANS.Invert();
-                NTRANS.Transpose();
+                cy::Matrix4f NormalTransform = (meshTranslation * meshRotation) * model;
+                NormalTransform.Invert();
+                NormalTransform.Transpose();
 
-                // bind shaders
-                if (hasCubemap) { Shader::Bind(Resource::_shadersCM); }
-                else if (hasMaterial) { Shader::Bind(Resource::_shaders); }
-                else { LOG_ERROR("No material provided! (TODO: Add default materials...)"); }
-
-                // set shader uniforms
-                GLuint mLoc = glGetUniformLocation(Shader::GetActiveProgram(), "model");
-                GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "view");
-                GLuint pLoc = glGetUniformLocation(Shader::GetActiveProgram(), "projection");
-                GLuint ntransLoc = glGetUniformLocation(Shader::GetActiveProgram(), "NTRANS");
-                GLuint Metallic = glGetUniformLocation(Shader::GetActiveProgram(), "Metallic");
-                GLuint Roughness = glGetUniformLocation(Shader::GetActiveProgram(), "Roughness");
-                GLuint AO = glGetUniformLocation(Shader::GetActiveProgram(), "AO");
+                // shader matrix uniforms
+                GLuint mLoc = glGetUniformLocation(Shader::GetActiveProgram(), "Model");
+                GLuint vLoc = glGetUniformLocation(Shader::GetActiveProgram(), "View");
+                GLuint pLoc = glGetUniformLocation(Shader::GetActiveProgram(), "Projection");
+                GLuint nLoc = glGetUniformLocation(Shader::GetActiveProgram(), "NormalTransform");
                 GL(glUniformMatrix4fv(mLoc, 1, GL_FALSE, model.cell));
                 GL(glUniformMatrix4fv(vLoc, 1, GL_FALSE, view.cell));
                 GL(glUniformMatrix4fv(pLoc, 1, GL_FALSE, projection.cell));
-                GL(glUniformMatrix4fv(ntransLoc, 1, GL_FALSE, NTRANS.cell));
-                GL(glUniform1f(Metallic, 0.1));
-                GL(glUniform1f(Roughness, 0.1));
-                GL(glUniform1f(AO, 1.0));
+                GL(glUniformMatrix4fv(nLoc, 1, GL_FALSE, NormalTransform.cell));
 
                 // execute draw call
                 GL(glDrawArrays(GL_TRIANGLES, 0, mesh.VBOSize));
@@ -138,11 +129,21 @@ namespace _Ivy
 
     void Renderer::BindMaterial(Ivy::Material& material)
     {
-        //GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
+        GL(glUniform1i(glGetUniformLocation(Shader::GetActiveProgram(), "AlbedoMap"), 0));
+        GL(glUniform1i(glGetUniformLocation(Shader::GetActiveProgram(), "NormalMap"), 1));
+        GL(glUniform1i(glGetUniformLocation(Shader::GetActiveProgram(), "MetallicMap"), 2));
+        GL(glUniform1i(glGetUniformLocation(Shader::GetActiveProgram(), "RoughnessMap"), 3));
+
+        GL(glActiveTexture(GL_TEXTURE0 + 0));
+        GL(glBindTexture(GL_TEXTURE_2D, material.AlbetoTBO));
+        GL(glActiveTexture(GL_TEXTURE0 + 1));
+        GL(glBindTexture(GL_TEXTURE_2D, material.NormalTBO));
+        GL(glActiveTexture(GL_TEXTURE0 + 2));
+        GL(glBindTexture(GL_TEXTURE_2D, material.MetallicTBO));
+        GL(glActiveTexture(GL_TEXTURE0 + 3));
+        GL(glBindTexture(GL_TEXTURE_2D, material.RoughnessTBO));
+
         GL(glDepthMask(GL_TRUE));
-        // need these every bind?
-        //GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
-        //GL(glGenerateMipmap(GL_TEXTURE_2D));
     }
 
     void Renderer::BindCubemap(Ivy::Cubemap& cubemap)
@@ -165,6 +166,7 @@ namespace _Ivy
         GL(glBindVertexArray(0));
         GL(glDisableClientState(GL_VERTEX_ARRAY));
         GL(glBindTexture(GL_TEXTURE_2D, 0));
+        // TODO: unbind all maps
     }
 
     void Renderer::LoadMesh(Ivy::Mesh& mesh)
@@ -181,7 +183,7 @@ namespace _Ivy
         VertexBufferLayout VBL;
         mesh.HasVertexPositions =       cymesh.NV() > 0;
         mesh.HasVertexNormals =         cymesh.NVN() > 0;
-        mesh.HasVertexTextures =        false; //cymesh.NVT() > 0;
+        mesh.HasVertexTextures =        cymesh.NVT() > 0;
         if (mesh.HasVertexPositions)    { VBL.Push<float>(3); } // xp, yp, zp
         if (mesh.HasVertexNormals)      { VBL.Push<float>(3); } // xn, yn, zn
         if (mesh.HasVertexTextures)     { VBL.Push<float>(3); } // xt, yt, zt
@@ -276,11 +278,22 @@ namespace _Ivy
 
     void Renderer::LoadMaterial(Ivy::Material& material)
     {
-        //material.TextureData = stbi_load((GetResourceDirectory() + material.SourceTexturePath).c_str(), &material.TextureWidth, &material.TextureHeight, &material.TextureNRChannels, STBI_rgb_alpha);
-        //GL(glGenTextures(1, &material.TBO));
-        //GL(glBindTexture(GL_TEXTURE_2D, material.TBO));
-        //GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, material.TextureWidth, material.TextureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, material.TextureData));
-        material.Loaded = true;
+        LoadSampler2D(material.AlbetoTBO, material.AlbedoPath, 0, material.Loaded);
+        LoadSampler2D(material.NormalTBO, material.NormalPath, 1, material.Loaded);
+        LoadSampler2D(material.MetallicTBO, material.MetallicPath, 2, material.Loaded);
+        LoadSampler2D(material.RoughnessTBO, material.RoughnessPath, 3, material.Loaded);
+    }
+
+    void Renderer::LoadSampler2D(GLuint& TBO, std::string path, int textureIndex, bool& loaded)
+    {
+        int width, height, nrChannels;
+        unsigned char* data = stbi_load((GetResourceDirectory() + path).c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
+        GL(glGenTextures(1, &TBO));
+        GL(glActiveTexture(GL_TEXTURE0 + textureIndex));
+        GL(glBindTexture(GL_TEXTURE_2D, TBO));
+        GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
+        //stbi_image_free(data);
+        loaded = true;
     }
 
     void Renderer::LoadCubemap(Ivy::Cubemap& cubemap)
