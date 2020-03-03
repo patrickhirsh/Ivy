@@ -136,32 +136,12 @@ namespace _Ivy
 
         GL(glActiveTexture(GL_TEXTURE0 + 0));
         GL(glBindTexture(GL_TEXTURE_2D, material.AlbetoTBO));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
         GL(glActiveTexture(GL_TEXTURE0 + 1));
         GL(glBindTexture(GL_TEXTURE_2D, material.NormalTBO));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
         GL(glActiveTexture(GL_TEXTURE0 + 2));
         GL(glBindTexture(GL_TEXTURE_2D, material.MetallicTBO));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
         GL(glActiveTexture(GL_TEXTURE0 + 3));
         GL(glBindTexture(GL_TEXTURE_2D, material.RoughnessTBO));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
         GL(glDepthMask(GL_TRUE));
     }
 
@@ -306,12 +286,20 @@ namespace _Ivy
     void Renderer::LoadSampler2D(GLuint& TBO, std::string path, int textureIndex, bool& loaded)
     {
         int width, height, nrChannels;
-        unsigned char* data = stbi_load((GetResourceDirectory() + path).c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
         GL(glGenTextures(1, &TBO));
         GL(glActiveTexture(GL_TEXTURE0 + textureIndex));
         GL(glBindTexture(GL_TEXTURE_2D, TBO));
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        stbi_set_flip_vertically_on_load(true);
+        unsigned char* data = stbi_load((GetResourceDirectory() + path).c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
         GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data));
-        //stbi_image_free(data);
+
+        // TODO: Validate image data
+
+        stbi_image_free(data);
         loaded = true;
     }
 
