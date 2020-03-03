@@ -107,7 +107,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	material.AlbedoPath = "bricks.png";
 	//*/
 
-	/* BHP
+	//* BHP
 	auto transform = Ivy::Transform();
 	transform.Position.Z = -50;
 	auto mesh = Ivy::Mesh();
@@ -119,7 +119,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	material.RoughnessPath = "BrowningHP\\BHPRoughness.tga";
 	//*/
 
-	//* IceTool
+	/* IceTool
 	auto transform = Ivy::Transform();
 	transform.Position.Z = -50;
 	auto mesh = Ivy::Mesh();

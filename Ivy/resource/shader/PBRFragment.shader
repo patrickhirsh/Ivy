@@ -14,11 +14,11 @@ uniform sampler2D	RoughnessMap;
 // Constants
 const float			PI							= 3.14159265359;
 const float			FRESNEL_F0_CONSTANT			= 0.04;
-const float			AMBIENT_CONSTANT			= 0.53;
+const float			AMBIENT_CONSTANT			= 0.03;
 
 // Temporary Constants
 const int		LIGHT_COUNT						= 2;
-const vec3		LightPositions[LIGHT_COUNT]		= vec3[](vec3(5.0, 5.0, -20.0), vec3(-15.0, 0.0, -20.0));
+const vec3		LightPositions[LIGHT_COUNT]		= vec3[](vec3(50.0, 5.0, -50.0), vec3(-15.0, 0.0, -20.0));
 const vec3		LightColors[LIGHT_COUNT]		= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
 const vec3		CameraPosition					= vec3(0.0, 0.0, 0.0);
 
@@ -47,7 +47,7 @@ void main()
 		vec3 L = normalize(LightPositions[i] - fPosition);
 		vec3 H = normalize(V + L);
 		float distance = length(LightPositions[i] - fPosition);
-		float attenuation = 1.0; /// (distance * distance);					
+		float attenuation = 1.0 / (distance / 5);					
 		vec3 radiance = LightColors[i] * attenuation;
 
 		// Compute DGF
@@ -78,7 +78,7 @@ void main()
 	color = color / (color + vec3(1.0));
 	color = pow(color, vec3(1.0 / 2.2));
 
-	Color = vec4(Albedo, 1.0);
+	Color = vec4(color, 1.0);
 }
 
 // Trowbridge-Reitz GGX

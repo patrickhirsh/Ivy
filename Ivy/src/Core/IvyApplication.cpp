@@ -34,7 +34,7 @@ namespace Ivy
 		}
 
 		// create window
-		_window = _Ivy::Window::Create(700, 700, "Ivy Engine");
+		_window = _Ivy::Window::Create(900, 900, "Ivy Engine");
 		if (!_window)
 		{
 			LOG_ERROR("Failed to create Ivy window!");

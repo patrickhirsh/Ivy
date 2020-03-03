@@ -20,5 +20,6 @@ void main()
 	fPosition = vec3(View * Model * vec4(vPosition, 1.0));
 	fTexCoord = vTexCoord;
 
-	fNormal = vec3(NormalTransform * vec4(texture(NormalMap, vTexCoord).rgb, 1.0));
+	//fNormal = vec3(NormalTransform * vec4(texture(NormalMap, vTexCoord).rgb, 1.0));
+	fNormal = vec3(NormalTransform * vec4(vNormal, 1.0));
 }
