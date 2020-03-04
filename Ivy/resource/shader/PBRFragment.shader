@@ -5,8 +5,11 @@ in vec3				fPosition;
 in vec3				fNormal;
 in vec2				fTexCoord;
 
+uniform mat4		NormalTransform;
+
 // Material Maps
 uniform sampler2D	AlbedoMap;
+uniform sampler2D	NormalMap;
 uniform sampler2D	MetallicMap;
 uniform sampler2D	RoughnessMap;
 //uniform sampler2D	AOMap;
@@ -14,7 +17,7 @@ uniform sampler2D	RoughnessMap;
 // Constants
 const float			PI							= 3.14159265359;
 const float			FRESNEL_F0_CONSTANT			= 0.04;
-const float			AMBIENT_CONSTANT			= 0.03;
+const float			AMBIENT_CONSTANT			= 0.01;
 
 // Temporary Constants
 const int		LIGHT_COUNT						= 2;
@@ -29,11 +32,14 @@ vec3 FresnelSchlick								(float cosTheta, vec3 F0);
 
 void main()
 {
-	vec3  Albedo		= texture(AlbedoMap, fTexCoord).rgb;		// convert to linear space
+	// convert albedo to linear space (there's gotta be a better way to do this...)
+	vec3  Albedo		= vec3(pow(texture(AlbedoMap, fTexCoord).r, 2.2), pow(texture(AlbedoMap, fTexCoord).g, 2.2), pow(texture(AlbedoMap, fTexCoord).b, 2.2));
 	float Metallic		= texture(MetallicMap, fTexCoord).r;
 	float Roughness		= texture(RoughnessMap, fTexCoord).r;
 
+	//vec3 N = normalize(texture(NormalMap, TexCoord).rgb * 2.0 - 1.0);
 	vec3 N = normalize(fNormal);
+
 	vec3 V = normalize(CameraPosition - fPosition);
 
 	vec3 F0 = vec3(FRESNEL_F0_CONSTANT);

@@ -104,7 +104,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	auto mesh = Ivy::Mesh();
 	mesh.SourceMeshPath = "teapot.obj";
 	auto material = Ivy::Material();
-	material.AlbedoPath = "bricks.png";
+	material.AlbedoPath = "brick.png";
 	//*/
 
 	//* BHP
