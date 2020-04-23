@@ -80,9 +80,10 @@ Sandbox::Sandbox(int argc, char* argv[])
 	else { _obj = argv[1]; }
 	RegisterEventCallback(Ivy::EventCategory::C_INPUT, BIND_EVENT_FUNCTION(InputCallback));
 
-	/*
+	//*
 	// Cubemap
 	auto transformCM = Ivy::Transform();
+	transformCM.Rotation.X = -50;
 	auto meshCM = Ivy::Mesh();
 	meshCM.SourceMeshPath = "cube.obj";
 	auto cubemapCM = Ivy::Cubemap();

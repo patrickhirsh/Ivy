@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5B807E08-2F64-38A8-8222-DC7B39F6DF48}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>assimp</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp-vc142-mtd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp-vc142-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp-vc142-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp-vc142-mt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Debug";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Debug\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\Debug\zlibstaticd.lib;..\lib\Debug\IrrXMLd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/lib/Debug/assimp-vc142-mtd.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/bin/Debug/assimp-vc142-mtd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="Release";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"Release\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\Release\zlibstatic.lib;..\lib\Release\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/lib/Release/assimp-vc142-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/bin/Release/assimp-vc142-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="MinSizeRel";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"MinSizeRel\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\MinSizeRel\zlibstatic.lib;..\lib\MinSizeRel\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/lib/MinSizeRel/assimp-vc142-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/bin/MinSizeRel/assimp-vc142-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR="RelWithDebInfo";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;MINIZ_USE_UNALIGNED_LOADS_AND_STORES=0;ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1;ASSIMP_BUILD_DLL_EXPORT;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;OPENDDLPARSER_BUILD;CMAKE_INTDIR=\"RelWithDebInfo\";assimp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\.;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\rapidjson\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\unzip;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\contrib\openddlparser\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..\include;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\RelWithDebInfo\zlibstatic.lib;..\lib\RelWithDebInfo\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/lib/RelWithDebInfo/assimp-vc142-mt.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/bin/RelWithDebInfo/assimp-vc142-mt.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp -BC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp --check-stamp-file C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\cmake-modules\FindRT.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp -BC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp --check-stamp-file C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\cmake-modules\FindRT.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp -BC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp --check-stamp-file C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\cmake-modules\FindRT.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp -BC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp --check-stamp-file C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.17\Modules\FindPackageMessage.cmake;C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\cmake-modules\FindRT.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Assimp.cpp" />
+    <ResourceCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\res\assimp.rc" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CApi\CInterfaceIOWrapper.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CApi\CInterfaceIOWrapper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\BaseImporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\BaseProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\BaseProcess.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Importer.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\ScenePrivate.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\PostStepRegistry.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\ImporterRegistry.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\DefaultProgressHandler.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\DefaultIOStream.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\DefaultIOSystem.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\ZipArchiveIOSystem.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\PolyTools.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Importer.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\IFF.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\SGSpatialSort.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\VertexTriangleAdjacency.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\VertexTriangleAdjacency.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\SpatialSort.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\SceneCombiner.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\ScenePreprocessor.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\ScenePreprocessor.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\SkeletonMeshBuilder.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\StandardShapes.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\TargetAnimation.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\TargetAnimation.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\RemoveComments.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Subdivision.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\scene.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Bitmap.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Version.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\CreateAnimMesh.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\simd.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\simd.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\material.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\LogStream.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Logger.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\NullLogger.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Win32DebugLogStream.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\DefaultLogger.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\FileLogStream.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\StdOStreamLogStream.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Common\Exporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CApi\AssimpCExport.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\BlobIOSystem.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\CalcTangentsProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\CalcTangentsProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ComputeUVMappingProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ComputeUVMappingProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ConvertToLHProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ConvertToLHProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\EmbedTexturesProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\EmbedTexturesProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindDegenerates.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindDegenerates.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindInstancesProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindInstancesProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindInvalidDataProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FindInvalidDataProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FixNormalsStep.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\FixNormalsStep.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\DropFaceNormalsProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\DropFaceNormalsProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenFaceNormalsProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenFaceNormalsProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenVertexNormalsProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenVertexNormalsProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\PretransformVertices.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\PretransformVertices.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ImproveCacheLocality.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ImproveCacheLocality.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\JoinVerticesProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\JoinVerticesProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\LimitBoneWeightsProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\LimitBoneWeightsProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\RemoveRedundantMaterials.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\RemoveRedundantMaterials.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\RemoveVCProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\RemoveVCProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SortByPTypeProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SortByPTypeProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SplitLargeMeshes.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SplitLargeMeshes.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\TextureTransform.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\TextureTransform.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\TriangulateProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\TriangulateProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ValidateDataStructure.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ValidateDataStructure.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\OptimizeGraph.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\OptimizeGraph.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\OptimizeMeshes.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\OptimizeMeshes.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\DeboneProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\DeboneProcess.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ProcessHelper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ProcessHelper.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\MakeVerboseFormat.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\MakeVerboseFormat.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ScaleProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ScaleProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ArmaturePopulate.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\ArmaturePopulate.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenBoundingBoxesProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\GenBoundingBoxesProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SplitByBoneCountProcess.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\PostProcessing\SplitByBoneCountProcess.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Material\MaterialSystem.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Material\MaterialSystem.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\STEPParser\STEPFileReader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\STEPParser\STEPFileReader.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\STEPParser\STEPFileEncoding.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\STEPParser\STEPFileEncoding.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter_Macro.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter_Node.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter_Geometry.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter_Material.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AMF\AMFImporter_Postprocess.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSConverter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSHelper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AC\ACLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\AC\ACLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\ASE\ASELoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\ASE\ASELoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\ASE\ASEParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\ASE\ASEParser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinLoader.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\B3D\B3DImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\B3D\B3DImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\BVH\BVHLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\BVH\BVHLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaHelper.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaHelper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\DXF\DXFLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\DXF\DXFLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\DXF\DXFHelper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CSM\CSMLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\CSM\CSMLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\HMP\HMPFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\HMP\HMPLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\HMP\HMPLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\HMP\HalfLifeFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRMeshLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRMeshLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRShared.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRShared.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Irr\IRRLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOAnimation.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOAnimation.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOBLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWO\LWOMaterial.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWS\LWSLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\LWS\LWSLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DMaterials.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DWrapper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DWrapper.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\m3d.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD2\MD2FileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD2\MD2Loader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD2\MD2Loader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD2\MD2NormalTable.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD3\MD3FileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD3\MD3Loader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD3\MD3Loader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD5\MD5Loader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD5\MD5Loader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD5\MD5Parser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MD5\MD5Parser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDC\MDCFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDC\MDCLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDC\MDCLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDC\MDCNormalTable.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\MDLDefaultColorMap.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\MDLFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\MDLLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\MDLLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\MDLMaterialLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HalfLifeMDLBaseHeader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1FileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1MDLLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1MDLLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1ImportDefinitions.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1ImportSettings.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\HL1MeshTrivert.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\LogFunctions.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\UniqueNameGenerator.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MDL\HalfLife\UniqueNameGenerator.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\NFF\NFFLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\NFF\NFFLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\NDO\NDOLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\NDO\NDOLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OFF\OFFLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OFF\OFFLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileMtlImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileMtlImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjFileParser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjTools.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreImporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreStructs.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreParsingUtils.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreBinarySerializer.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreXmlSerializer.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreImporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreStructs.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreBinarySerializer.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreXmlSerializer.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ogre\OgreMaterial.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OpenGEX\OpenGEXImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OpenGEX\OpenGEXImporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OpenGEX\OpenGEXStructs.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MS3D\MS3DLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MS3D\MS3DLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\COB\COBLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\COB\COBLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\COB\COBScene.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderDNA.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderDNA.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderDNA.inl" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderScene.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderScene.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderSceneGen.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderIntermediate.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderModifier.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderModifier.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderBMesh.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderBMesh.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderTessellator.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderTessellator.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderCustomData.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Blender\BlenderCustomData.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCReaderGen1_2x3.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCReaderGen2_2x3.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCReaderGen_2x3.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCUtil.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCUtil.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCGeometry.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCMaterial.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCProfile.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCCurve.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCBoolean.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Importer\IFC\IFCOpenings.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\XGL\XGLLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\XGL\XGLLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXCompileConfig.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXTokenizer.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXTokenizer.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXImportSettings.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXConverter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXConverter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXUtil.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXUtil.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXDocument.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXDocument.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXProperties.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXProperties.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXMeshGeometry.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXMeshGeometry.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXMaterial.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXModel.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXAnimation.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXNodeAttribute.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXDeformer.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXBinaryTokenizer.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXDocumentUtil.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXCommon.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3D\Q3DLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3D\Q3DLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3BSP\Q3BSPFileData.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3BSP\Q3BSPFileParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3BSP\Q3BSPFileParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3BSP\Q3BSPFileImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Q3BSP\Q3BSPFileImporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Raw\RawLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Raw\RawLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\SIB\SIBImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\SIB\SIBImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\SMD\SMDLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\SMD\SMDLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\STL\STLLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\STL\STLLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Terragen\TerragenLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Terragen\TerragenLoader.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Unreal\UnrealLoader.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Unreal\UnrealLoader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileHelper.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Geometry2D.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Geometry3D.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Group.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Light.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Macro.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Metadata.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Networking.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Node.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Postprocess.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Rendering.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Shape.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DImporter_Texturing.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\FIReader.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\FIReader.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DVocabulary.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFCommon.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFCommon.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFAsset.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFAsset.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFAssetWriter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFAssetWriter.inl" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFImporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Asset.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Asset.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2AssetWriter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2AssetWriter.inl" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Importer.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Importer.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFImporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFOpcPackage.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFOpcPackage.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\3MFXmlTags.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDCpp14.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDImporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDImporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDPmdParser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDPmxParser.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDPmxParser.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\MMD\MMDVmdParser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Obj\ObjExporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OpenGEX\OpenGEXExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\OpenGEX\OpenGEXExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Ply\PlyExporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3DS\3DSExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinFileWriter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assbin\AssbinFileWriter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assxml\AssxmlExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assxml\AssxmlExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assxml\AssxmlFileWriter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assxml\AssxmlFileWriter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\M3D\M3DExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Collada\ColladaExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExportNode.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExportNode.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExportProperty.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\FBX\FBXExportProperty.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\STL\STLExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\STL\STLExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X\XFileExporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\X3D\X3DExporter.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF\glTFExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Exporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\glTF2\glTF2Exporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\3MF\D3MFExporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assjson\cencode.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assjson\cencode.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assjson\json_exporter.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assjson\mesh_splitter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Assjson\mesh_splitter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Step\StepExporter.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\code\Step\StepExporter.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\irrXMLWrapper.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\unzip\crypt.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\unzip\ioapi.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\unzip\ioapi.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\unzip\unzip.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\unzip\unzip.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\common\shapes.cc" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\common\shapes.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\common\utils.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.cc" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\cdt.cc" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\cdt.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\sweep.cc" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\sweep.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.cc" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\clipper\clipper.hpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\clipper\clipper.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\OpenDDLParser.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\DDLNode.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\OpenDDLCommon.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\OpenDDLExport.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\Value.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\code\OpenDDLStream.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\OpenDDLParser.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\OpenDDLExport.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\OpenDDLStream.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\DDLNode.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\openddlparser\include\openddlparser\Value.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcAdjacencyInfo.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcArithmeticCodec.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcArithmeticCodec.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcBinaryStream.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcCommon.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDVEncodeParams.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcDynamicVector.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcFIFO.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcSC3DMCEncodeParams.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTimer.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTools.cpp" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleFans.cpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleFans.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcVector.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\Open3DGC\o3dgcVector.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zip\src\miniz.h" />
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zip\src\zip.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zip\src\zip.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\anim.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\aabb.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\ai_assert.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\camera.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\color4.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\color4.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\config.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\commonMetaData.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\defs.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Defines.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\cfileio.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\light.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\material.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\material.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\matrix3x3.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\matrix3x3.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\matrix4x4.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\matrix4x4.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\mesh.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\pbrmaterial.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\postprocess.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\quaternion.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\quaternion.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\scene.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\metadata.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\texture.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\types.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\vector2.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\vector2.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\vector3.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\vector3.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\version.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\cimport.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\importerdesc.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Importer.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\IOStream.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\IOSystem.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\cexport.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Exporter.hpp" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\DefaultIOStream.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\DefaultIOSystem.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\ZipArchiveIOSystem.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SceneCombiner.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\fast_atof.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\qnan.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\BaseImporter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Hash.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\MemoryIOWrapper.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\ParsingUtils.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\StreamReader.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\StreamWriter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\StringComparison.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\StringUtils.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SGSpatialSort.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\GenericProperty.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SpatialSort.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SkeletonMeshBuilder.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SmoothingGroups.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\SmoothingGroups.inl" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\StandardShapes.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\RemoveComments.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Subdivision.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Vertex.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\LineSplitter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\TinyFormatter.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Profiler.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\LogAux.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Bitmap.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\XMLTools.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\IOStreamBuffer.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\CreateAnimMesh.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\MathFunctions.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Exceptional.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\ByteSwapper.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\include\assimp\Compiler\pstdint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\ZERO_CHECK.vcxproj">
+      <Project>{113538E0-53AF-3363-B994-F32CE01B4141}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\irrXML\IrrXML.vcxproj">
+      <Project>{CB6E7B40-A165-3DAB-A569-FEC0A4A46236}</Project>
+      <Name>IrrXML</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{18A90103-388E-3A67-9165-4CCAE2456A8D}</Project>
+      <Name>zlibstatic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,10 @@
+^C:\USERS\PATRICK\DESKTOP\PROJECTS\IVY\IVY\VENDOR\ASSIMP\CMAKEFILES\342A192164C3D3A79B54F7AD4F3B247C\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp -BC:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/Assimp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

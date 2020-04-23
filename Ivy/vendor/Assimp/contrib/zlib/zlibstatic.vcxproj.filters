@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\contrib\zlib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{096DECF2-43E4-3471-8FD6-317D0E4C2299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9DCC0B15-A60B-386D-87E8-39655513BDBD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

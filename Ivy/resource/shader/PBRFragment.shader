@@ -3,6 +3,8 @@
 out vec4			Color;
 in vec3				fPosition;
 in vec3				fNormal;
+in mat4				fNormalTransform;
+in mat3				fTBN;
 in vec2				fTexCoord;
 
 uniform mat4		NormalTransform;
@@ -37,8 +39,10 @@ void main()
 	float Metallic		= texture(MetallicMap, fTexCoord).r;
 	float Roughness		= texture(RoughnessMap, fTexCoord).r;
 
-	//vec3 N = normalize(texture(NormalMap, TexCoord).rgb * 2.0 - 1.0);
-	vec3 N = normalize(fNormal);
+	vec3 N = texture(NormalMap, fTexCoord).rgb * 2.0 - 1.0;
+	N = normalize(fTBN * N);
+	N = normalize(vec3(fNormalTransform * vec4(N, 1.0)));
+	//vec3 N = normalize(fNormal);
 
 	vec3 V = normalize(CameraPosition - fPosition);
 

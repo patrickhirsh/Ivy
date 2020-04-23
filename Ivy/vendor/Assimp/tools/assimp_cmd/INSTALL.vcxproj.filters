@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Patrick\Desktop\Projects\Ivy\Ivy\vendor\Assimp\CMakeFiles\7be75dcf24a22bfc2b65b4ac5e0cfd87\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DE046ED8-C53A-339E-9959-DEC77C5C32EB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

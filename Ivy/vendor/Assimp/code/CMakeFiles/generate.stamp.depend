@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.17/Modules/FindPackageMessage.cmake
+C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/cmake-modules/FindRT.cmake
+C:/Users/Patrick/Desktop/Projects/Ivy/Ivy/vendor/Assimp/code/CMakeLists.txt

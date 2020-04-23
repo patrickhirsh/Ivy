@@ -20,6 +20,7 @@ namespace _Ivy
 		void BindCubemap(Ivy::Cubemap& cubemap);
 		void UnbindAll();
 		void LoadMesh(Ivy::Mesh& mesh);
+		void LoadMeshLegacy(Ivy::Mesh& mesh);
 		void LoadMaterial(Ivy::Material& material);
 		void LoadSampler2D(GLuint& TBO, std::string path, int textureIndex, bool& loaded);
 		void LoadCubemap(Ivy::Cubemap& cubemap);

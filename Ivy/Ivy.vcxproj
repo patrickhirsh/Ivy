@@ -125,21 +125,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath); $(SolutionDir)\vendor\Assimp\lib\Debug;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Editor|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(Configuration)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -147,15 +151,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include;$(SolutionDir)\vendor\Assimp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64;$(SolutionDir)\vendor\Assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mtd.lib;glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(OutDir)\Resource"</Command>
@@ -167,15 +171,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>IVY_EDITOR;IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include;$(SolutionDir)\vendor\Assimp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Core/IvyPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64;$(SolutionDir)\vendor\Assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mtd.lib;glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(OutDir)\Resource"</Command>
@@ -189,7 +193,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include;$(SolutionDir)\vendor\Assimp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -199,8 +203,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64;$(SolutionDir)\vendor\Assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mtd.lib;glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(OutDir)\Resource"</Command>
@@ -214,7 +218,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>IVY_EDITOR;IVY_BUILD_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\vendor\GLFW\include;$(SolutionDir)\vendor\GLEW\include;$(SolutionDir)\vendor\CY\include;$(SolutionDir)\vendor\STB\include;$(SolutionDir)\vendor\Assimp\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -224,8 +228,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\vendor\GLFW\lib-vc2019;$(SolutionDir)\vendor\GLEW\lib\Release\x64;$(SolutionDir)\vendor\Assimp\lib\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mtd.lib;glew32s.lib;glu32.lib;opengl32.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /i /e /y "$(SolutionDir)resource\*" "$(OutDir)\Resource"</Command>

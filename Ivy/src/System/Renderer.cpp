@@ -8,6 +8,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "STB/stb_image.h"
 
+// Assimp
+#include "assimp/Importer.hpp"
+#include "assimp/scene.h" 
+#include "assimp/postprocess.h"
+
 namespace _Ivy
 {
     Renderer::Renderer()
@@ -48,7 +53,11 @@ namespace _Ivy
                 ecs->GetComponent<Ivy::Cubemap>(entity) :
                 dummyCube;
 
-            if (!mesh.Loaded) { LoadMesh(mesh); }
+            if (!mesh.Loaded) 
+			{ 
+				if (hasCubemap) { LoadMeshLegacy(mesh); }
+				else			{ LoadMesh(mesh); }
+			}
             if (mesh.Loaded)
             {
                 BindVBO(mesh.VBO);
@@ -91,7 +100,7 @@ namespace _Ivy
                 // model / view / projection matrices
                 auto model = cy::Matrix4f::Scale(1);
                 auto view = meshTranslation * meshRotation;
-                auto projection = cy::Matrix4f::Perspective(1.0f, (std::get<0>(windowDimensions) / std::get<1>(windowDimensions)), 1, 10000);
+                auto projection = cy::Matrix4f::Perspective(1.0f, ((float)std::get<0>(windowDimensions) / (float)std::get<1>(windowDimensions)), 1, 10000);
 
                 // normal transformation
                 cy::Matrix4f NormalTransform = (meshTranslation * meshRotation) * model;
@@ -109,7 +118,7 @@ namespace _Ivy
                 GL(glUniformMatrix4fv(nLoc, 1, GL_FALSE, NormalTransform.cell));
 
                 // execute draw call
-                GL(glDrawArrays(GL_TRIANGLES, 0, mesh.VBOSize));
+                GL(glDrawArrays(GL_TRIANGLES, 1, mesh.VBOSize));
 
                 UnbindAll();
             }
@@ -168,7 +177,124 @@ namespace _Ivy
         // TODO: unbind all maps
     }
 
-    void Renderer::LoadMesh(Ivy::Mesh& mesh)
+	void Renderer::LoadMesh(Ivy::Mesh& mesh)
+	{
+		Assimp::Importer importer;
+		std::string path = _Ivy::GetResourceDirectory() + mesh.SourceMeshPath;
+		const aiScene* scene = importer.ReadFile(path,
+			aiProcess_CalcTangentSpace |
+			aiProcess_Triangulate |
+			aiProcess_JoinIdenticalVertices |
+			aiProcess_SortByPType);
+
+		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+		{
+			LOG_ERROR("failed to load static mesh from path: " << path);
+			return;
+		}
+
+		// TODO: Support more than one mesh per model...
+		if (scene->mNumMeshes != 1)
+		{
+			if (scene->mNumMeshes == 0)
+			{
+				LOG_ERROR("failed to load static mesh from path (empty): " << path);
+				return;
+			}
+			else
+			{
+				LOG_WARN("tried to load a multi-mesh model. Only the first mesh will be loaded...");
+			}
+		}
+
+		aiMesh* impMesh = scene->mMeshes[0];
+
+		// build vb layout based on mesh data
+		VertexBufferLayout VBL;
+		mesh.HasVertexPositions = impMesh->HasPositions();
+		mesh.HasVertexNormals = impMesh->HasNormals();
+		mesh.HasVertexTextures = impMesh->HasTextureCoords(0);
+		if (mesh.HasVertexPositions) { VBL.Push<float>(3); }	// xp, yp, zp
+		if (mesh.HasVertexNormals) { VBL.Push<float>(3); }		// xn, yn, zn
+
+		// TODO: Is this the proper relationship? What does computing tangets depend on? can we always do it? Should we always do it?
+		if (mesh.HasVertexNormals) { VBL.Push<float>(3); }		// xnt, ynt, znt (for now, if we have normals, use tangents)
+		if (mesh.HasVertexTextures) { VBL.Push<float>(2); }		// xt, yt
+
+		std::vector<float> buffer;
+
+		// TODO: REMOVE THIS HACK and figure out why a draw index of 0 causes problems...
+		for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
+
+		// for each face...
+		for (int face = 0; face < impMesh->mNumFaces; face++)
+		{
+			// for each vertex...
+			aiFace impFace = impMesh->mFaces[face];
+
+			for (int vertexIndex = 0; vertexIndex < impFace.mNumIndices; vertexIndex++)
+			{
+				// add vertex position coords
+				if (mesh.HasVertexPositions)
+				{
+					buffer.push_back(impMesh->mVertices[impFace.mIndices[vertexIndex]].x);
+					buffer.push_back(impMesh->mVertices[impFace.mIndices[vertexIndex]].y);
+					buffer.push_back(impMesh->mVertices[impFace.mIndices[vertexIndex]].z);
+				}
+
+				// add vertex normal/tangent coords
+				if (mesh.HasVertexNormals)
+				{
+					buffer.push_back(impMesh->mNormals[impFace.mIndices[vertexIndex]].x);
+					buffer.push_back(impMesh->mNormals[impFace.mIndices[vertexIndex]].y);
+					buffer.push_back(impMesh->mNormals[impFace.mIndices[vertexIndex]].z);
+
+					buffer.push_back(impMesh->mTangents[impFace.mIndices[vertexIndex]].x);
+					buffer.push_back(impMesh->mTangents[impFace.mIndices[vertexIndex]].y);
+					buffer.push_back(impMesh->mTangents[impFace.mIndices[vertexIndex]].z);
+				}
+
+				// add vertex texture coords
+				if (mesh.HasVertexTextures)
+				{
+					buffer.push_back(impMesh->mTextureCoords[0][impFace.mIndices[vertexIndex]].x);
+					buffer.push_back(impMesh->mTextureCoords[0][impFace.mIndices[vertexIndex]].y);
+					//buffer.push_back(impMesh->mTextureCoords[0][impFace.mIndices[vertexIndex]].z);
+				}
+			}
+		}
+
+		// create VAO
+		GL(glGenVertexArrays(1, &mesh.VAO));
+
+		// create VBO
+		GL(glGenBuffers(1, &mesh.VBO));
+		GL(glBindBuffer(GL_ARRAY_BUFFER, mesh.VBO));
+		GL(glBufferData(GL_ARRAY_BUFFER, buffer.size() * sizeof(float), buffer.data(), GL_DYNAMIC_DRAW));
+
+		// set VBO
+		GL(glBindVertexArray(mesh.VAO));
+		GL(glEnableClientState(GL_VERTEX_ARRAY));
+		GL(glBindBuffer(GL_ARRAY_BUFFER, mesh.VBO));
+		const auto& elements = VBL.GetElements();
+		unsigned int offset = 0;
+		for (unsigned int i = 0; i < elements.size(); i++)
+		{
+			const auto& element = elements[i];
+			GL(glEnableVertexAttribArray(i));
+			GL(glVertexAttribPointer(i, element.Count, element.Type, element.Normalized,
+				VBL.GetStride(), (const void*)offset));
+
+			offset += element.Count * VertexBufferLayoutElement::SizeOf(element.Type);
+		}
+
+		// set VBO size
+		mesh.VBOSize = (buffer.size() * sizeof(float)) / VBL.GetStride();
+
+		mesh.Loaded = true;
+	}
+
+    void Renderer::LoadMeshLegacy(Ivy::Mesh& mesh)
     {
         std::string path = _Ivy::GetResourceDirectory() + mesh.SourceMeshPath;
         cy::TriMesh cymesh = cy::TriMesh();
@@ -190,7 +316,7 @@ namespace _Ivy
         std::vector<float> buffer;
 
         // TODO: REMOVE THIS HACK and figure out why a draw index of 0 causes problems...
-        //for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
+        for (int i = 0; i < VBL.GetStride(); i++) { buffer.push_back(0.0f); }
 
         // for each face...
         for (int face = 0; face < cymesh.NF(); face++)
