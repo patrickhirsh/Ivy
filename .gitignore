@@ -1,5 +1,8 @@
+*.log
+*.pdb
+*.db
+*.ilk
 /Ivy/.vs/**
 /Ivy/build/**
 /Sandbox/build/**
-*.log
 imgui.ini
