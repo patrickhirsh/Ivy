@@ -43,6 +43,8 @@ void InputCallback(Ivy::Event& Event)
 			modelDistance = -1000;
 		}
 
+		/*
+
 		// Rock
 		if (e.GetKey() == GLFW_KEY_2)
 		{
@@ -66,6 +68,7 @@ void InputCallback(Ivy::Event& Event)
 			modelRotation = cy::Matrix4f::RotationXYZ(1.5, 1.5, 0);
 			modelDistance = -60;
 		}
+		*/
 	}
 
 	if (Event.GetEventType() == Ivy::EventType::E_MOUSEBUTTON_PRESSED)
@@ -108,8 +111,10 @@ void InputCallback(Ivy::Event& Event)
 		Ivy::EventMouseMoved e = Event.As<Ivy::EventMouseMoved>();
 		if (mb1Active)
 		{
-			modelRotation *= cy::Matrix4f::RotationY((e.GetPosX() - mb1CursorX) * 0.005f);
-			modelRotation *= cy::Matrix4f::RotationX((mb1CursorY - e.GetPosY()) * 0.005f);
+			modelRotation *= cy::Matrix4f::RotationXYZ(
+				(mb1CursorY - e.GetPosY()) * 0.005f, 
+				(e.GetPosX() - mb1CursorX) * 0.005f,
+				0);
 		}
 		if (mb2Active)
 		{
@@ -199,7 +204,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	AddComponent<Ivy::Material>(_BHP, materialBHP);
 	//*/
 
-	//* Rock
+	/* Rock
 	auto transformRock = Ivy::Transform();
 	transformRock.Position.Z = 20;
 	auto meshRock = Ivy::Mesh();
@@ -216,7 +221,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	AddComponent<Ivy::Material>(_Rock, materialRock);
 	//*/
 
-	//* Car
+	/* Car
 	auto transformCar = Ivy::Transform();
 	transformCar.Position.Z = 20;
 	auto meshCar = Ivy::Mesh();
@@ -233,7 +238,7 @@ Sandbox::Sandbox(int argc, char* argv[])
 	AddComponent<Ivy::Material>(_Car, materialCar);
 	//*/
 
-	//* Stone
+	/* Stone
 	auto transformStone = Ivy::Transform();
 	transformStone.Position.Z = 20;
 	auto meshStone = Ivy::Mesh();
@@ -265,12 +270,14 @@ void Sandbox::Tick()
 	// Super hacky and temporary. Clear all visibility, then set our current active as visible
 	Ivy::Transform& transformBHP = GetComponent<Ivy::Transform>(_BHP);
 	transformBHP.IsVisible = false;
+	/*
 	Ivy::Transform& transformRock = GetComponent<Ivy::Transform>(_Rock);
 	transformRock.IsVisible = false;
 	Ivy::Transform& transformCar = GetComponent<Ivy::Transform>(_Car);
 	transformCar.IsVisible = false;
 	Ivy::Transform& transformStone = GetComponent<Ivy::Transform>(_Stone);
 	transformStone.IsVisible = false;
+	*/
 
 	Ivy::Transform& transformACTIVE = GetComponent<Ivy::Transform>(_activeObject);
 	transformACTIVE.IsVisible = true;
