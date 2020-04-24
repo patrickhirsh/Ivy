@@ -38,6 +38,8 @@ namespace _Ivy
             // required components
             Ivy::Transform& transform =     ecs->GetComponent<Ivy::Transform>(entity);
             Ivy::Mesh& mesh =               ecs->GetComponent<Ivy::Mesh>(entity);
+
+			if (!transform.IsVisible)	{ continue; }
             
             // optional material
             bool hasMaterial = false;
@@ -53,11 +55,8 @@ namespace _Ivy
                 ecs->GetComponent<Ivy::Cubemap>(entity) :
                 dummyCube;
 
-            if (!mesh.Loaded) 
-			{ 
-				if (hasCubemap) { LoadMeshLegacy(mesh); }
-				else			{ LoadMesh(mesh); }
-			}
+
+			if (!mesh.Loaded)			{ LoadMesh(mesh); }
             if (mesh.Loaded)
             {
                 BindVBO(mesh.VBO);
@@ -92,10 +91,7 @@ namespace _Ivy
                     transform.Position.X,
                     transform.Position.Y,
                     transform.Position.Z));
-                auto meshRotation = cy::Matrix4f::RotationXYZ(
-                    transform.Rotation.X,
-                    transform.Rotation.Y,
-                    transform.Rotation.Z);
+                auto meshRotation = transform.Rotation;
 
                 // model / view / projection matrices
                 auto model = cy::Matrix4f::Scale(1);

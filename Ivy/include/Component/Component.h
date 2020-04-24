@@ -28,14 +28,9 @@ namespace Ivy
 			float X, Y, Z;
 		};
 
-		class IVY_API Rotation
-		{
-		public:
-			float X, Y, Z;
-		};
-
+		bool IsVisible = true;
+		cy::Matrix4f Rotation;
 		Position Position;
-		Rotation Rotation;
 	};
 
 	class IVY_API Mesh : public Component

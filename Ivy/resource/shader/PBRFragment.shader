@@ -24,7 +24,7 @@ const float			AMBIENT_CONSTANT			= 0.01;
 // Temporary Constants
 const int		LIGHT_COUNT						= 2;
 const vec3		LightPositions[LIGHT_COUNT]		= vec3[](vec3(50.0, 5.0, -50.0), vec3(-15.0, 0.0, -20.0));
-const vec3		LightColors[LIGHT_COUNT]		= vec3[](vec3(255.0, 255.0, 255.0), vec3(200, 10, 10));
+const vec3		LightColors[LIGHT_COUNT]		= vec3[](vec3(255.0, 255.0, 255.0), vec3(5, 5, 10)); // vec3(200, 10, 10));
 const vec3		CameraPosition					= vec3(0.0, 0.0, 0.0);
 
 float DistributionTRGGX							(vec3 N, vec3 H, float roughness);

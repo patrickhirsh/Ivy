@@ -7,8 +7,4 @@ public:
 	Sandbox(int argc, char* argv[]);
 	~Sandbox();
 	void Tick();
-private:
-	std::string _obj;
-	Ivy::Entity _object;
-	Ivy::Entity _cubemap;
 };
