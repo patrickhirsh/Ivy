@@ -4,5 +4,6 @@
 *.ilk
 /Ivy/.vs/**
 /Ivy/build/**
+/Ivy/resource/**
 /Sandbox/build/**
 imgui.ini
